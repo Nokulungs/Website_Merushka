@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Rates | Merushka Francis Psychology</title>
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       CLIENT PALETTE & TYPOGRAPHY
+       ========================================================= */
+    :root {
+      --color-heading: #ff5800;
+      --color-anchor: #df895b;
+      --color-sand: rgba(237, 193, 164, 0.85);
+      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-subheading: #e9e6e6;
+      --color-body: #4f5354;
+      --color-dark: #2d2d2d;
+      --color-medium: #4a4a4a;
+      --font-main: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      font-family: var(--font-main);
+      font-weight: 300;
+      color: var(--color-body);
+      line-height: 1.75;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
+        url('images/BackgroundImage.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.85;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================================================
+       OVERLAY TOP NAVIGATION
+       ========================================================= */
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 50px;
+      width: 100%;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 3px;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #ffffff;
+      position: relative;
+      padding-bottom: 4px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--color-heading);
+      font-weight: 600;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-heading);
+      border-radius: 2px;
+    }
+
+    /* =========================================================
+       HERO HEADER — full height
+       ========================================================= */
+    .hero {
+      position: relative;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/HeroImage.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 0 80px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      color: var(--color-heading);
+      font-weight: 700;
+      font-size: 3.6rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p.subtitle {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    /* =========================================================
+       MAIN CONTENT — more transparent for better image visibility
+       ========================================================= */
+    main.main-content {
+      flex-grow: 1;
+      padding: 100px 0 120px;
+      background-color: rgba(237, 193, 164, 0.5);
+      /* Lighter opacity for better image visibility */
+      backdrop-filter: blur(4px);
+      /* Reduced blur for clearer background image */
+    }
+
+    h2.section-title {
+      color: var(--color-anchor);
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      position: relative;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    h2.section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: var(--color-heading);
+      margin-top: 12px;
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--color-dark);
+      margin-bottom: 50px;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      margin-bottom: 22px;
+      color: var(--color-dark);
+    }
+
+    .intro-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      margin-bottom: 40px;
+      font-weight: 400;
+      color: var(--color-dark);
+    }
+
+    /* =========================================================
+       SERVICES GRID — clean, no white cards
+       ========================================================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .service-item {
+      padding: 30px 0;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .service-item:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .service-item:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+
+    .service-item h3 {
+      color: var(--color-anchor);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .service-item .details {
+      font-weight: 500;
+      color: var(--color-medium);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .service-item p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+      color: var(--color-dark);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       RATES & MEDICAL AID BOX
+       ========================================================= */
+    .info-box {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-left: 5px solid var(--color-heading);
+      padding: 36px 40px;
+      border-radius: 12px;
+      margin-top: 10px;
+      animation: fadeIn 0.7s ease forwards;
+      animation-delay: 0.4s;
+      opacity: 0;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .info-box h3 {
+      color: var(--color-anchor);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .info-box p {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-dark);
+    }
+
+    .info-box p:last-of-type {
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background-color: var(--color-footer-bg);
+      backdrop-filter: blur(6px);
+      color: var(--color-subheading);
+      font-size: 0.9rem;
+      padding-top: 50px;
+    }
+
+    .footer-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(233, 230, 230, 0.2);
+      margin-bottom: 40px;
+    }
+
+    .footer-header strong {
+      display: block;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col strong {
+      color: #ffffff;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      background-color: rgba(30, 40, 50, 0.95);
+      border-top: 1px solid rgba(233, 230, 230, 0.15);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.85rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 968px) {
+      .container {
+        padding: 0 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner {
+        padding: 20px 24px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(70, 86, 104, 0.96);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 0 28px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        transform: scaleY(0);
+        transform-origin: top center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.open {
+        transform: scaleY(1);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-links a {
+        font-size: 1.05rem;
+      }
+
+      .hero {
+        min-height: 85vh;
+        padding: 120px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero p.subtitle {
+        font-size: 1.05rem;
+      }
+
+      main.main-content {
+        padding: 60px 0 80px;
+      }
+
+      h2.section-title {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .intro-text {
+        font-size: 1.05rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .service-item {
+        padding: 20px 0;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .info-box {
+        padding: 28px 24px;
+      }
+
+      .container {
+        padding: 0 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .service-item {
+        padding: 16px 0;
+      }
+
+      .info-box {
+        padding: 20px;
+      }
+
+      h2.section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <nav class="top-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">Merushka Francis</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="approach.html">Approach</a></li>
+          <li><a href="areas.html">Areas of Interest</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="hero-content">
+        <h1>Services &amp; Rates</h1>
+        <p class="subtitle">Individual and couples therapy tailored to your unique needs.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <h2 class="section-title">Services &amp; Rates</h2>
+      <p class="intro-text">I offer psychotherapy for adolescents (13–18 years old), adults, and couples in a warm,
+        collaborative, and non-judgmental environment.</p>
+
+      <div class="services-grid">
+        <!-- Individual Therapy -->
+        <div class="service-item">
+          <h3>Individual Therapy</h3>
+          <div class="details">In-person &bull; Online &bull; 50 minutes</div>
+          <p>Tailored psychodynamic and skills-based psychotherapy for adolescents and adults dealing with emotional
+            difficulties, life transitions, or mental health concerns. A safe space to explore your inner world at your
+            own pace.</p>
+        </div>
+
+        <!-- Couples Therapy -->
+        <div class="service-item">
+          <h3>Couples Therapy</h3>
+          <div class="details">In-person &bull; 50 or 90 minutes</div>
+          <p>A dedicated space to explore relational tension, rebuild communication pathways, and work through conflicts
+            collaboratively. I help couples develop deeper understanding and connection.</p>
+        </div>
+      </div>
+
+      <!-- Rates & Medical Aid -->
+      <div class="info-box">
+        <h3>Session Fees &amp; Medical Aid</h3>
+        <p>Session fees are in line with standard medical aid rates for psychotherapy. I am registered with all major
+          medical aids and can assist with claims for Prescribed Minimum Benefits (PMBs) where applicable.</p>
+        <p>Please get in touch to discuss any questions you may have around rates, medical aid coverage, or
+          affordability options.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-header">
+        <strong>Merushka Francis Psychology</strong>
+        <p>PS 0163040 | PR 1346008</p>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <strong>Get in Touch</strong>
+          <a href="tel:+27773687497">+27 77 368 7497</a>
+          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Connect</strong>
+          <a href="#" target="_blank">LinkedIn Profile</a>
+          <a href="#" target="_blank">Psychology Today</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Practice Details</strong>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
+            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
+            257 Jan Smuts Avenue, Dunkeld West<br>
+            Johannesburg, 2196
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (e) {
+        const nav = document.querySelector('.top-nav');
+        if (nav && !nav.contains(e.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('open');
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

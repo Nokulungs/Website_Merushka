@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merushka Francis | Clinical Psychologist</title>
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       CLIENT PALETTE & TYPOGRAPHY
+       ========================================================= */
+    :root {
+      --color-heading: #ff5800;
+      --color-anchor: #df895b;
+      --color-sand: rgba(237, 193, 164, 0.5);
+      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-subheading: #e9e6e6;
+      --color-body: #4f5354;
+      --color-dark: #2d2d2d;
+      --font-main: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      font-family: var(--font-main);
+      font-weight: 300;
+      color: var(--color-body);
+      line-height: 1.75;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
+        url('images/BackgroundImage.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.85;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================================================
+       OVERLAY TOP NAVIGATION
+       ========================================================= */
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 50px;
+      width: 100%;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 3px;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #ffffff;
+      position: relative;
+      padding-bottom: 4px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--color-heading);
+      font-weight: 600;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-heading);
+      border-radius: 2px;
+    }
+
+    /* =========================================================
+       HERO HEADER
+       ========================================================= */
+    .hero {
+      position: relative;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/HeroImage.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 0 80px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      color: var(--color-heading);
+      font-weight: 700;
+      font-size: 3.6rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p.subtitle {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .hero .tagline {
+      color: #f5f0ea;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background-color: var(--color-heading);
+      color: #ffffff;
+      font-weight: 500;
+      padding: 15px 36px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-hero:hover {
+      background-color: var(--color-anchor);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       QUOTE SECTION
+       ========================================================= */
+    .quote-block {
+      background-color: var(--color-sand);
+      backdrop-filter: blur(4px);
+      padding: 90px 0;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .quote-container {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .quote-mark {
+      font-size: 5rem;
+      line-height: 0;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--color-heading);
+      opacity: 0.25;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      color: var(--color-anchor);
+      font-weight: 600;
+      font-size: 2.2rem;
+      line-height: 1.4;
+      margin-top: 20px;
+    }
+
+    .quote-author {
+      color: var(--color-dark);
+      font-weight: 500;
+      font-size: 1.15rem;
+      margin-top: 24px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       SERVICES OVERVIEW CARDS
+       ========================================================= */
+    .services-overview {
+      padding: 90px 0;
+      background-color: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .services-header h2 {
+      color: var(--color-anchor);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .services-header p {
+      color: var(--color-dark);
+      font-size: 1.05rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 32px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .service-card h3 {
+      color: var(--color-anchor);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: var(--color-dark);
+    }
+
+    .card-link {
+      font-weight: 600;
+      color: var(--color-anchor);
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-link:hover {
+      color: var(--color-heading);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background-color: var(--color-footer-bg);
+      backdrop-filter: blur(6px);
+      color: var(--color-subheading);
+      font-size: 0.9rem;
+      padding-top: 50px;
+    }
+
+    .footer-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(233, 230, 230, 0.2);
+      margin-bottom: 40px;
+    }
+
+    .footer-header strong {
+      display: block;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col strong {
+      color: #ffffff;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      background-color: rgba(30, 40, 50, 0.95);
+      border-top: 1px solid rgba(233, 230, 230, 0.15);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.85rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 868px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner {
+        padding: 20px 24px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(70, 86, 104, 0.96);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 0 28px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        transform: scaleY(0);
+        transform-origin: top center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.open {
+        transform: scaleY(1);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-links a {
+        font-size: 1.05rem;
+      }
+
+      .hero {
+        min-height: 85vh;
+        padding: 120px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero p.subtitle {
+        font-size: 1.05rem;
+      }
+
+      .quote-text {
+        font-size: 1.5rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+      }
+
+      .container {
+        padding: 0 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero-content {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <nav class="top-nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">Merushka Francis</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="approach.html">Approach</a></li>
+          <li><a href="areas.html">Areas of Interest</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="hero-content">
+        <h1>A Safe Space for Healing & Growth</h1>
+        <p class="subtitle">Evidence-based clinical psychotherapy tailored to help you process challenges, cultivate
+          emotional resilience, and restore clarity in your life.</p>
+        <a href="contact.html" class="btn-hero">Book Appointment</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="quote-block">
+    <div class="container quote-container">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Not everything that is faced can be changed, but nothing can be changed until it is faced.
+      </p>
+      <p class="quote-author">— James Baldwin</p>
+    </div>
+  </div>
+
+  <section class="services-overview">
+    <div class="container">
+      <div class="services-header">
+        <h2>Areas of Practice</h2>
+        <p>Tailored therapeutic support to meet your individual needs.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div>
+            <h3>Individual Psychotherapy</h3>
+            <p>One-on-one sessions helping adults navigate stress, anxiety, mood disorders, self-esteem, and life
+              transitions.</p>
+          </div>
+          <a href="services.html" class="card-link">Learn More →</a>
+        </div>
+
+        <div class="service-card">
+          <div>
+            <h3>Trauma & Recovery</h3>
+            <p>Empathetic guidance designed to help process past experiences, manage emotional triggers, and build
+              resilience.</p>
+          </div>
+          <a href="services.html" class="card-link">Learn More →</a>
+        </div>
+
+        <div class="service-card">
+          <div>
+            <h3>Personal Growth</h3>
+            <p>Self-exploration therapy focused on deeper self-understanding, healthier boundary-setting, and emotional
+              regulation.</p>
+          </div>
+          <a href="services.html" class="card-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-header">
+        <strong>Merushka Francis Psychology</strong>
+        <p>PS 0163040 | PR 1346008</p>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <strong>Get in Touch</strong>
+          <a href="tel:+27773687497">+27 77 368 7497</a>
+          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Connect</strong>
+          <a href="#" target="_blank">LinkedIn Profile</a>
+          <a href="#" target="_blank">Psychology Today</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Practice Details</strong>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
+            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
+            257 Jan Smuts Avenue, Dunkeld West<br>
+            Johannesburg, 2196
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (e) {
+        const nav = document.querySelector('.top-nav');
+        if (nav && !nav.contains(e.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('open');
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
