@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,6 @@
     :root {
       --color-heading: #ff5800;
       --color-anchor: #df895b;
-      --color-sand: rgba(237, 193, 164, 0.5);
       --color-footer-bg: rgba(70, 86, 104, 0.85);
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
@@ -32,8 +30,11 @@
       padding: 0;
     }
 
-    html,
-    body {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
@@ -44,8 +45,8 @@
     body {
       display: flex;
       flex-direction: column;
-      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
-        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
+                        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -72,23 +73,25 @@
     }
 
     /* =========================================================
-       OVERLAY TOP NAVIGATION
+       TOP NAVIGATION — fully transparent always
        ========================================================= */
     .top-nav {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
+      z-index: 1000;
       background: transparent;
+      padding: 20px 0;
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 50px;
-      width: 100%;
+      padding: 0 30px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .nav-brand {
@@ -96,43 +99,78 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
+    .nav-brand span {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0px;
+    }
+
+    /* ——— hamburger ——— */
     .hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
       padding: 6px 0;
+      z-index: 1001;
     }
-
     .hamburger span {
       display: block;
       width: 28px;
       height: 3px;
       background: #ffffff;
       border-radius: 3px;
-      transition: all 0.25s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ——— nav links ——— */
     .nav-links {
-      display: flex;
-      gap: 40px;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(70, 86, 104, 0.96);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px 40px;
+      gap: 30px;
       list-style: none;
-      transition: all 0.3s ease;
+      transition: right 0.4s ease;
+      display: flex;
+    }
+
+    .nav-links.open {
+      right: 0;
     }
 
     .nav-links a {
       font-weight: 400;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       color: #ffffff;
       position: relative;
       padding-bottom: 4px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      transition: color 0.3s ease;
     }
 
     .nav-links a.active,
@@ -153,196 +191,128 @@
     }
 
     /* =========================================================
-       HERO HEADER
+       HERO HEADER — reduced top space
        ========================================================= */
     .hero {
       position: relative;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/HeroImage.jpeg');
+      background-image: 
+        linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
+        linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
+        url('images/HeroImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 95vh;
+      min-height: 100vh;
+      height: 1050px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 140px 0 80px;
+      padding: 40px 0 80px;
     }
 
     .hero-content {
-      max-width: 720px;
+      max-width: 800px;
       text-align: center;
       margin: 0 auto;
     }
 
-    .hero h1 {
-      color: var(--color-heading);
-      font-weight: 700;
-      font-size: 3.6rem;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero p.subtitle {
+    /* ===== QUOTE ===== */
+    .quote-text {
       color: #ffffff;
-      font-weight: 400;
-      font-size: 1.3rem;
-      line-height: 1.6;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      margin-bottom: 12px;
-    }
-
-    .hero .tagline {
-      color: #f5f0ea;
       font-weight: 300;
-      font-size: 1rem;
-      margin-bottom: 30px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-      letter-spacing: 0.3px;
+      font-size: 1.8rem;
+      line-height: 1.6;
+      font-style: italic;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      margin: 0 auto 16px;
     }
 
+    .quote-text .quote-mark {
+      font-size: 3rem;
+      color: var(--subheading);
+      font-style: normal;
+      opacity: 0.6;
+    }
+
+    .quote-author {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ===== BUTTON ===== */
     .btn-hero {
       display: inline-block;
       background-color: var(--color-heading);
       color: #ffffff;
       font-weight: 500;
-      padding: 15px 36px;
+      padding: 15px 40px;
       border-radius: 8px;
       font-size: 1.05rem;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.3);
       transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-hero:hover {
       background-color: var(--color-anchor);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.4);
       color: #ffffff;
+      opacity: 1;
     }
 
     /* =========================================================
-       QUOTE SECTION
+       FLOATING BACK TO TOP BUTTON
        ========================================================= */
-    .quote-block {
-      background-color: var(--color-sand);
-      backdrop-filter: blur(4px);
-      padding: 90px 0;
-      text-align: center;
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 52px;
+      height: 52px;
+      background-color: var(--color-heading);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.35);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      z-index: 999;
       display: flex;
       align-items: center;
-      position: relative;
+      justify-content: center;
     }
 
-    .quote-container {
-      position: relative;
-      max-width: 820px;
-      margin: 0 auto;
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
-    .quote-mark {
-      font-size: 5rem;
-      line-height: 0;
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--color-heading);
-      opacity: 0.25;
-      font-family: Georgia, serif;
+    .back-to-top:hover {
+      background-color: var(--color-anchor);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.5);
     }
 
-    .quote-text {
-      color: var(--color-anchor);
-      font-weight: 600;
-      font-size: 2.2rem;
-      line-height: 1.4;
-      margin-top: 20px;
-    }
-
-    .quote-author {
-      color: var(--color-dark);
-      font-weight: 500;
-      font-size: 1.15rem;
-      margin-top: 24px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* =========================================================
-       SERVICES OVERVIEW CARDS
-       ========================================================= */
-    .services-overview {
-      padding: 90px 0;
-      background-color: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(4px);
-    }
-
-    .services-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .services-header h2 {
-      color: var(--color-anchor);
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .services-header p {
-      color: var(--color-dark);
-      font-size: 1.05rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .service-card {
-      background-color: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(4px);
-      border-radius: 12px;
-      padding: 32px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .service-card h3 {
-      color: var(--color-anchor);
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      color: var(--color-dark);
-    }
-
-    .card-link {
-      font-weight: 600;
-      color: var(--color-anchor);
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-link:hover {
-      color: var(--color-heading);
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* =========================================================
@@ -353,34 +323,43 @@
       backdrop-filter: blur(6px);
       color: var(--color-subheading);
       font-size: 0.9rem;
-      padding-top: 50px;
+      padding: 50px 0 0;
+      margin-top: auto;
     }
 
+    /* Footer Header - Brand & Registrations */
     .footer-header {
       text-align: center;
-      padding-bottom: 24px;
+      padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
-    .footer-header strong {
-      display: block;
-      font-size: 1.25rem;
+    .footer-header h3 {
       color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
       margin-bottom: 4px;
     }
 
+    .footer-header p {
+      font-size: 0.85rem;
+      color: var(--color-subheading);
+    }
+
+    /* Footer Grid - 3 columns: Get in Touch | Connect | Practice Details */
     .footer-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
+      align-items: start;
     }
 
     .footer-col {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .footer-col strong {
@@ -390,215 +369,154 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-nav-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .footer-col p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-subheading);
     }
 
+    .footer-col a {
+      color: var(--color-subheading);
+      transition: color 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--color-heading);
+      opacity: 1;
+    }
+
+    /* Footer Bottom - same color as footer */
     .footer-bottom {
-      background-color: rgba(30, 40, 50, 0.95);
+      background-color: var(--color-footer-bg);
       border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
+      backdrop-filter: blur(6px);
     }
 
     /* =========================================================
        RESPONSIVE
        ========================================================= */
-    @media (max-width: 868px) {
-      .services-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 1200px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 60px 0 60px;
       }
     }
 
     @media (max-width: 768px) {
-      .nav-inner {
-        padding: 20px 24px;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(70, 86, 104, 0.96);
-        backdrop-filter: blur(12px);
-        flex-direction: column;
-        align-items: center;
-        padding: 24px 0 28px;
-        gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        transform: scaleY(0);
-        transform-origin: top center;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-      }
-
-      .nav-links.open {
-        transform: scaleY(1);
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .nav-links a {
-        font-size: 1.05rem;
-      }
+      .container { padding: 0 24px; }
 
       .hero {
-        min-height: 85vh;
-        padding: 120px 0 60px;
+        height: auto;
+        min-height: 100vh;
+        padding: 50px 0 40px;
       }
 
-      .hero h1 {
-        font-size: 2.3rem;
-      }
+      .quote-text { font-size: 1.3rem; }
+      .quote-text .quote-mark { font-size: 2.2rem; }
 
-      .hero p.subtitle {
-        font-size: 1.05rem;
-      }
-
-      .quote-text {
-        font-size: 1.5rem;
-      }
+      .btn-hero { padding: 14px 32px; font-size: 0.95rem; }
 
       .footer-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr 1fr;
-        gap: 40px;
-        padding-bottom: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: left;
       }
 
-      .container {
-        padding: 0 30px;
+      .footer-col[style*="text-align: right;"] {
+        text-align: left !important;
       }
-      
+
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .back-to-top svg { width: 20px; height: 20px; }
+
+      .nav-links { max-width: 100%; }
     }
 
     @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .container {
-        padding: 0 20px;
-      }
-
-      .hero-content {
-        padding: 0;
-      }
+      .container { padding: 0 20px; }
+      .quote-text { font-size: 1.1rem; }
+      .quote-text .quote-mark { font-size: 1.8rem; }
+      .hero { padding: 40px 0 30px; }
     }
   </style>
 </head>
-
 <body>
 
-  <header class="hero">
-    <nav class="top-nav">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Merushka Francis</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="approach.html">Approach</a></li>
-          <li><a href="areas.html">Areas of Interest</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <!-- ===== NAVIGATION — always transparent ===== -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        Merushka Francis <span>| Clinical Psychologist</span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="areas.html">Areas of Interest</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- ===== HERO ===== -->
+  <header class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>A Safe Space for Healing & Growth</h1>
-        <p class="subtitle">Evidence-based clinical psychotherapy tailored to help you process challenges, cultivate
-          emotional resilience, and restore clarity in your life.</p>
+        <!-- Quote -->
+        <div class="quote-text">
+          <span class="quote-mark">"</span>Not everything that is faced can be changed, but nothing can be changed until it is faced.
+        </div>
+        <p class="quote-author">— James Baldwin</p>
+
+        <!-- Button -->
         <a href="contact.html" class="btn-hero">Book Appointment</a>
       </div>
     </div>
   </header>
 
-  <div class="quote-block">
-    <div class="container quote-container">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">Not everything that is faced can be changed, but nothing can be changed until it is faced.
-      </p>
-      <p class="quote-author">— James Baldwin</p>
-    </div>
-  </div>
-
-  <section class="services-overview">
-    <div class="container">
-      <div class="services-header">
-        <h2>Areas of Practice</h2>
-        <p>Tailored therapeutic support to meet your individual needs.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div>
-            <h3>Individual Psychotherapy</h3>
-            <p>One-on-one sessions helping adults navigate stress, anxiety, mood disorders, self-esteem, and life
-              transitions.</p>
-          </div>
-          <a href="services.html" class="card-link">Learn More →</a>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <h3>Trauma & Recovery</h3>
-            <p>Empathetic guidance designed to help process past experiences, manage emotional triggers, and build
-              resilience.</p>
-          </div>
-          <a href="services.html" class="card-link">Learn More →</a>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <h3>Personal Growth</h3>
-            <p>Self-exploration therapy focused on deeper self-understanding, healthier boundary-setting, and emotional
-              regulation.</p>
-          </div>
-          <a href="services.html" class="card-link">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
+      <!-- Footer Header: Brand & Registrations -->
       <div class="footer-header">
-        <strong>Merushka Francis Psychology</strong>
+        <h3>Merushka Francis Psychology</h3>
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
+      <!-- Footer Grid: Get in Touch | Connect | Practice Details -->
       <div class="footer-grid">
+        <!-- Column 1: Get in Touch -->
         <div class="footer-col">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
+        <!-- Column 2: Connect -->
         <div class="footer-col">
           <strong>Connect</strong>
           <a href="#" target="_blank">LinkedIn Profile</a>
           <a href="#" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col">
+        <!-- Column 3: Practice Details (aligned right) -->
+        <div class="footer-col" style="text-align: right;">
           <strong>Practice Details</strong>
           <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
             1st Floor, Dunkeld Medical &amp; Dental Suites<br>
@@ -609,6 +527,7 @@
       </div>
     </div>
 
+    <!-- Footer Bottom - same color as footer -->
     <div class="footer-bottom">
       <div class="container">
         <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
@@ -616,31 +535,64 @@
     </div>
   </footer>
 
+  <!-- ===== BACK TO TOP BUTTON ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
   <script>
-    (function () {
+    // ===== HAMBURGER TOGGLE =====
+    (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function (e) {
+      hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
+        this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      document.addEventListener('click', function (e) {
+      // Close on outside click
+      document.addEventListener('click', function(e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         }
       });
 
+      // Close on link click
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
+        });
+      });
+    })();
+
+    // ===== BACK TO TOP BUTTON =====
+    (function() {
+      const backToTop = document.getElementById('backToTop');
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     })();
   </script>
 
 </body>
-
 </html>

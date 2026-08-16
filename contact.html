@@ -15,12 +15,12 @@
        CLIENT PALETTE & TYPOGRAPHY
        ========================================================= */
     :root {
-      --color-heading: #ff5800;             
-      --color-anchor: #df895b;              
-      --color-sand: rgba(237, 193, 164, 0.85);
+      --color-heading: #ff5800;
+      --color-anchor: #d06c37;
+      --color-sand: rgba(245, 209, 185, 0.85);
       --color-footer-bg: rgba(70, 86, 104, 0.85);
-      --color-subheading: #e9e6e6;         
-      --color-body: #4f5354;               
+      --color-subheading: #e9e6e6;
+      --color-body: #4f5354;
       --color-dark: #2d2d2d;
       --color-medium: #4a4a4a;
       --font-main: 'Inter', sans-serif;
@@ -30,6 +30,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     html, body {
@@ -43,12 +47,13 @@
     body {
       display: flex;
       flex-direction: column;
-      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
+      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                         url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      background-blend-mode: overlay;
     }
 
     a {
@@ -71,23 +76,27 @@
     }
 
     /* =========================================================
-       OVERLAY TOP NAVIGATION
+       TOP NAVIGATION — sandy background
        ========================================================= */
     .top-nav {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
-      background: transparent;
+      z-index: 1000;
+      background: #df895b;
+      backdrop-filter: blur(8px);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 50px;
-      width: 100%;
+      padding: 0 30px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .nav-brand {
@@ -95,33 +104,21 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      padding: 6px 0;
-    }
-    .hamburger span {
-      display: block;
-      width: 28px;
-      height: 3px;
-      background: #ffffff;
-      border-radius: 3px;
-      transition: all 0.25s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    .nav-brand span {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
     }
 
+    /* ——— desktop nav links ——— */
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 32px;
       list-style: none;
-      transition: all 0.3s ease;
+      align-items: center;
     }
 
     .nav-links a {
@@ -130,7 +127,8 @@
       color: #ffffff;
       position: relative;
       padding-bottom: 4px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      transition: color 0.3s ease;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links a.active,
@@ -150,105 +148,83 @@
       border-radius: 2px;
     }
 
-    /* =========================================================
-       HERO HEADER — full height
-       ========================================================= */
-    .hero {
-      position: relative;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/HeroImage.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 95vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 140px 0 80px;
+    /* ——— hamburger (hidden on desktop) ——— */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    .hero-content {
-      max-width: 720px;
-      text-align: center;
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* =========================================================
+       CONTACT CONTENT — flat on background
+       ========================================================= */
+    .contact-section {
+      padding: 120px 0 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--color-sand);
+    }
+
+    .contact-content {
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .hero h1 {
-      color: var(--color-heading);
-      font-weight: 700;
-      font-size: 3.6rem;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero p.subtitle {
-      color: #ffffff;
-      font-weight: 400;
-      font-size: 1.3rem;
-      line-height: 1.6;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    /* =========================================================
-       MAIN CONTENT — more transparent for better image visibility
-       ========================================================= */
-    main.main-content {
-      flex-grow: 1;
-      padding: 100px 0 120px;
-      background-color: rgba(237, 193, 164, 0.5);
-      backdrop-filter: blur(4px);
-    }
-
-    h2.section-title {
+    .contact-content h1 {
       color: var(--color-anchor);
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       font-weight: 700;
+      line-height: 1.2;
       margin-bottom: 8px;
-      position: relative;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     }
 
-    h2.section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background-color: var(--color-heading);
-      margin-top: 12px;
-      border-radius: 2px;
-    }
-
-    .section-subtitle {
+    .contact-content .subtitle {
       font-size: 1.15rem;
       color: var(--color-dark);
-      margin-bottom: 50px;
+      margin-bottom: 45px;
       font-weight: 400;
     }
 
-    p {
-      font-size: 1.08rem;
-      line-height: 1.9;
-      margin-bottom: 22px;
-      color: var(--color-dark);
-    }
-
-    /* =========================================================
-       CONTACT GRID — no cards, clean text layout
-       ========================================================= */
+    /* Contact Grid */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 50px;
-      margin-bottom: 55px;
+      margin-bottom: 50px;
     }
 
-    .contact-col h3 {
+    .contact-col h2 {
       color: var(--color-anchor);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+      letter-spacing: -0.2px;
     }
 
     .info-group {
@@ -269,15 +245,15 @@
       margin-bottom: 2px;
     }
 
-    .info-group p, .info-group a {
-      font-size: 1.1rem;
+    .info-group p,
+    .info-group a {
+      font-size: 1.05rem;
       color: var(--color-dark);
       line-height: 1.7;
     }
 
     .info-group a {
       font-weight: 500;
-      color: var(--color-dark);
       transition: color 0.25s;
       text-decoration: underline;
       text-underline-offset: 3px;
@@ -292,41 +268,32 @@
 
     .badge-notice {
       display: inline-block;
-      background-color: rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 8px 20px;
-      border-radius: 8px;
+      background: transparent;
+      padding: 0;
       font-size: 0.85rem;
       font-weight: 500;
-      margin-top: 4px;
       color: var(--color-dark);
+      border: none;
     }
 
-    /* =========================================================
-       EMERGENCY SECTION — clean, transparent style
-       ========================================================= */
-    .emergency-box {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 16px;
-      padding: 40px 45px;
-      backdrop-filter: blur(4px);
-      animation: fadeIn 0.7s ease forwards;
-      animation-delay: 0.4s;
-      opacity: 0;
-      border: 1px solid rgba(0, 0, 0, 0.06);
+    /* ===== EMERGENCY SECTION ===== */
+    .emergency-section {
+      margin-top: 10px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .emergency-box h3 {
+    .emergency-section h2 {
       color: var(--color-anchor);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 8px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      letter-spacing: -0.2px;
     }
 
-    .emergency-box .notice-lead {
+    .emergency-section .notice-lead {
       font-size: 1.05rem;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       font-weight: 400;
       color: var(--color-dark);
     }
@@ -339,36 +306,71 @@
     }
 
     .emergency-item {
-      background-color: rgba(255, 255, 255, 0.5);
-      padding: 20px 24px;
-      border-radius: 10px;
-      border-left: 4px solid var(--color-heading);
-      transition: all 0.25s ease;
-      backdrop-filter: blur(4px);
-    }
-
-    .emergency-item:hover {
-      transform: translateY(-3px);
-      background-color: rgba(255, 255, 255, 0.7);
+      padding: 0;
+      border: none;
+      background: transparent;
     }
 
     .emergency-item strong {
       display: block;
       color: var(--color-dark);
       font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 3px;
+      font-size: 0.85rem;
+      margin-bottom: 2px;
     }
 
     .emergency-item span {
-      color: var(--color-heading);
+      color: var(--color-anchor);
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       letter-spacing: 0.3px;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    /* =========================================================
+       FLOATING BACK TO TOP BUTTON
+       ========================================================= */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 52px;
+      height: 52px;
+      background-color: var(--color-heading);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.35);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background-color: var(--color-anchor);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.5);
+    }
+
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* =========================================================
@@ -379,34 +381,41 @@
       backdrop-filter: blur(6px);
       color: var(--color-subheading);
       font-size: 0.9rem;
-      padding-top: 50px;
+      padding: 50px 0 0;
+      margin-top: auto;
     }
 
     .footer-header {
       text-align: center;
-      padding-bottom: 24px;
+      padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
-    .footer-header strong {
-      display: block;
-      font-size: 1.25rem;
+    .footer-header h3 {
       color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
       margin-bottom: 4px;
     }
 
+    .footer-header p {
+      font-size: 0.85rem;
+      color: var(--color-subheading);
+    }
+
     .footer-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 40px;
-  padding-bottom: 40px;
-}
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      align-items: start;
+    }
 
     .footer-col {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .footer-col strong {
@@ -416,242 +425,293 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-nav-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .footer-col p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-subheading);
+    }
+
+    .footer-col a {
+      color: var(--color-subheading);
+      transition: color 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--color-heading);
+      opacity: 1;
     }
 
     .footer-bottom {
-      background-color: rgba(30, 40, 50, 0.95);
+      background-color: var(--color-footer-bg);
       border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
+      backdrop-filter: blur(6px);
     }
 
     /* =========================================================
        RESPONSIVE
        ========================================================= */
-    @media (max-width: 968px) {
-      .container { padding: 0 30px; }
-      .emergency-list { grid-template-columns: repeat(2, 1fr); }
-    }
-
     @media (max-width: 768px) {
-      .nav-inner { padding: 20px 24px; }
-      .hamburger { display: flex; }
+      .container { padding: 0 24px; }
+
+      /* Show hamburger, hide desktop nav */
+      .hamburger {
+        display: flex;
+      }
 
       .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
+        right: -100%;
         width: 100%;
+        max-width: 400px;
+        height: 100vh;
         background: rgba(70, 86, 104, 0.96);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
-        padding: 24px 0 28px;
-        gap: 20px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        transform: scaleY(0);
-        transform-origin: top center;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
+        justify-content: center;
+        padding: 80px 40px 40px;
+        gap: 30px;
+        list-style: none;
+        transition: right 0.4s ease;
+        display: flex;
       }
 
       .nav-links.open {
-        transform: scaleY(1);
-        opacity: 1;
-        visibility: visible;
+        right: 0;
       }
 
-      .nav-links a { font-size: 1.05rem; }
+      .nav-links a {
+        font-size: 1.2rem;
+      }
 
-      .hero { min-height: 85vh; padding: 120px 0 60px; }
-      .hero h1 { font-size: 2.4rem; }
-      .hero p.subtitle { font-size: 1.05rem; }
+      .contact-section { padding: 100px 0 60px; }
+      .contact-content h1 { font-size: 2.2rem; }
+      .contact-content .subtitle { font-size: 1.05rem; }
 
-      main.main-content { padding: 60px 0 80px; }
-      h2.section-title { font-size: 2rem; }
-      .section-subtitle { font-size: 1rem; }
-      p { font-size: 1rem; }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
 
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .emergency-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
 
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-      .emergency-box { padding: 28px 24px; }
-      .emergency-list { grid-template-columns: 1fr; }
-      .container { padding: 0 24px; }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: left;
+      }
+
+      .footer-col[style*="text-align: right;"] {
+        text-align: left !important;
+      }
+
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .back-to-top svg { width: 20px; height: 20px; }
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2rem; }
       .container { padding: 0 20px; }
-      .emergency-box { padding: 20px; }
-      h2.section-title { font-size: 1.6rem; }
-      .contact-grid { gap: 30px; }
+      .contact-content h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <nav class="top-nav">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Merushka Francis</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="approach.html">Approach</a></li>
-          <li><a href="areas.html">Areas of Interest</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        Merushka Francis <span>| Clinical Psychologist</span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="areas.html">Areas of Interest</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- ===== CONTACT CONTENT ===== -->
+  <section class="contact-section">
     <div class="container">
-      <div class="hero-content">
+      <div class="contact-content">
         <h1>Get in Touch</h1>
-        <p class="subtitle">I'm here to help. Reach out for a confidential conversation.</p>
-      </div>
-    </div>
-  </header>
+        <p class="subtitle">I welcome your enquiry.</p>
 
-  <main class="main-content">
-    <div class="container">
-      <h2 class="section-title">Contact Information</h2>
-      <p class="section-subtitle">I welcome your enquiry. Please feel free to contact me via phone, WhatsApp, or email.</p>
+        <div class="contact-grid">
+          <!-- Practice & Booking Info -->
+          <div class="contact-col">
+            <h2>Practice Details</h2>
 
-      <div class="contact-grid">
-        <!-- Practice & Booking Info -->
-        <div class="contact-col">
-          <h3>Practice Details</h3>
-          
-          <div class="info-group">
-            <label>Practice Address</label>
-            <p>1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-            257 Jan Smuts Avenue, Dunkeld West<br>
-            Johannesburg, 2196</p>
+            <div class="info-group">
+              <label>Practice Address</label>
+              <p>1st Floor, Dunkeld Medical &amp; Dental Suites<br>
+              257 Jan Smuts Avenue, Dunkeld West<br>
+              Johannesburg, 2196</p>
+            </div>
+
+            <div class="info-group">
+              <label>Operating Hours</label>
+              <p>Monday – Friday: 08h00 – 18h00</p>
+            </div>
+
+            <div class="info-group">
+              <span class="badge-notice">Sessions are booked by appointment only.</span>
+            </div>
           </div>
 
-          <div class="info-group">
-            <label>Operating Hours</label>
-            <p>Monday – Friday: 08h00 – 18h00</p>
-          </div>
+          <!-- Direct Channels -->
+          <div class="contact-col">
+            <h2>Direct Contact</h2>
 
-          <div class="info-group">
-            <span class="badge-notice">Sessions are booked by appointment only.</span>
-          </div>
-        </div>
+            <div class="info-group">
+              <label>Email</label>
+              <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+            </div>
 
-        <!-- Direct Channels -->
-        <div class="contact-col">
-          <h3>Direct Contact</h3>
-
-          <div class="info-group">
-            <label>Email</label>
-            <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
-          </div>
-
-          <div class="info-group">
-            <label>WhatsApp / Phone</label>
-            <a href="tel:+27773687497">+27 77 368 7497</a>
+            <div class="info-group">
+              <label>WhatsApp / Phone</label>
+              <a href="tel:+27773687497">+27 77 368 7497</a>
+            </div>
           </div>
         </div>
+
+        <!-- EMERGENCY SUPPORT SECTION -->
+        <div class="emergency-section">
+          <h2>Immediate Crisis Support</h2>
+          <p class="notice-lead">If you or a loved one are in immediate distress or crisis, please go to your nearest emergency room or contact one of the services below:</p>
+
+          <ul class="emergency-list">
+            <li class="emergency-item">
+              <strong>SADAG Suicide Crisis Line</strong>
+              <span>0800 567 567</span>
+            </li>
+            <li class="emergency-item">
+              <strong>Lifeline South Africa</strong>
+              <span>0861 322 322</span>
+            </li>
+            <li class="emergency-item">
+              <strong>Emergency Services</strong>
+              <span>10177 / 082 911</span>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <!-- EMERGENCY SUPPORT SECTION -->
-      <div class="emergency-box">
-        <h3>Immediate Crisis Support</h3>
-        <p class="notice-lead">If you or a loved one are in immediate distress or crisis, please go to your nearest emergency room or contact one of the services below:</p>
-
-        <ul class="emergency-list">
-          <li class="emergency-item">
-            <strong>SADAG Suicide Crisis Line</strong>
-            <span>0800 567 567</span>
-          </li>
-          <li class="emergency-item">
-            <strong>Lifeline South Africa</strong>
-            <span>0861 322 322</span>
-          </li>
-          <li class="emergency-item">
-            <strong>Emergency Services</strong>
-            <span>10177 / 082 911</span>
-          </li>
-        </ul>
-      </div>
-
     </div>
-  </main>
+  </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-  <div class="container">
-    <div class="footer-header">
-      <strong>Merushka Francis Psychology</strong>
-      <p>PS 0163040 | PR 1346008</p>
-    </div>
-
-    <div class="footer-grid">
-      <div class="footer-col">
-        <strong>Get in Touch</strong>
-        <a href="tel:+27773687497">+27 77 368 7497</a>
-        <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
-      </div>
-
-      <div class="footer-col">
-        <strong>Connect</strong>
-        <a href="#" target="_blank">LinkedIn Profile</a>
-        <a href="#" target="_blank">Psychology Today</a>
-      </div>
-
-      <div class="footer-col">
-        <strong>Practice Details</strong>
-        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-          1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-          257 Jan Smuts Avenue, Dunkeld West<br>
-          Johannesburg, 2196
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
     <div class="container">
-      <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+      <div class="footer-header">
+        <h3>Merushka Francis Psychology</h3>
+        <p>PS 0163040 | PR 1346008</p>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <strong>Get in Touch</strong>
+          <a href="tel:+27773687497">+27 77 368 7497</a>
+          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+        </div>
+
+        <div class="footer-col">
+          <strong>Connect</strong>
+          <a href="#" target="_blank">LinkedIn Profile</a>
+          <a href="#" target="_blank">Psychology Today</a>
+        </div>
+
+        <div class="footer-col" style="text-align: right;">
+          <strong>Practice Details</strong>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
+            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
+            257 Jan Smuts Avenue, Dunkeld West<br>
+            Johannesburg, 2196
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP BUTTON ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  </button>
 
   <script>
+    // ===== HAMBURGER TOGGLE =====
     (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
       hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
+        this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
       document.addEventListener('click', function(e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         }
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
+        });
+      });
+    })();
+
+    // ===== BACK TO TOP BUTTON =====
+    (function() {
+      const backToTop = document.getElementById('backToTop');
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     })();

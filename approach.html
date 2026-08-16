@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +22,6 @@
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
       --color-dark: #2d2d2d;
-      --color-medium: #4a4a4a;
       --font-main: 'Inter', sans-serif;
     }
 
@@ -33,8 +31,11 @@
       padding: 0;
     }
 
-    html,
-    body {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
@@ -45,12 +46,13 @@
     body {
       display: flex;
       flex-direction: column;
-      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
-        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
+                        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      background-blend-mode: overlay;
     }
 
     a {
@@ -73,23 +75,27 @@
     }
 
     /* =========================================================
-       OVERLAY TOP NAVIGATION
+       TOP NAVIGATION — sandy background
        ========================================================= */
     .top-nav {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
-      background: transparent;
+      z-index: 1000;
+      background: #df895b;
+      backdrop-filter: blur(8px);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 50px;
-      width: 100%;
+      padding: 0 30px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .nav-brand {
@@ -97,34 +103,21 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      padding: 6px 0;
+    .nav-brand span {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
     }
 
-    .hamburger span {
-      display: block;
-      width: 28px;
-      height: 3px;
-      background: #ffffff;
-      border-radius: 3px;
-      transition: all 0.25s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
+    /* ——— desktop nav links ——— */
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 32px;
       list-style: none;
-      transition: all 0.3s ease;
+      align-items: center;
     }
 
     .nav-links a {
@@ -133,7 +126,8 @@
       color: #ffffff;
       position: relative;
       padding-bottom: 4px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      transition: color 0.3s ease;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links a.active,
@@ -153,119 +147,125 @@
       border-radius: 2px;
     }
 
-    /* =========================================================
-       HERO HEADER
-       ========================================================= */
-    .hero {
-      position: relative;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/HeroImage.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 95vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 140px 0 80px;
+    /* ——— hamburger (hidden on desktop) ——— */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    .hero-content {
-      max-width: 720px;
-      text-align: center;
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* =========================================================
+       APPROACH CONTENT — flat on background, no cards
+       ========================================================= */
+    .approach-section {
+      padding: 120px 0 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--color-sand);
+    }
+
+    .approach-content {
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .hero h1 {
-      color: var(--color-heading);
-      font-weight: 700;
-      font-size: 3.6rem;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero p.subtitle {
-      color: #ffffff;
-      font-weight: 400;
-      font-size: 1.3rem;
-      line-height: 1.6;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    /* =========================================================
-       MAIN CONTENT — more transparent for better image visibility
-       ========================================================= */
-    main.main-content {
-      flex-grow: 1;
-      padding: 100px 0 120px;
-      background-color: rgba(237, 193, 164, 0.5);
-      backdrop-filter: blur(4px);
-    }
-
-    h2.section-title {
+    .approach-content h1 {
       color: var(--color-anchor);
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      position: relative;
+      line-height: 1.2;
+      margin-bottom: 30px;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     }
 
-    h2.section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background-color: var(--color-heading);
-      margin-top: 12px;
-      border-radius: 2px;
-    }
-
-    p {
+    .approach-content p {
       font-size: 1.08rem;
       line-height: 1.9;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       color: var(--color-dark);
     }
 
-    .intro-lead {
-      font-size: 1.15rem;
-      line-height: 1.9;
-      margin-bottom: 28px;
-      font-weight: 400;
-      color: var(--color-dark);
+    .approach-content p:last-of-type {
+      margin-bottom: 0;
     }
 
-    hr.divider {
+    /* Separator line */
+    .divider {
       border: 0;
       border-top: 1px solid rgba(0, 0, 0, 0.08);
-      margin: 50px 0;
+      margin: 40px 0;
     }
 
-    .approach-box {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-left: 5px solid var(--color-heading);
-      padding: 36px 40px;
-      border-radius: 12px;
-      margin-top: 40px;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      animation: fadeIn 0.7s ease forwards;
-      animation-delay: 0.3s;
+    /* =========================================================
+       FLOATING BACK TO TOP BUTTON
+       ========================================================= */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 52px;
+      height: 52px;
+      background-color: var(--color-heading);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.35);
+      transition: all 0.3s ease;
       opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .approach-box p {
-      margin-bottom: 0;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--color-dark);
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .back-to-top:hover {
+      background-color: var(--color-anchor);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.5);
+    }
+
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* =========================================================
@@ -276,21 +276,27 @@
       backdrop-filter: blur(6px);
       color: var(--color-subheading);
       font-size: 0.9rem;
-      padding-top: 50px;
+      padding: 50px 0 0;
+      margin-top: auto;
     }
 
     .footer-header {
       text-align: center;
-      padding-bottom: 24px;
+      padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
-    .footer-header strong {
-      display: block;
-      font-size: 1.25rem;
+    .footer-header h3 {
       color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
       margin-bottom: 4px;
+    }
+
+    .footer-header p {
+      font-size: 0.85rem;
+      color: var(--color-subheading);
     }
 
     .footer-grid {
@@ -298,12 +304,13 @@
       grid-template-columns: 1.2fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
+      align-items: start;
     }
 
     .footer-col {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .footer-col strong {
@@ -313,194 +320,147 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-nav-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .footer-col p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--color-subheading);
+    }
+
+    .footer-col a {
+      color: var(--color-subheading);
+      transition: color 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--color-heading);
+      opacity: 1;
     }
 
     .footer-bottom {
-      background-color: rgba(30, 40, 50, 0.95);
+      background-color: var(--color-footer-bg);
       border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
+      backdrop-filter: blur(6px);
     }
 
     /* =========================================================
        RESPONSIVE
        ========================================================= */
-    @media (max-width: 968px) {
-      .container {
-        padding: 0 30px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .nav-inner {
-        padding: 20px 24px;
-      }
+      .container { padding: 0 24px; }
 
+      /* Show hamburger, hide desktop nav */
       .hamburger {
         display: flex;
       }
 
       .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
+        right: -100%;
         width: 100%;
+        max-width: 400px;
+        height: 100vh;
         background: rgba(70, 86, 104, 0.96);
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
-        padding: 24px 0 28px;
-        gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        transform: scaleY(0);
-        transform-origin: top center;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
+        justify-content: center;
+        padding: 80px 40px 40px;
+        gap: 30px;
+        list-style: none;
+        transition: right 0.4s ease;
+        display: flex;
       }
 
       .nav-links.open {
-        transform: scaleY(1);
-        opacity: 1;
-        visibility: visible;
+        right: 0;
       }
 
       .nav-links a {
-        font-size: 1.05rem;
+        font-size: 1.2rem;
       }
 
-      .hero {
-        min-height: 85vh;
-        padding: 120px 0 60px;
-      }
-
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-
-      .hero p.subtitle {
-        font-size: 1.05rem;
-      }
-
-      main.main-content {
-        padding: 60px 0 80px;
-      }
-
-      h2.section-title {
-        font-size: 2rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      .intro-lead {
-        font-size: 1.05rem;
-      }
+      .approach-section { padding: 100px 0 60px; }
+      .approach-content h1 { font-size: 2.2rem; }
+      .approach-content p { font-size: 1rem; }
 
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+        text-align: left;
       }
 
-      .approach-box {
-        padding: 28px 24px;
+      .footer-col[style*="text-align: right;"] {
+        text-align: left !important;
       }
 
-      .container {
-        padding: 0 24px;
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 20px;
+        right: 20px;
       }
+      .back-to-top svg { width: 20px; height: 20px; }
     }
 
     @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .container {
-        padding: 0 20px;
-      }
-
-      .approach-box {
-        padding: 20px;
-      }
-
-      h2.section-title {
-        font-size: 1.6rem;
-      }
+      .container { padding: 0 20px; }
+      .approach-content h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <header class="hero">
-    <nav class="top-nav">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Merushka Francis</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="approach.html" class="active">Approach</a></li>
-          <li><a href="areas.html">Areas of Interest</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        Merushka Francis <span>| Clinical Psychologist</span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="approach.html" class="active">Approach</a></li>
+        <li><a href="areas.html">Areas of Interest</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <!-- ===== APPROACH CONTENT ===== -->
+  <section class="approach-section">
     <div class="container">
-      <div class="hero-content">
+      <div class="approach-content">
         <h1>My Therapeutic Approach</h1>
-        <p class="subtitle">A collaborative, psychodynamic framework for meaningful self-exploration and lasting change.
-        </p>
+
+        <p>My approach is rooted in psychodynamic theory, understanding that the difficulties people face in the present are often connected to, or shaped by, earlier experiences.</p>
+
+        <p>I view therapy as a collaborative partnership between a therapist and an individual, one that offers a safe, non-judgmental space for a client to explore their emotions, thoughts, ways of relating, and any questions that arise, at their own pace.</p>
+
+        <p>Where required, I may draw on skills-based approaches such as Dialectical Behaviour Therapy (DBT) to support clients in managing intense emotions and impulsivity, coping with distress and improving communication.</p>
+
+        <p>In-depth exploration of this kind has the power to move beyond symptom relief, fostering meaningful insight and laying the foundation for deeper understanding, a shift that may continue to serve long after therapy ends.</p>
+
+
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="main-content">
-    <div class="container">
-      <h2 class="section-title">Therapeutic Approach</h2>
-
-      <p class="intro-lead">My approach is rooted in psychodynamic theory, understanding that the difficulties people
-        face in the present are often connected to, or shaped by, earlier experiences.</p>
-
-      <p>I view therapy as a collaborative partnership between a therapist and an individual, one that offers a safe,
-        non-judgmental space for a client to explore their emotions, thoughts, ways of relating, and any questions that
-        arise, at their own pace.</p>
-
-      <p>Where required, I may draw on skills-based approaches such as Dialectical Behaviour Therapy (DBT) to support
-        clients in managing intense emotions and impulsivity, coping with distress and improving communication.</p>
-
-      <p>In-depth exploration of this kind has the power to move beyond symptom relief, fostering meaningful insight and
-        laying the foundation for deeper understanding, a shift that may continue to serve long after therapy ends.</p>
-
-      <hr class="divider">
-
-      <div class="approach-box">
-        <p>My practice is built on the belief that every individual has the capacity for growth and healing. I am
-          committed to providing a warm, empathetic, and culturally sensitive space where you can feel safe to explore
-          your inner world at your own pace.</p>
-      </div>
-    </div>
-  </main>
-
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
       <div class="footer-header">
-        <strong>Merushka Francis Psychology</strong>
+        <h3>Merushka Francis Psychology</h3>
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
@@ -517,7 +477,7 @@
           <a href="#" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col" style="text-align: right;">
           <strong>Practice Details</strong>
           <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
             1st Floor, Dunkeld Medical &amp; Dental Suites<br>
@@ -535,31 +495,62 @@
     </div>
   </footer>
 
+  <!-- ===== BACK TO TOP BUTTON ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
   <script>
-    (function () {
+    // ===== HAMBURGER TOGGLE =====
+    (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function (e) {
+      hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
+        this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      document.addEventListener('click', function (e) {
+      document.addEventListener('click', function(e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         }
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
           navLinks.classList.remove('open');
+        });
+      });
+    })();
+
+    // ===== BACK TO TOP BUTTON =====
+    (function() {
+      const backToTop = document.getElementById('backToTop');
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     })();
   </script>
 
 </body>
-
 </html>
