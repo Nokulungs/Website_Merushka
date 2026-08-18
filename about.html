@@ -16,9 +16,9 @@
        ========================================================= */
     :root {
       --color-heading: #ff5800;
-      --color-anchor: #d06c37;;
+      --color-anchor: #d06c37;
       --color-sand: rgba(245, 209, 185, 0.85);
-      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-footer-bg: #B33A3A;
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
       --color-dark: #2d2d2d;
@@ -46,13 +46,24 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    /* THE FIX: Fixed pseudo-element to prevent mobile background zooming */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                         url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
       background-blend-mode: overlay;
+      z-index: -1;
     }
 
     a {
@@ -196,10 +207,11 @@
       align-items: start;
     }
 
-    /* Left Column - Image (no border) */
+    /* Left Column - Image */
     .about-image img {
       width: 100%;
       height: auto;
+      max-width: 100%;
       display: block;
       border-radius: 0;
       box-shadow: none;
@@ -343,6 +355,7 @@
       font-size: 0.9rem;
       padding: 50px 0 0;
       margin-top: auto;
+      opacity: 0.95;
     }
 
     .footer-header {
@@ -414,6 +427,7 @@
     /* =========================================================
        RESPONSIVE
        ========================================================= */
+    /* Tablet / Small Desktop */
     @media (max-width: 868px) {
       .about-grid {
         grid-template-columns: 1fr;
@@ -426,6 +440,7 @@
       }
     }
 
+    /* Mobile */
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
 
@@ -483,8 +498,15 @@
       .back-to-top svg { width: 20px; height: 20px; }
     }
 
+    /* Small Mobile Screen */
     @media (max-width: 480px) {
       .container { padding: 0 20px; }
+      
+      /* Reduce size of the psychologist's image on smaller phones */
+      .about-image {
+        max-width: 240px; 
+      }
+
       .about-content h1 { font-size: 1.8rem; }
       .about-content p { font-size: 1rem; }
     }
@@ -518,7 +540,7 @@
   <section class="about-section">
     <div class="container">
       <div class="about-grid">
-        <!-- Left: Image (no border) -->
+        <!-- Left: Image -->
         <div class="about-image">
           <img src="images/TherapistProfile.jpeg" alt="Merushka Francis - Clinical Psychologist">
         </div>
@@ -543,7 +565,7 @@
             </ul>
           </div>
 
-          <!-- Professional Registrations (below qualifications) -->
+          <!-- Professional Registrations -->
           <div class="registrations-section">
             <h2>Professional Registrations</h2>
             <ul class="registrations-list">

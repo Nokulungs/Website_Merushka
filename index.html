@@ -17,7 +17,7 @@
     :root {
       --color-heading: #ff5800;
       --color-anchor: #df895b;
-      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-footer-bg: #B33A3A;
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
       --color-dark: #2d2d2d;
@@ -191,7 +191,7 @@
     }
 
     /* =========================================================
-       HERO HEADER — reduced top space
+       HERO HEADER — desktop default
        ========================================================= */
     .hero {
       position: relative;
@@ -319,12 +319,13 @@
        FOOTER
        ========================================================= */
     footer {
-      background-color: var(--color-footer-bg);
+      background-color: #B33A3A;
       backdrop-filter: blur(6px);
       color: var(--color-subheading);
       font-size: 0.9rem;
       padding: 50px 0 0;
       margin-top: auto;
+      opacity: 0.95;
     }
 
     /* Footer Header - Brand & Registrations */
@@ -388,7 +389,7 @@
 
     /* Footer Bottom - same color as footer */
     .footer-bottom {
-      background-color: var(--color-footer-bg);
+      background-color: #B33A3A;
       border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
@@ -397,13 +398,14 @@
     }
 
     /* =========================================================
-       RESPONSIVE
+       RESPONSIVE DESIGN (WITH MOBILE BACKGROUND FIXES)
        ========================================================= */
     @media (max-width: 1200px) {
       .hero {
         height: auto;
-        min-height: 100vh;
-        padding: 60px 0 60px;
+        min-height: 70vh;
+        padding: 120px 0 80px;
+        /* Removed background-size: contain; and background-color: #2d2d2d; */
       }
     }
 
@@ -412,11 +414,12 @@
 
       .hero {
         height: auto;
-        min-height: 100vh;
-        padding: 50px 0 40px;
+        min-height: 60vh;
+        padding: 100px 0 60px;
+        background-position: center center;
       }
 
-      .quote-text { font-size: 1.3rem; }
+      .quote-text { font-size: 1.25rem; }
       .quote-text .quote-mark { font-size: 2.2rem; }
 
       .btn-hero { padding: 14px 32px; font-size: 0.95rem; }
@@ -446,7 +449,17 @@
       .container { padding: 0 20px; }
       .quote-text { font-size: 1.1rem; }
       .quote-text .quote-mark { font-size: 1.8rem; }
-      .hero { padding: 40px 0 30px; }
+      .hero { padding: 80px 0 40px; }
+    }
+
+    /* Targeted fix for mobile landscape orientation */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        min-height: 100vh;
+        padding: 80px 0 40px;
+        background-size: cover;
+        background-position: center 20%;
+      }
     }
   </style>
 </head>
