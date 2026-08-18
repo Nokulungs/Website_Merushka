@@ -423,8 +423,11 @@
 
     @media (max-width: 768px) {
       body::before {
-        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
-          url('images/bodyPortrait.jpg?v=2');
+        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
+                          url('images/bodyPortrait.jpg');
+        background-size: contain; 
+        background-position: center;
+        background-repeat: no-repeat;
       }
     }
 
