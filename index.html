@@ -45,12 +45,23 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    /* THE FIX: Fixed pseudo-element to prevent mobile background zooming */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
                         url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
+      z-index: -1;
     }
 
     a {
@@ -328,7 +339,6 @@
       opacity: 0.95;
     }
 
-    /* Footer Header - Brand & Registrations */
     .footer-header {
       text-align: center;
       padding-bottom: 30px;
@@ -348,7 +358,6 @@
       color: var(--color-subheading);
     }
 
-    /* Footer Grid - 3 columns: Get in Touch | Connect | Practice Details */
     .footer-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
@@ -387,7 +396,6 @@
       opacity: 1;
     }
 
-    /* Footer Bottom - same color as footer */
     .footer-bottom {
       background-color: #B33A3A;
       border-top: 1px solid rgba(233, 230, 230, 0.15);
@@ -405,7 +413,6 @@
         height: auto;
         min-height: 70vh;
         padding: 120px 0 80px;
-        /* Removed background-size: contain; and background-color: #2d2d2d; */
       }
     }
 
@@ -416,10 +423,21 @@
         height: auto;
         min-height: 60vh;
         padding: 100px 0 60px;
-        background-position: center center;
+        /* FIX: Anchors the image to the right side so the drawing isn't cut off */
+        background-position: right center; 
       }
 
-      .quote-text { font-size: 1.25rem; }
+      .hero-content {
+        /* FIX: Aligns text to the left and pushes it away from the drawing on the right */
+        text-align: left;
+        padding-right: 40px;
+      }
+
+      .quote-text { 
+        font-size: 1.25rem; 
+        margin: 0 0 16px 0; 
+      }
+      
       .quote-text .quote-mark { font-size: 2.2rem; }
 
       .btn-hero { padding: 14px 32px; font-size: 0.95rem; }
@@ -447,6 +465,10 @@
 
     @media (max-width: 480px) {
       .container { padding: 0 20px; }
+      
+      /* Ensure text isn't too crushed on very narrow phones */
+      .hero-content { padding-right: 20px; }
+      
       .quote-text { font-size: 1.1rem; }
       .quote-text .quote-mark { font-size: 1.8rem; }
       .hero { padding: 80px 0 40px; }
