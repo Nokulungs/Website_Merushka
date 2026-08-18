@@ -18,7 +18,7 @@
       --color-heading: #ff5800;
       --color-anchor: #d06c37;
       --color-sand: rgba(245, 209, 185, 0.85);
-      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-footer-bg: #B33A3A;
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
       --color-dark: #2d2d2d;
@@ -47,14 +47,24 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    /* Fixed pseudo-element to prevent mobile background zooming (Desktop default) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                         url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
       background-blend-mode: overlay;
-      min-height: 100vh;
+      z-index: -1;
     }
 
     a {
@@ -339,6 +349,7 @@
       font-size: 0.9rem;
       padding: 50px 0 0;
       margin-top: auto;
+      opacity: 0.95;
     }
 
     .footer-header {
@@ -404,14 +415,24 @@
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
     }
 
     /* =========================================================
-       RESPONSIVE
+       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
+
+      /* Swap global body background to mobile portrait with 120% zoom */
+      body::before {
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
+                          url('images/bodyPortrait.jpg');
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: overlay;
+      }
 
       /* Show hamburger, hide desktop nav */
       .hamburger {
@@ -521,7 +542,7 @@
       <div class="services-content">
         <h1>Services</h1>
 
-        <p class="intro-text">I offer psychotherapy for adolescents (13–18 years old), adults, and couples. </p>
+        <p class="intro-text">I offer psychotherapy for adolescents (13–18 years old), adults, and couples.</p>
 
         <!-- Services side by side -->
         <div class="services-grid">
@@ -546,9 +567,7 @@
         <!-- Rates & Medical Aid -->
         <div class="rates-section">
           <h2>Session Fees &amp; Medical Aid</h2>
-          <p>Session fees are in line with standard medical aid rates for psychotherapy.
-Please get in touch to discuss any questions you may have around rates, medical aids or prescribed minimum benefits (PMBs).
-</p>
+          <p>Session fees are in line with standard medical aid rates for psychotherapy. Please get in touch to discuss any questions you may have around rates, medical aids or prescribed minimum benefits (PMBs).</p>
         </div>
       </div>
     </div>

@@ -17,7 +17,8 @@
        ========================================================= */
     :root {
       --color-heading: #ff5800;
-      --color-anchor: #df895b;
+      --color-anchor: #d06c37;
+      --color-sand: rgba(245, 209, 185, 0.85);
       --color-footer-bg: #B33A3A;
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
@@ -58,11 +59,12 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
-        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
+                        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      background-blend-mode: overlay;
       z-index: -1;
     }
 
@@ -86,7 +88,7 @@
     }
 
     /* =========================================================
-       TOP NAVIGATION — fully transparent always
+       TOP NAVIGATION — Transparent background matching hero overlay
        ========================================================= */
     .top-nav {
       position: fixed;
@@ -112,17 +114,16 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-brand span {
       font-weight: 300;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 0px;
+      color: rgba(255, 255, 255, 0.8);
     }
 
-    /* ——— hamburger ——— */
+    /* ——— hamburger (visible across all screen sizes on Home page) ——— */
     .hamburger {
       display: flex;
       flex-direction: column;
@@ -141,7 +142,7 @@
       background: #ffffff;
       border-radius: 3px;
       transition: all 0.3s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .hamburger.active span:nth-child(1) {
@@ -156,7 +157,7 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* ——— nav links ——— */
+    /* ——— nav-links drawer (for all screen sizes on Home page) ——— */
     .nav-links {
       position: fixed;
       top: 0;
@@ -164,7 +165,7 @@
       width: 100%;
       max-width: 400px;
       height: 100vh;
-      background: rgba(70, 86, 104, 0.96);
+      background: rgba(179, 58, 58, 0.96);
       backdrop-filter: blur(16px);
       flex-direction: column;
       align-items: center;
@@ -181,9 +182,9 @@
     }
 
     .nav-links a {
-      font-weight: 400;
       font-size: 1.2rem;
       color: #ffffff;
+      font-weight: 400;
       position: relative;
       padding-bottom: 4px;
       transition: color 0.3s ease;
@@ -195,19 +196,8 @@
       font-weight: 600;
     }
 
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: var(--color-heading);
-      border-radius: 2px;
-    }
-
     /* =========================================================
-       HERO HEADER — desktop default
+       HERO HEADER — matching style & proportions
        ========================================================= */
     .hero {
       position: relative;
@@ -219,11 +209,11 @@
       background-position: center;
       background-repeat: no-repeat;
       min-height: 100vh;
-      height: 1050px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 0 80px;
+      padding: 140px 0 80px;
+      height: 1050px;
     }
 
     .hero-content {
@@ -246,13 +236,13 @@
 
     .quote-text .quote-mark {
       font-size: 3rem;
-      color: var(--subheading);
+      color: var(--color-subheading);
       font-style: normal;
       opacity: 0.6;
     }
 
     .quote-author {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 300;
       font-size: 0.95rem;
       margin-bottom: 40px;
@@ -335,7 +325,7 @@
        FOOTER
        ========================================================= */
     footer {
-      background-color: #B33A3A;
+      background-color: var(--color-footer-bg);
       backdrop-filter: blur(6px);
       color: var(--color-subheading);
       font-size: 0.9rem;
@@ -402,7 +392,7 @@
     }
 
     .footer-bottom {
-      background-color: #B33A3A;
+      background-color: var(--color-footer-bg);
       border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
@@ -411,115 +401,68 @@
     }
 
     /* =========================================================
-       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS)
+       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-    @media (max-width: 1200px) {
-      .hero {
-        height: auto;
-        min-height: 70vh;
-        padding: 120px 0 80px;
-      }
-    }
-
     @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+
+      /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
-        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                           url('images/bodyPortrait.jpg');
-        background-size: contain; 
+        background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
+        background-blend-mode: overlay;
       }
-    }
 
-    /* Swap hero background to mobile portrait */
-    .hero {
-      height: auto;
-      min-height: 60vh;
-      padding: 100px 0 60px;
-      background-image:
-        linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
-        linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
-        url('images/homePortrait.jpg');
-    }
-
-    .hero-content {
-      text-align: center;
-    }
-
-    .quote-text {
-      font-size: 1.25rem;
-      margin: 0 auto 16px auto;
-    }
-
-    .quote-text .quote-mark {
-      font-size: 2.2rem;
-    }
-
-    .btn-hero {
-      padding: 14px 32px;
-      font-size: 0.95rem;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-      text-align: left;
-    }
-
-    .footer-col[style*="text-align: right;"] {
-      text-align: left !important;
-    }
-
-    .back-to-top {
-      width: 44px;
-      height: 44px;
-      bottom: 20px;
-      right: 20px;
-    }
-
-    .back-to-top svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .nav-links {
-      max-width: 100%;
-    }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 20px;
+      /* Swap hero background to mobile portrait */
+      .hero {
+        background-image:
+          linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
+          linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
+          url('images/homePortrait.jpg');
+        min-height: 80vh;
+        padding: 120px 0 60px;
       }
 
       .quote-text {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
       }
 
       .quote-text .quote-mark {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
       }
 
-      .hero {
-        padding: 80px 0 40px;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: left;
       }
+
+      .footer-col[style*="text-align: right;"] {
+        text-align: left !important;
+      }
+
+      .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .back-to-top svg { width: 20px; height: 20px; }
     }
 
-    /* Targeted fix for mobile landscape orientation */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .hero {
-        min-height: 100vh;
-        padding: 80px 0 40px;
-        background-size: cover;
-        background-position: center 20%;
-      }
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      .quote-text { font-size: 1.1rem; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== NAVIGATION — always transparent ===== -->
+  <!-- ===== NAVIGATION ===== -->
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
@@ -561,29 +504,24 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
-      <!-- Footer Header: Brand & Registrations -->
       <div class="footer-header">
         <h3>Merushka Francis Psychology</h3>
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <!-- Footer Grid: Get in Touch | Connect | Practice Details -->
       <div class="footer-grid">
-        <!-- Column 1: Get in Touch -->
         <div class="footer-col">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
-        <!-- Column 2: Connect -->
         <div class="footer-col">
           <strong>Connect</strong>
           <a href="#" target="_blank">LinkedIn Profile</a>
           <a href="#" target="_blank">Psychology Today</a>
         </div>
 
-        <!-- Column 3: Practice Details (aligned right) -->
         <div class="footer-col" style="text-align: right;">
           <strong>Practice Details</strong>
           <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
@@ -595,7 +533,6 @@
       </div>
     </div>
 
-    <!-- Footer Bottom - same color as footer -->
     <div class="footer-bottom">
       <div class="container">
         <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
@@ -613,18 +550,17 @@
 
   <script>
     // ===== HAMBURGER TOGGLE =====
-    (function () {
+    (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function (e) {
+      hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      // Close on outside click
-      document.addEventListener('click', function (e) {
+      document.addEventListener('click', function(e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
           hamburger.classList.remove('active');
@@ -632,9 +568,8 @@
         }
       });
 
-      // Close on link click
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         });
@@ -642,10 +577,10 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-    (function () {
+    (function() {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function () {
+      window.addEventListener('scroll', function() {
         if (window.scrollY > 400) {
           backToTop.classList.add('visible');
         } else {
@@ -653,7 +588,7 @@
         }
       });
 
-      backToTop.addEventListener('click', function () {
+      backToTop.addEventListener('click', function() {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'

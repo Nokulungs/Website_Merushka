@@ -16,9 +16,9 @@
        ========================================================= */
     :root {
       --color-heading: #ff5800;
-      --color-anchor: #df895b;
-      --color-sand: rgba(237, 193, 164, 0.85);
-      --color-footer-bg: rgba(70, 86, 104, 0.85);
+      --color-anchor: #d06c37;
+      --color-sand: rgba(245, 209, 185, 0.85);
+      --color-footer-bg: #B33A3A;
       --color-subheading: #e9e6e6;
       --color-body: #4f5354;
       --color-dark: #2d2d2d;
@@ -46,13 +46,24 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    /* Fixed pseudo-element to prevent mobile background zooming (Desktop default) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                         url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
       background-blend-mode: overlay;
+      z-index: -1;
     }
 
     a {
@@ -179,7 +190,7 @@
     }
 
     /* =========================================================
-       APPROACH CONTENT — flat on background, no cards
+       APPROACH CONTENT — flat on background
        ========================================================= */
     .approach-section {
       padding: 120px 0 80px;
@@ -212,13 +223,6 @@
 
     .approach-content p:last-of-type {
       margin-bottom: 0;
-    }
-
-    /* Separator line */
-    .divider {
-      border: 0;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      margin: 40px 0;
     }
 
     /* =========================================================
@@ -278,6 +282,7 @@
       font-size: 0.9rem;
       padding: 50px 0 0;
       margin-top: auto;
+      opacity: 0.95;
     }
 
     .footer-header {
@@ -347,10 +352,20 @@
     }
 
     /* =========================================================
-       RESPONSIVE
+       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
+
+      /* Swap global body background to mobile portrait with 120% zoom */
+      body::before {
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
+                          url('images/bodyPortrait.jpg');
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: overlay;
+      }
 
       /* Show hamburger, hide desktop nav */
       .hamburger {
@@ -450,8 +465,6 @@
         <p>Where required, I may draw on skills-based approaches such as Dialectical Behaviour Therapy (DBT) to support clients in managing intense emotions and impulsivity, coping with distress and improving communication.</p>
 
         <p>In-depth exploration of this kind has the power to move beyond symptom relief, fostering meaningful insight and laying the foundation for deeper understanding, a shift that may continue to serve long after therapy ends.</p>
-
-
       </div>
     </div>
   </section>
