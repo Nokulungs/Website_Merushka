@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,8 @@
       scroll-behavior: smooth;
     }
 
-    html, body {
+    html,
+    body {
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
@@ -56,8 +58,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
-                        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
+        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -131,6 +133,7 @@
       padding: 6px 0;
       z-index: 1001;
     }
+
     .hamburger span {
       display: block;
       width: 28px;
@@ -144,9 +147,11 @@
     .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
@@ -206,7 +211,7 @@
        ========================================================= */
     .hero {
       position: relative;
-      background-image: 
+      background-image:
         linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
         linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
         url('images/HeroImage.jpeg');
@@ -417,64 +422,84 @@
     }
 
     @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-
-      /* Swap global body background to mobile portrait */
       body::before {
-        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
-                          url('images/bodyPortrait.jpg');
+        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)),
+          url('images/bodyPortrait.jpg?v=2');
       }
+    }
 
-      /* Swap hero background to mobile portrait */
-      .hero {
-        height: auto;
-        min-height: 60vh;
-        padding: 100px 0 60px;
-        background-image: 
-          linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
-          linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
-          url('images/homePortrait.jpg');
-      }
+    /* Swap hero background to mobile portrait */
+    .hero {
+      height: auto;
+      min-height: 60vh;
+      padding: 100px 0 60px;
+      background-image:
+        linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
+        linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
+        url('images/homePortrait.jpg');
+    }
 
-      .hero-content {
-        text-align: center;
-      }
+    .hero-content {
+      text-align: center;
+    }
 
-      .quote-text { 
-        font-size: 1.25rem; 
-        margin: 0 auto 16px auto; 
-      }
-      
-      .quote-text .quote-mark { font-size: 2.2rem; }
+    .quote-text {
+      font-size: 1.25rem;
+      margin: 0 auto 16px auto;
+    }
 
-      .btn-hero { padding: 14px 32px; font-size: 0.95rem; }
+    .quote-text .quote-mark {
+      font-size: 2.2rem;
+    }
 
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: left;
-      }
+    .btn-hero {
+      padding: 14px 32px;
+      font-size: 0.95rem;
+    }
 
-      .footer-col[style*="text-align: right;"] {
-        text-align: left !important;
-      }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: left;
+    }
 
-      .back-to-top {
-        width: 44px;
-        height: 44px;
-        bottom: 20px;
-        right: 20px;
-      }
-      .back-to-top svg { width: 20px; height: 20px; }
+    .footer-col[style*="text-align: right;"] {
+      text-align: left !important;
+    }
 
-      .nav-links { max-width: 100%; }
+    .back-to-top {
+      width: 44px;
+      height: 44px;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-links {
+      max-width: 100%;
+    }
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 20px; }
-      .quote-text { font-size: 1.1rem; }
-      .quote-text .quote-mark { font-size: 1.8rem; }
-      .hero { padding: 80px 0 40px; }
+      .container {
+        padding: 0 20px;
+      }
+
+      .quote-text {
+        font-size: 1.1rem;
+      }
+
+      .quote-text .quote-mark {
+        font-size: 1.8rem;
+      }
+
+      .hero {
+        padding: 80px 0 40px;
+      }
     }
 
     /* Targeted fix for mobile landscape orientation */
@@ -488,6 +513,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ===== NAVIGATION — always transparent ===== -->
@@ -518,7 +544,8 @@
       <div class="hero-content">
         <!-- Quote -->
         <div class="quote-text">
-          <span class="quote-mark">"</span>Not everything that is faced can be changed, but nothing can be changed until it is faced.
+          <span class="quote-mark">"</span>Not everything that is faced can be changed, but nothing can be changed until
+          it is faced.
         </div>
         <p class="quote-author">— James Baldwin</p>
 
@@ -583,18 +610,18 @@
 
   <script>
     // ===== HAMBURGER TOGGLE =====
-    (function() {
+    (function () {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function(e) {
+      hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
       // Close on outside click
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
           hamburger.classList.remove('active');
@@ -604,7 +631,7 @@
 
       // Close on link click
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         });
@@ -612,10 +639,10 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-    (function() {
+    (function () {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function() {
+      window.addEventListener('scroll', function () {
         if (window.scrollY > 400) {
           backToTop.classList.add('visible');
         } else {
@@ -623,7 +650,7 @@
         }
       });
 
-      backToTop.addEventListener('click', function() {
+      backToTop.addEventListener('click', function () {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
@@ -633,4 +660,5 @@
   </script>
 
 </body>
+
 </html>
