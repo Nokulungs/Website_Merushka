@@ -48,7 +48,7 @@
       position: relative;
     }
 
-    /* Fixed pseudo-element with mobile-friendly positioning */
+    /* Fixed pseudo-element with desktop background */
     body::before {
       content: "";
       position: fixed;
@@ -406,7 +406,7 @@
     }
 
     /* =========================================================
-       RESPONSIVE DESIGN (WITH MOBILE BACKGROUND FIXES)
+       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS)
        ========================================================= */
     @media (max-width: 1200px) {
       .hero {
@@ -419,19 +419,24 @@
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
 
-      /* FIX: Shifts background image globally on mobile so the drawing isn't cut off */
+      /* Swap global body background to mobile portrait */
       body::before {
-        background-position: right center;
+        background-image: linear-gradient(rgba(245, 240, 235, 0.2), rgba(245, 240, 235, 0.2)), 
+                          url('images/bodyPortrait.jpg');
       }
 
+      /* Swap hero background to mobile portrait */
       .hero {
         height: auto;
         min-height: 60vh;
         padding: 100px 0 60px;
+        background-image: 
+          linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
+          linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
+          url('images/homePortrait.jpg');
       }
 
       .hero-content {
-        /* FIX: Keeps the hero text nicely centered on mobile */
         text-align: center;
       }
 
