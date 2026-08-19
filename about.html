@@ -114,13 +114,17 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-brand span {
       font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: normal;
     }
 
     /* ——— desktop nav links ——— */
@@ -193,7 +197,7 @@
        ABOUT CONTENT — flat on background
        ========================================================= */
     .about-section {
-      padding: 120px 0 80px;
+      padding: 140px 0 80px;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -240,11 +244,11 @@
 
     /* Qualifications */
     .qualifications-section h2 {
-      color: var(--color-anchor);
-      font-size: 1.5rem;
-      font-weight: 600;
+      color: var(--color-dark);
+      font-size: 1.08rem;
+      font-weight: 400;
       margin-bottom: 16px;
-      letter-spacing: -0.2px;
+      line-height: 1.9;
     }
 
     .qualifications-list {
@@ -275,11 +279,11 @@
 
     /* Professional Registrations */
     .registrations-section h2 {
-      color: var(--color-anchor);
-      font-size: 1.5rem;
-      font-weight: 600;
+      color: var(--color-dark);
+      font-size: 1.08rem;
+      font-weight: 400;
       margin-bottom: 16px;
-      letter-spacing: -0.2px;
+      line-height: 1.9;
     }
 
     .registrations-list {
@@ -363,6 +367,7 @@
       padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
       margin-bottom: 35px;
+      margin-left: 56px;
     }
 
     .footer-header h3 {
@@ -417,7 +422,6 @@
 
     .footer-bottom {
       background-color: var(--color-footer-bg);
-      border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
@@ -484,7 +488,9 @@
         font-size: 1.2rem;
       }
 
-      .about-section { padding: 100px 0 60px; }
+      .about-section { 
+        padding: 150px 0 60px; /* Increased top spacing on mobile for navigation bar separation */
+      }
       .about-content h1 { font-size: 2.2rem; }
 
       .footer-grid {
@@ -525,7 +531,7 @@
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        Merushka Francis <span>| Clinical Psychologist</span>
+        Merushka Francis <span>Clinical Psychologist</span>
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
@@ -533,7 +539,7 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
+        
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="approach.html">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -554,7 +560,7 @@
 
         <!-- Right: Content -->
         <div class="about-content">
-          <h1>About Merushka Francis</h1>
+          <h1>About</h1>
 
           <p>I am a registered Clinical Psychologist with the Health Professions Council of South Africa (HPCSA) and the Board of Healthcare Funders (BHF).  I completed my undergraduate and honours training at the University of the Witwatersrand (WITS), followed by a master’s degree at the University of Cape Town (UCT).</p>
 
@@ -562,19 +568,19 @@
 
           <!-- Qualifications -->
           <div class="qualifications-section">
-            <h2>Academic Qualifications &amp; Expertise</h2>
+            <h2>Qualifications:</h2>
             <ul class="qualifications-list">
-              <li><strong>Master of Arts specialising in Clinical Psychology [University of Cape Town]</strong></li>
-              <li><strong>Bachelor of Art Honours in Psychology [University of Witwatersrand]</strong></li>
-              <li><strong>Master of Architecture Professional [University of Witwatersrand]</strong></li>
-              <li><strong>Bachelor of Architectural Studies with Honours [University of Witwatersrand]</strong></li>
-              <li><strong>Bachelor of Architectural Studies [University of Witwatersrand]</strong></li>
+              <li>Master of Arts specialising in Clinical Psychology [University of Cape Town]</li>
+              <li>Bachelor of Art Honours in Psychology [University of Witwatersrand]</li>
+              <li>Master of Architecture Professional [University of Witwatersrand]</li>
+              <li>Bachelor of Architectural Studies with Honours [University of Witwatersrand]</li>
+              <li>Bachelor of Architectural Studies [University of Witwatersrand]</li>
             </ul>
           </div>
 
           <!-- Professional Registrations -->
           <div class="registrations-section">
-            <h2>Professional Registrations</h2>
+            <h2>Registrations:</h2>
             <ul class="registrations-list">
               <li><strong>HPCSA:</strong> PS 0163040</li>
               <li><strong>BHF:</strong> PR 1346008</li>

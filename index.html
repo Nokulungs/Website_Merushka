@@ -38,34 +38,20 @@
 
     html,
     body {
+      height: 100%;
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
       line-height: 1.75;
+      overflow: hidden; /* Prevents unwanted body-level scrolling outside the hero */
     }
 
     body {
       display: flex;
       flex-direction: column;
       position: relative;
-    }
-
-    /* Fixed pseudo-element with desktop background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                        url('images/BackgroundImage.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-blend-mode: overlay;
-      z-index: -1;
+      background-color: var(--color-sand);
     }
 
     a {
@@ -88,10 +74,10 @@
     }
 
     /* =========================================================
-       TOP NAVIGATION — Transparent background matching hero overlay
+       TOP NAVIGATION
        ========================================================= */
     .top-nav {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -114,25 +100,33 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      text-shadow: none;
     }
 
     .nav-brand span {
       font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: normal;
     }
 
-    /* ——— hamburger (visible across all screen sizes on Home page) ——— */
+    /* ——— hamburger ——— */
     .hamburger {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
       background: transparent;
       border: 0;
       cursor: pointer;
-      padding: 6px 0;
+      padding: 0;
       z-index: 1001;
+      position: relative;
     }
 
     .hamburger span {
@@ -142,22 +136,18 @@
       background: #ffffff;
       border-radius: 3px;
       transition: all 0.3s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: absolute;
     }
 
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
+    .hamburger span:nth-child(1) { transform: translateY(-8px); }
+    .hamburger span:nth-child(2) { transform: translateY(0); }
+    .hamburger span:nth-child(3) { transform: translateY(8px); }
 
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scale(0); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg); }
 
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* ——— nav-links drawer (for all screen sizes on Home page) ——— */
+    /* ——— nav-links drawer ——— */
     .nav-links {
       position: fixed;
       top: 0;
@@ -165,7 +155,7 @@
       width: 100%;
       max-width: 400px;
       height: 100vh;
-      background: rgba(179, 58, 58, 0.96);
+      background: var(--color-footer-bg);
       backdrop-filter: blur(16px);
       flex-direction: column;
       align-items: center;
@@ -197,7 +187,7 @@
     }
 
     /* =========================================================
-       HERO HEADER — matching style & proportions
+       HERO HEADER (Full Screen Cover)
        ========================================================= */
     .hero {
       position: relative;
@@ -208,253 +198,67 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 100vh;
+      width: 100vw;
+      height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 140px 0 80px;
-      height: 1050px;
+      justify-content: flex-start;
+      padding: 0;
     }
 
     .hero-content {
-      max-width: 800px;
-      text-align: center;
-      margin: 0 auto;
+      max-width: 650px;
+      text-align: left;
+      margin-left: 180px;
     }
 
     /* ===== QUOTE ===== */
     .quote-text {
       color: #ffffff;
       font-weight: 300;
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1.6;
-      font-style: italic;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-      max-width: 700px;
-      margin: 0 auto 16px;
-    }
-
-    .quote-text .quote-mark {
-      font-size: 3rem;
-      color: var(--color-subheading);
       font-style: normal;
-      opacity: 0.6;
+      max-width: 650px;
+      margin: 0 0 16px 0;
     }
 
     .quote-author {
       color: rgba(255, 255, 255, 0.9);
       font-weight: 300;
-      font-size: 0.95rem;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    /* ===== BUTTON ===== */
-    .btn-hero {
-      display: inline-block;
-      background-color: var(--color-heading);
-      color: #ffffff;
-      font-weight: 500;
-      padding: 15px 40px;
-      border-radius: 8px;
-      font-size: 1.05rem;
-      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.3);
-      transition: all 0.25s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-hero:hover {
-      background-color: var(--color-anchor);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.4);
-      color: #ffffff;
-      opacity: 1;
-    }
-
-    /* =========================================================
-       FLOATING BACK TO TOP BUTTON
-       ========================================================= */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 52px;
-      height: 52px;
-      background-color: var(--color-heading);
-      color: #ffffff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(255, 88, 0, 0.35);
-      transition: all 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .back-to-top:hover {
-      background-color: var(--color-anchor);
-      transform: translateY(-4px);
-      box-shadow: 0 6px 28px rgba(255, 88, 0, 0.5);
-    }
-
-    .back-to-top svg {
-      width: 24px;
-      height: 24px;
-      fill: none;
-      stroke: #ffffff;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer {
-      background-color: var(--color-footer-bg);
-      backdrop-filter: blur(6px);
-      color: var(--color-subheading);
-      font-size: 0.9rem;
-      padding: 50px 0 0;
-      margin-top: auto;
-      opacity: 0.95;
-    }
-
-    .footer-header {
-      text-align: center;
-      padding-bottom: 30px;
-      border-bottom: 1px solid rgba(233, 230, 230, 0.2);
-      margin-bottom: 35px;
-    }
-
-    .footer-header h3 {
-      color: #ffffff;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .footer-header p {
-      font-size: 0.85rem;
-      color: var(--color-subheading);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 40px;
-      align-items: start;
-    }
-
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-col strong {
-      color: #ffffff;
       font-size: 1rem;
-      margin-bottom: 6px;
-      letter-spacing: 0.3px;
+      margin-bottom: 0;
+      letter-spacing: 1px;
     }
 
-    .footer-col p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--color-subheading);
-    }
-
-    .footer-col a {
-      color: var(--color-subheading);
-      transition: color 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .footer-col a:hover {
-      color: var(--color-heading);
-      opacity: 1;
-    }
-
-    .footer-bottom {
-      background-color: var(--color-footer-bg);
-      border-top: 1px solid rgba(233, 230, 230, 0.15);
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.85rem;
-      backdrop-filter: blur(6px);
+    .quote-author span {
+      font-style: italic;
     }
 
     /* =========================================================
-       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
+       RESPONSIVE DESIGN (MOBILE PORTRAIT)
        ========================================================= */
     @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-
-      /* Swap global body background to mobile portrait with 120% zoom */
-      body::before {
-        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                          url('images/bodyPortrait.jpg');
-        background-size: 120%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-blend-mode: overlay;
-      }
-
-      /* Swap hero background to mobile portrait */
       .hero {
         background-image:
           linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
           linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
           url('images/homePortrait.jpg');
-        min-height: 80vh;
-        padding: 120px 0 60px;
+        justify-content: center;
+      }
+
+      .hero-content {
+        margin-left: 0;
+        padding: 0 24px;
+        text-align: center;
       }
 
       .quote-text {
         font-size: 1.25rem;
       }
-
-      .quote-text .quote-mark {
-        font-size: 2.2rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: left;
-      }
-
-      .footer-col[style*="text-align: right;"] {
-        text-align: left !important;
-      }
-
-      .back-to-top {
-        width: 44px;
-        height: 44px;
-        bottom: 20px;
-        right: 20px;
-      }
-      .back-to-top svg { width: 20px; height: 20px; }
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 20px; }
       .quote-text { font-size: 1.1rem; }
     }
   </style>
@@ -466,7 +270,7 @@
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        Merushka Francis <span>| Clinical Psychologist</span>
+        Merushka Francis <span>Clinical Psychologist</span>
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
@@ -474,7 +278,6 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="approach.html">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -486,67 +289,14 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <!-- Quote -->
-        <div class="quote-text">
-          <span class="quote-mark">"</span>Not everything that is faced can be changed, but nothing can be changed until
-          it is faced.
-        </div>
-        <p class="quote-author">— James Baldwin</p>
-
-        <!-- Button -->
-        <a href="contact.html" class="btn-hero">Book Appointment</a>
+    <div class="hero-content">
+      <!-- Quote -->
+      <div class="quote-text">
+        &ldquo;Not everything that is faced can be changed, but nothing can be changed until it is faced.&rdquo;
       </div>
+      <p class="quote-author">— <span>James Baldwin</span></p>
     </div>
   </header>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container">
-      <div class="footer-header">
-        <h3>Merushka Francis Psychology</h3>
-        <p>PS 0163040 | PR 1346008</p>
-      </div>
-
-      <div class="footer-grid">
-        <div class="footer-col">
-          <strong>Get in Touch</strong>
-          <a href="tel:+27773687497">+27 77 368 7497</a>
-          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
-        </div>
-
-        <div class="footer-col">
-          <strong>Connect</strong>
-          <a href="#" target="_blank">LinkedIn Profile</a>
-          <a href="#" target="_blank">Psychology Today</a>
-        </div>
-
-        <div class="footer-col" style="text-align: right;">
-          <strong>Practice Details</strong>
-          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-            257 Jan Smuts Avenue, Dunkeld West<br>
-            Johannesburg, 2196
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container">
-        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== BACK TO TOP BUTTON ===== -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 19V5" />
-      <path d="M5 12l7-7 7 7" />
-    </svg>
-  </button>
 
   <script>
     // ===== HAMBURGER TOGGLE =====
@@ -572,26 +322,6 @@
         link.addEventListener('click', function() {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
-        });
-      });
-    })();
-
-    // ===== BACK TO TOP BUTTON =====
-    (function() {
-      const backToTop = document.getElementById('backToTop');
-
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      });
-
-      backToTop.addEventListener('click', function() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
         });
       });
     })();

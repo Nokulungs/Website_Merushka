@@ -96,7 +96,7 @@
       z-index: 1000;
       background: #df895b;
       backdrop-filter: blur(8px);
-      padding: 16px 0;
+      padding: 14px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -112,15 +112,19 @@
     .nav-brand {
       font-weight: 700;
       color: #ffffff;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       letter-spacing: -0.3px;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
     }
 
     .nav-brand span {
       font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.2px;
     }
 
     /* ——— desktop nav links ——— */
@@ -193,7 +197,7 @@
        APPROACH CONTENT — flat on background
        ========================================================= */
     .approach-section {
-      padding: 120px 0 80px;
+      padding: 150px 0 80px;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -399,7 +403,9 @@
         font-size: 1.2rem;
       }
 
-      .approach-section { padding: 100px 0 60px; }
+      .approach-section { 
+        padding: 160px 0 60px; 
+      }
       .approach-content h1 { font-size: 2.2rem; }
       .approach-content p { font-size: 1rem; }
 
@@ -434,7 +440,7 @@
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        Merushka Francis <span>| Clinical Psychologist</span>
+        Merushka Francis <span>Clinical Psychologist</span>
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
@@ -442,7 +448,7 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
+     
         <li><a href="about.html">About</a></li>
         <li><a href="approach.html" class="active">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -456,7 +462,7 @@
   <section class="approach-section">
     <div class="container">
       <div class="approach-content">
-        <h1>My Therapeutic Approach</h1>
+        <h1>Approach</h1>
 
         <p>My approach is rooted in psychodynamic theory, understanding that the difficulties people face in the present are often connected to, or shaped by, earlier experiences.</p>
 
