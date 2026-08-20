@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,8 @@
       scroll-behavior: smooth;
     }
 
-    html, body {
+    html,
+    body {
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
@@ -58,8 +60,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -115,13 +117,19 @@
       color: #ffffff;
       font-size: 1.25rem;
       letter-spacing: -0.3px;
+      line-height: 1.2;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 10px;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-brand span {
       font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: normal;
     }
 
     /* ——— desktop nav links ——— */
@@ -144,7 +152,7 @@
 
     .nav-links a.active,
     .nav-links a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       font-weight: 600;
     }
 
@@ -155,7 +163,7 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: var(--color-heading);
+      background-color: #ffffff;
       border-radius: 2px;
     }
 
@@ -170,6 +178,7 @@
       padding: 6px 0;
       z-index: 1001;
     }
+
     .hamburger span {
       display: block;
       width: 28px;
@@ -183,9 +192,11 @@
     .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
@@ -195,7 +206,7 @@
        ========================================================= */
     .contact-section {
       padding: 120px 0 80px;
-      min-height: 100vh;
+      min-height: calc(100vh - 80px);
       display: flex;
       align-items: center;
       background: var(--color-sand);
@@ -257,8 +268,8 @@
     }
 
     .info-group a.plain-link:hover {
-      color: var(--color-heading);
-      text-decoration-color: var(--color-heading);
+      color: #ffffff;
+      text-decoration-color: #ffffff;
       opacity: 1;
     }
 
@@ -289,8 +300,7 @@
 
     .emergency-list {
       list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
       gap: 16px;
     }
 
@@ -304,7 +314,7 @@
     .emergency-item .emergency-label {
       display: block;
       color: var(--color-dark);
-      font-weight: 400;
+      font-weight: 700;
       font-size: 0.85rem;
       margin-bottom: 2px;
     }
@@ -312,7 +322,7 @@
     /* Changed emergency numbers to match body text color instead of orange */
     .emergency-item span {
       color: var(--color-dark);
-      font-weight: 700;
+      font-weight: 400;
       font-size: 1.1rem;
       letter-spacing: 0.3px;
     }
@@ -322,7 +332,7 @@
        ========================================================= */
     .back-to-top {
       position: fixed;
-      bottom: 30px;
+      bottom: 60px;
       right: 30px;
       width: 52px;
       height: 52px;
@@ -398,7 +408,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 0.8fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -430,13 +440,12 @@
     }
 
     .footer-col a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       opacity: 1;
     }
 
     .footer-bottom {
       background-color: var(--color-footer-bg);
-      border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
@@ -447,12 +456,27 @@
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
     @media (max-width: 768px) {
-      .container { padding: 0 24px; }
+      .container {
+        padding: 0 24px;
+      }
+
+      /* Mobile: stack the brand name and subtitle vertically */
+      .nav-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        line-height: 1.3;
+      }
+
+      .nav-brand span {
+        font-size: 0.8rem;
+        margin-top: -2px;
+      }
 
       /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
-        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                          url('images/bodyPortrait.jpg');
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+          url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
@@ -471,7 +495,7 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
-        background: rgba(70, 86, 104, 0.96);
+        background:var(--color-footer-bg);
         backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
@@ -481,6 +505,7 @@
         list-style: none;
         transition: right 0.4s ease;
         display: flex;
+        opacity: 0.95;
       }
 
       .nav-links.open {
@@ -492,7 +517,9 @@
       }
 
       /* Added extra padding-top on mobile so content clears the fixed header nicely */
-      .contact-section { padding: 140px 0 60px; }
+      .contact-section {
+        padding: 140px 0 60px;
+      }
 
       .contact-grid {
         grid-template-columns: 1fr;
@@ -517,17 +544,24 @@
       .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 20px;
+        bottom: 40px;
         right: 20px;
       }
-      .back-to-top svg { width: 20px; height: 20px; }
+
+      .back-to-top svg {
+        width: 20px;
+        height: 20px;
+      }
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 20px; }
+      .container {
+        padding: 0 20px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ===== NAVIGATION ===== -->
@@ -542,7 +576,6 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        
         <li><a href="about.html">About</a></li>
         <li><a href="approach.html">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -565,8 +598,8 @@
             <div class="info-group">
               <label>Practice Address</label>
               <p>1st Floor, Dunkeld Medical and Dental Centre<br>
-              257 Jan Smuts Ave, Dunkeld West,<br>
-              Johannesburg, 2196</p>
+                257 Jan Smuts Ave, Dunkeld West,<br>
+                Johannesburg, 2196</p>
             </div>
 
             <div class="info-group">
@@ -597,7 +630,8 @@
 
         <!-- EMERGENCY SUPPORT SECTION -->
         <div class="emergency-section">
-          <p class="notice-lead">If you or a loved one are in immediate distress or crisis, please go to your nearest emergency room or contact one of the services below:</p>
+          <p class="notice-lead">If you or a loved one are in immediate distress or crisis, please go to your nearest
+            emergency room or contact one of the services below:</p>
 
           <ul class="emergency-list">
             <li class="emergency-item">
@@ -635,8 +669,8 @@
 
         <div class="footer-col">
           <strong>Connect</strong>
-          <a href="#" target="_blank">LinkedIn Profile</a>
-          <a href="#" target="_blank">Psychology Today</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
+          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
         <div class="footer-col" style="text-align: right;">
@@ -646,6 +680,7 @@
             257 Jan Smuts Ave, Dunkeld West,<br>
             Johannesburg, 2196
           </p>
+        </div>
       </div>
     </div>
 
@@ -666,52 +701,53 @@
 
   <script>
     // ===== HAMBURGER TOGGLE =====
-    (function() {
+    (function () {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function(e) {
+      hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
-    });
+      });
 
-    document.addEventListener('click', function(e) {
-      const nav = document.querySelector('.top-nav');
-      if (nav && !nav.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
-      }
-    });
+      document.addEventListener('click', function (e) {
+        const nav = document.querySelector('.top-nav');
+        if (nav && !nav.contains(e.target)) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+        }
+      });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
-    });
-    });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+        });
+      });
     })();
 
     // ===== BACK TO TOP BUTTON =====
-    (function() {
+    (function () {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function() {
+      window.addEventListener('scroll', function () {
         if (window.scrollY > 400) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
-      }
-    });
+        }
+      });
 
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-    });
+      backToTop.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
     })();
   </script>
 
 </body>
+
 </html>

@@ -49,7 +49,6 @@
       position: relative;
     }
 
-    /* Fixed pseudo-element to prevent mobile background zooming (Desktop default) */
     body::before {
       content: "";
       position: fixed;
@@ -86,7 +85,7 @@
     }
 
     /* =========================================================
-       TOP NAVIGATION — sandy background
+       TOP NAVIGATION
        ========================================================= */
     .top-nav {
       position: fixed;
@@ -96,7 +95,7 @@
       z-index: 1000;
       background: #df895b;
       backdrop-filter: blur(8px);
-      padding: 14px 0;
+      padding: 16px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -112,22 +111,23 @@
     .nav-brand {
       font-weight: 700;
       color: #ffffff;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       letter-spacing: -0.3px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      line-height: 1.2;
       display: flex;
-      flex-direction: column;
-      line-height: 1.25;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 10px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nav-brand span {
       font-weight: 300;
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.2px;
+      letter-spacing: normal;
     }
 
-    /* ——— desktop nav links ——— */
     .nav-links {
       display: flex;
       gap: 32px;
@@ -147,7 +147,7 @@
 
     .nav-links a.active,
     .nav-links a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       font-weight: 600;
     }
 
@@ -158,11 +158,10 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: var(--color-heading);
+      background-color: #ffffff;
       border-radius: 2px;
     }
 
-    /* ——— hamburger (hidden on desktop) ——— */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -194,19 +193,21 @@
     }
 
     /* =========================================================
-       APPROACH CONTENT — flat on background
+       APPROACH CONTENT
        ========================================================= */
     .approach-section {
-      padding: 150px 0 80px;
+      padding: 120px 0 80px;
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      justify-content: center;
       background: var(--color-sand);
     }
 
     .approach-content {
       max-width: 800px;
       margin: 0 auto;
+      padding-top: 20px;
     }
 
     .approach-content h1 {
@@ -230,11 +231,11 @@
     }
 
     /* =========================================================
-       FLOATING BACK TO TOP BUTTON
+       BACK TO TOP BUTTON
        ========================================================= */
     .back-to-top {
       position: fixed;
-      bottom: 30px;
+      bottom: 60px;
       right: 30px;
       width: 52px;
       height: 52px;
@@ -310,7 +311,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 0.8fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -342,13 +343,12 @@
     }
 
     .footer-col a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       opacity: 1;
     }
 
     .footer-bottom {
       background-color: var(--color-footer-bg);
-      border-top: 1px solid rgba(233, 230, 230, 0.15);
       text-align: center;
       padding: 20px 0;
       font-size: 0.85rem;
@@ -356,12 +356,23 @@
     }
 
     /* =========================================================
-       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
+       RESPONSIVE
        ========================================================= */
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
 
-      /* Swap global body background to mobile portrait with 120% zoom */
+      .nav-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        line-height: 1.3;
+      }
+
+      .nav-brand span {
+        font-size: 0.8rem;
+        margin-top: -2px;
+      }
+
       body::before {
         background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
                           url('images/bodyPortrait.jpg');
@@ -371,7 +382,6 @@
         background-blend-mode: overlay;
       }
 
-      /* Show hamburger, hide desktop nav */
       .hamburger {
         display: flex;
       }
@@ -383,7 +393,7 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
-        background: rgba(70, 86, 104, 0.96);
+        background: var(--color-footer-bg);
         backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
@@ -393,6 +403,7 @@
         list-style: none;
         transition: right 0.4s ease;
         display: flex;
+        opacity: 0.95;
       }
 
       .nav-links.open {
@@ -404,7 +415,8 @@
       }
 
       .approach-section { 
-        padding: 160px 0 60px; 
+        padding: 130px 0 60px;
+        align-items: flex-start;
       }
       .approach-content h1 { font-size: 2.2rem; }
       .approach-content p { font-size: 1rem; }
@@ -422,7 +434,7 @@
       .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 20px;
+        bottom: 40px;
         right: 20px;
       }
       .back-to-top svg { width: 20px; height: 20px; }
@@ -440,7 +452,7 @@
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        Merushka Francis <span>Clinical Psychologist</span>
+        Merushka Francis <span>| Clinical Psychologist</span>
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
@@ -448,7 +460,6 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-     
         <li><a href="about.html">About</a></li>
         <li><a href="approach.html" class="active">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -492,8 +503,8 @@
 
         <div class="footer-col">
           <strong>Connect</strong>
-          <a href="#" target="_blank">LinkedIn Profile</a>
-          <a href="#" target="_blank">Psychology Today</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
+          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
         <div class="footer-col" style="text-align: right;">
@@ -523,7 +534,6 @@
   </button>
 
   <script>
-    // ===== HAMBURGER TOGGLE =====
     (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
@@ -550,7 +560,6 @@
       });
     })();
 
-    // ===== BACK TO TOP BUTTON =====
     (function() {
       const backToTop = document.getElementById('backToTop');
 

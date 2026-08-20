@@ -47,6 +47,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      
     }
 
     /* Fixed pseudo-element to prevent mobile background zooming (Desktop default) */
@@ -64,6 +65,7 @@
       background-repeat: no-repeat;
       background-blend-mode: overlay;
       z-index: -1;
+      
     }
 
     a {
@@ -116,7 +118,9 @@
       letter-spacing: -0.3px;
       line-height: 1.2;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 10px;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
 
@@ -147,7 +151,7 @@
 
     .nav-links a.active,
     .nav-links a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       font-weight: 600;
     }
 
@@ -158,7 +162,7 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: var(--color-heading);
+      background-color: #ffffff;
       border-radius: 2px;
     }
 
@@ -229,6 +233,7 @@
       line-height: 1.2;
       margin-bottom: 24px;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      padding-top: 20px;
     }
 
     .about-content p {
@@ -246,7 +251,7 @@
     .qualifications-section h2 {
       color: var(--color-dark);
       font-size: 1.08rem;
-      font-weight: 400;
+      font-weight: 600;
       margin-bottom: 16px;
       line-height: 1.9;
     }
@@ -281,7 +286,7 @@
     .registrations-section h2 {
       color: var(--color-dark);
       font-size: 1.08rem;
-      font-weight: 400;
+      font-weight: 600;
       margin-bottom: 16px;
       line-height: 1.9;
     }
@@ -307,7 +312,7 @@
        ========================================================= */
     .back-to-top {
       position: fixed;
-      bottom: 30px;
+      bottom: 60px;
       right: 30px;
       width: 52px;
       height: 52px;
@@ -367,7 +372,7 @@
       padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
       margin-bottom: 35px;
-      margin-left: 56px;
+    
     }
 
     .footer-header h3 {
@@ -384,7 +389,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 0.8fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -416,7 +421,7 @@
     }
 
     .footer-col a:hover {
-      color: var(--color-heading);
+      color: #ffffff;
       opacity: 1;
     }
 
@@ -446,6 +451,19 @@
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
 
+      /* Mobile: stack the brand name and subtitle vertically */
+      .nav-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        line-height: 1.3;
+      }
+
+      .nav-brand span {
+        font-size: 0.8rem;
+        margin-top: -2px;
+      }
+
       /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
         background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
@@ -468,7 +486,7 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
-        background: rgba(70, 86, 104, 0.96);
+        background: var(--color-footer-bg);
         backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
@@ -478,6 +496,7 @@
         list-style: none;
         transition: right 0.4s ease;
         display: flex;
+        opacity: 0.95;
       }
 
       .nav-links.open {
@@ -488,8 +507,9 @@
         font-size: 1.2rem;
       }
 
+
       .about-section { 
-        padding: 150px 0 60px; /* Increased top spacing on mobile for navigation bar separation */
+        padding: 150px 0 60px;
       }
       .about-content h1 { font-size: 2.2rem; }
 
@@ -506,7 +526,7 @@
       .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 20px;
+        bottom: 50px;
         right: 20px;
       }
       .back-to-top svg { width: 20px; height: 20px; }
@@ -531,7 +551,7 @@
   <nav class="top-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
-        Merushka Francis <span>Clinical Psychologist</span>
+        Merushka Francis <span> | Clinical Psychologist</span>
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
@@ -539,7 +559,6 @@
         <span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="approach.html">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
@@ -562,7 +581,7 @@
         <div class="about-content">
           <h1>About</h1>
 
-          <p>I am a registered Clinical Psychologist with the Health Professions Council of South Africa (HPCSA) and the Board of Healthcare Funders (BHF).  I completed my undergraduate and honours training at the University of the Witwatersrand (WITS), followed by a master’s degree at the University of Cape Town (UCT).</p>
+          <p>I am a registered Clinical Psychologist with the Health Professions Council of South Africa (HPCSA) and the Board of Healthcare Funders (BHF).  I completed my undergraduate and honours training at the University of the Witwatersrand (WITS), followed by a master's degree at the University of Cape Town (UCT).</p>
 
           <p>Before training in psychology, I worked as an architect. My shift from external structures to internal ones was born out of my involvement in community-based projects, where built form alone could not address deep internal struggles. This fuelled my interest in the architecture of the psyche: the inner workings of human experience, identity, and the social world we are embedded in.</p>
 
@@ -608,8 +627,8 @@
 
         <div class="footer-col">
           <strong>Connect</strong>
-          <a href="#" target="_blank">LinkedIn Profile</a>
-          <a href="#" target="_blank">Psychology Today</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
+          <a href="https://www.psychologytoday.com/profile/1806420  " target="_blank">Psychology Today</a>
         </div>
 
         <div class="footer-col" style="text-align: right;">
