@@ -15,6 +15,9 @@
     /* =========================================================
        CLIENT PALETTE & TYPOGRAPHY
        ========================================================= */
+    /* =========================================================
+       CLIENT PALETTE & TYPOGRAPHY
+       ========================================================= */
     :root {
       --color-heading: #ff5800;
       --color-anchor: #d06c37;
@@ -168,47 +171,64 @@
     }
 
     /* ——— hamburger (hidden on desktop) ——— */
+    /* ——— hamburger button base ——— */
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
       background: transparent;
       border: 0;
       cursor: pointer;
-      padding: 6px 0;
+      padding: 0;
       z-index: 1001;
+      position: relative;
     }
 
     .hamburger span {
       display: block;
-      width: 28px;
-      height: 3px;
+      width: 26px;
+      height: 2.5px;
       background: #ffffff;
-      border-radius: 3px;
-      transition: all 0.3s ease;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      position: absolute;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
+    /* Stack the lines vertically inside the 44px box */
+    .hamburger span:nth-child(1) {
+      transform: translateY(-8px);
+    }
+    .hamburger span:nth-child(2) {
+      transform: translateY(0);
+    }
+    .hamburger span:nth-child(3) {
+      transform: translateY(8px);
+    }
+
+    /* Transform into a perfectly centered X */
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: translateY(0) rotate(45deg);
     }
 
     .hamburger.active span:nth-child(2) {
       opacity: 0;
+      transform: scale(0);
     }
 
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: translateY(0) rotate(-45deg);
     }
-
     /* =========================================================
        SERVICES CONTENT — flat on background with separating line
        ========================================================= */
     .services-section {
-      padding: 10px 0 80px;
-      min-height: calc(100vh - 80px); /* 80px is approximate navbar height */
-      display: flex;
-      align-items: center;
+      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-bottom: 80px;
+      background: var(--color-sand);
       background: var(--color-sand);
     }
 
@@ -280,7 +300,6 @@
     .rates-section {
       margin-top: 10px;
       padding-top: 30px;
-     
     }
 
     .rates-section p {
@@ -370,9 +389,12 @@
       color: var(--color-subheading);
     }
 
-    .footer-grid {
+    /* =========================================================
+       NEW FOOTER GRID (Precise Centered Column Control)
+       ========================================================= */
+    .footer-body-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 0.8fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -384,6 +406,24 @@
       gap: 10px;
     }
 
+    /* Left column stays left-aligned */
+    .footer-col-left {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    /* Center column text and items explicitly centered */
+    .footer-col-center {
+      text-align: center;
+      align-items: center;
+    }
+
+    /* Right column stays right-aligned */
+    .footer-col-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
     .footer-col strong {
       color: #ffffff;
       font-size: 1rem;
@@ -391,16 +431,15 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-col a {
       font-size: 0.9rem;
       line-height: 1.6;
       color: var(--color-subheading);
     }
 
-    .footer-col a {
-      color: var(--color-subheading);
-      transition: color 0.2s;
-      font-size: 0.9rem;
+    .practice-address {
+      text-align: right; /* keeps the multiline address text neat on the right */
     }
 
     .footer-col a:hover {
@@ -447,9 +486,19 @@
         background-blend-mode: overlay;
       }
 
-      /* Show hamburger, hide desktop nav */
+      /* Show hamburger, configure positioning anchors */
       .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
+        transition: all 0.4s ease;
+      }
+
+      /* Shifting the "X" into the exact center of the sliding mobile panel */
+      .hamburger.active {
+        position: fixed;
+        top: 28px;
+        right: calc(200px - 22px);
       }
 
       .nav-links {
@@ -470,6 +519,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
+        z-index: 1000;
       }
 
       .nav-links.open {
@@ -503,13 +553,20 @@
         display: none;
       }
 
-      .footer-grid {
+      .footer-body-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: left;
       }
 
-      .footer-col[style*="text-align: right;"] {
+      .footer-col-left,
+      .footer-col-center,
+      .footer-col-right {
+        text-align: left !important;
+        align-items: flex-start !important;
+      }
+
+      .practice-address {
         text-align: left !important;
       }
 
@@ -600,24 +657,25 @@
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <div class="footer-grid">
-        <div class="footer-col">
+      <!-- New structured footer body -->
+      <div class="footer-body-grid">
+        <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
-          <a href="https://www.psychologytoday.com/profile/1806420  " target="_blank">Psychology Today</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
+          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col" style="text-align: right;">
+        <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-            257 Jan Smuts Avenue, Dunkeld West<br>
+          <p class="practice-address">
+            Dunkeld Medical and Dental Centre<br>
+            257 Jan Smuts Ave, Dunkeld West<br>
             Johannesburg, 2196
           </p>
         </div>

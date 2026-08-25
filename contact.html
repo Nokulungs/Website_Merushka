@@ -167,15 +167,22 @@
       border-radius: 2px;
     }
 
-    /* ——— hamburger (hidden on desktop) ——— */
+    /* =========================================================
+       HAMBURGER (hidden on desktop)
+       ========================================================= */
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
-      padding: 6px 0;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      position: relative;
       z-index: 1001;
     }
 
@@ -187,10 +194,13 @@
       border-radius: 3px;
       transition: all 0.3s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transform-origin: center;
+      margin: 0 auto;
     }
 
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: translateY(8px) rotate(45deg);
+      align-items: center;
     }
 
     .hamburger.active span:nth-child(2) {
@@ -198,17 +208,15 @@
     }
 
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: translateY(-8px) rotate(-45deg);
     }
-
     /* =========================================================
        CONTACT CONTENT — flat on background
        ========================================================= */
     .contact-section {
-      padding: 120px 0 80px;
-      min-height: calc(100vh - 80px);
-      display: flex;
-      align-items: center;
+      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-bottom: 80px;
+      background: var(--color-sand);
       background: var(--color-sand);
     }
 
@@ -254,7 +262,7 @@
     .info-group p,
     .info-group a {
       font-size: 1.05rem;
-      color: var(--color-dark);
+      color: var(--color-body);
       line-height: 1.7;
     }
 
@@ -262,13 +270,11 @@
     .info-group a.plain-link {
       font-weight: 400;
       transition: color 0.25s;
-      text-decoration: underline;
       text-underline-offset: 3px;
-      text-decoration-color: rgba(0, 0, 0, 0.15);
     }
 
     .info-group a.plain-link:hover {
-      color: #ffffff;
+      
       text-decoration-color: #ffffff;
       opacity: 1;
     }
@@ -296,6 +302,7 @@
       font-weight: 400;
       font-style: italic;
       color: var(--color-dark);
+      text-align: center;
     }
 
     .emergency-list {
@@ -406,9 +413,12 @@
       color: var(--color-subheading);
     }
 
-    .footer-grid {
+    /* =========================================================
+       NEW FOOTER GRID (Precise Centered Column Control)
+       ========================================================= */
+    .footer-body-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 0.8fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -420,6 +430,24 @@
       gap: 10px;
     }
 
+    /* Left column stays left-aligned */
+    .footer-col-left {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    /* Center column text and items explicitly centered */
+    .footer-col-center {
+      text-align: center;
+      align-items: center;
+    }
+
+    /* Right column stays right-aligned */
+    .footer-col-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
     .footer-col strong {
       color: #ffffff;
       font-size: 1rem;
@@ -427,23 +455,21 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-col a {
       font-size: 0.9rem;
       line-height: 1.6;
       color: var(--color-subheading);
     }
 
-    .footer-col a {
-      color: var(--color-subheading);
-      transition: color 0.2s;
-      font-size: 0.9rem;
+    .practice-address {
+      text-align: right; /* keeps the multiline address text neat on the right */
     }
 
     .footer-col a:hover {
       color: #ffffff;
       opacity: 1;
     }
-
     .footer-bottom {
       background-color: var(--color-footer-bg);
       text-align: center;
@@ -455,12 +481,11 @@
     /* =========================================================
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-    @media (max-width: 768px) {
+     @media (max-width: 768px) {
       .container {
         padding: 0 24px;
       }
 
-      /* Mobile: stack the brand name and subtitle vertically */
       .nav-brand {
         flex-direction: column;
         align-items: flex-start;
@@ -473,7 +498,6 @@
         margin-top: -2px;
       }
 
-      /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
         background-image: linear-gradient(var(--color-sand), var(--color-sand)),
           url('images/bodyPortrait.jpg');
@@ -483,9 +507,18 @@
         background-blend-mode: overlay;
       }
 
-      /* Show hamburger, hide desktop nav */
       .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
+        transition: all 0.4s ease;
+      }
+
+      /* THIS SHIFTS THE "X" INTO THE CENTER OF THE SLIDING PANEL WHEN ACTIVE */
+      .hamburger.active {
+        position: fixed;
+        top: 40px;
+        right: calc(200px - 22px); /* Centers it horizontally inside the 400px panel */
       }
 
       .nav-links {
@@ -495,7 +528,7 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
-        background:var(--color-footer-bg);
+        background: var(--color-footer-bg);
         backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: center;
@@ -506,6 +539,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
+        z-index: 1000; /* Sits right behind the close X button */
       }
 
       .nav-links.open {
@@ -515,6 +549,8 @@
       .nav-links a {
         font-size: 1.2rem;
       }
+
+      /* (Keep the rest of your media query styles below as they are) */
 
       /* Added extra padding-top on mobile so content clears the fixed header nicely */
       .contact-section {
@@ -531,13 +567,20 @@
         gap: 12px;
       }
 
-      .footer-grid {
+      .footer-body-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: left;
       }
 
-      .footer-col[style*="text-align: right;"] {
+      .footer-col-left,
+      .footer-col-center,
+      .footer-col-right {
+        text-align: left !important;
+        align-items: flex-start !important;
+      }
+
+      .practice-address {
         text-align: left !important;
       }
 
@@ -608,7 +651,7 @@
             </div>
 
             <div class="info-group">
-              <span class="badge-notice">Sessions are booked by appointment only.</span>
+              <span class="badge-notice">Please Note: Sessions are booked by appointment only.</span>
             </div>
           </div>
 
@@ -635,7 +678,7 @@
 
           <ul class="emergency-list">
             <li class="emergency-item">
-              <span class="emergency-label">SADAG Suicide Crisis Line</span>
+              <span class="emergency-label">Suicide Crisis Line</span>
               <span>0800 567 567</span>
             </li>
             <li class="emergency-item">
@@ -660,24 +703,25 @@
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <div class="footer-grid">
-        <div class="footer-col">
+      <!-- New structured footer body -->
+      <div class="footer-body-grid">
+        <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
           <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col" style="text-align: right;">
+        <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-            1st Floor, Dunkeld Medical and Dental Centre<br>
-            257 Jan Smuts Ave, Dunkeld West,<br>
+          <p class="practice-address">
+            Dunkeld Medical and Dental Centre<br>
+            257 Jan Smuts Ave, Dunkeld West<br>
             Johannesburg, 2196
           </p>
         </div>

@@ -225,6 +225,21 @@
       box-shadow: none;
     }
 
+    /* New wrapper for the standalone heading */
+    .about-page-header h1 {
+      color: var(--color-anchor);
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Remove the old padding-top/margin from inside .about-content h1 since it's gone */
+    .about-content h1 {
+      display: none; /* or remove it entirely from CSS */
+    }
+
     /* Right Column - Text content */
     .about-content h1 {
       color: var(--color-anchor);
@@ -387,9 +402,12 @@
       color: var(--color-subheading);
     }
 
-    .footer-grid {
+/* =========================================================
+       NEW FOOTER GRID (Precise Centered Column Control)
+       ========================================================= */
+    .footer-body-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 0.8fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -401,6 +419,24 @@
       gap: 10px;
     }
 
+    /* Left column stays left-aligned */
+    .footer-col-left {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    /* Center column text and items explicitly centered */
+    .footer-col-center {
+      text-align: center;
+      align-items: center;
+    }
+
+    /* Right column stays right-aligned */
+    .footer-col-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
     .footer-col strong {
       color: #ffffff;
       font-size: 1rem;
@@ -408,16 +444,15 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-col a {
       font-size: 0.9rem;
       line-height: 1.6;
       color: var(--color-subheading);
     }
 
-    .footer-col a {
-      color: var(--color-subheading);
-      transition: color 0.2s;
-      font-size: 0.9rem;
+    .practice-address {
+      text-align: right; /* keeps the multiline address text neat on the right */
     }
 
     .footer-col a:hover {
@@ -436,11 +471,24 @@
     /* =========================================================
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-    @media (max-width: 868px) {
+@media (max-width: 868px) {
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
       }
+      
+      .about-content {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Push the h1 to the very top, above the image */
+      .about-content h1 {
+        order: -1;
+        padding-top: 0;
+        margin-bottom: 20px;
+      }
+
       .about-image {
         max-width: 380px;
         margin: 0 auto;
@@ -513,13 +561,20 @@
       }
       .about-content h1 { font-size: 2.2rem; }
 
-      .footer-grid {
+    .footer-body-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: left;
       }
 
-      .footer-col[style*="text-align: right;"] {
+      .footer-col-left,
+      .footer-col-center,
+      .footer-col-right {
+        text-align: left !important;
+        align-items: flex-start !important;
+      }
+
+      .practice-address {
         text-align: left !important;
       }
 
@@ -568,9 +623,14 @@
     </div>
   </nav>
 
-  <!-- ===== ABOUT CONTENT ===== -->
+<!-- ===== ABOUT CONTENT ===== -->
   <section class="about-section">
     <div class="container">
+      <!-- Heading now sits above everything on all screens -->
+      <div class="about-page-header">
+        <h1>About</h1>
+      </div>
+
       <div class="about-grid">
         <!-- Left: Image -->
         <div class="about-image">
@@ -579,8 +639,7 @@
 
         <!-- Right: Content -->
         <div class="about-content">
-          <h1>About</h1>
-
+          <!-- (h1 removed from here) -->
           <p>I am a registered Clinical Psychologist with the Health Professions Council of South Africa (HPCSA) and the Board of Healthcare Funders (BHF).  I completed my undergraduate and honours training at the University of the Witwatersrand (WITS), followed by a master's degree at the University of Cape Town (UCT).</p>
 
           <p>Before training in psychology, I worked as an architect. My shift from external structures to internal ones was born out of my involvement in community-based projects, where built form alone could not address deep internal struggles. This fuelled my interest in the architecture of the psyche: the inner workings of human experience, identity, and the social world we are embedded in.</p>
@@ -611,6 +670,7 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
       <div class="footer-header">
@@ -618,24 +678,25 @@
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <div class="footer-grid">
-        <div class="footer-col">
+      <!-- New structured footer body -->
+      <div class="footer-body-grid">
+        <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
-          <a href="https://www.psychologytoday.com/profile/1806420  " target="_blank">Psychology Today</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
+          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col" style="text-align: right;">
+        <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-            257 Jan Smuts Avenue, Dunkeld West<br>
+          <p class="practice-address">
+            Dunkeld Medical and Dental Centre<br>
+            257 Jan Smuts Ave, Dunkeld West<br>
             Johannesburg, 2196
           </p>
         </div>

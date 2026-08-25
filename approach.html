@@ -196,18 +196,16 @@
        APPROACH CONTENT
        ========================================================= */
     .approach-section {
-      padding: 120px 0 80px;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
+      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-bottom: 80px;
       justify-content: center;
-      background: var(--color-sand);
+      background-color: var(--color-sand);
     }
 
     .approach-content {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 20px;
+      padding-top: 0;
     }
 
     .approach-content h1 {
@@ -309,9 +307,12 @@
       color: var(--color-subheading);
     }
 
-    .footer-grid {
+    /* =========================================================
+       NEW FOOTER GRID (Precise Centered Column Control)
+       ========================================================= */
+    .footer-body-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 0.8fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
       align-items: start;
@@ -323,6 +324,24 @@
       gap: 10px;
     }
 
+    /* Left column stays left-aligned */
+    .footer-col-left {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    /* Center column text and items explicitly centered */
+    .footer-col-center {
+      text-align: center;
+      align-items: center;
+    }
+
+    /* Right column stays right-aligned */
+    .footer-col-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
     .footer-col strong {
       color: #ffffff;
       font-size: 1rem;
@@ -330,16 +349,15 @@
       letter-spacing: 0.3px;
     }
 
-    .footer-col p {
+    .footer-col p,
+    .footer-col a {
       font-size: 0.9rem;
       line-height: 1.6;
       color: var(--color-subheading);
     }
 
-    .footer-col a {
-      color: var(--color-subheading);
-      transition: color 0.2s;
-      font-size: 0.9rem;
+    .practice-address {
+      text-align: right; /* keeps the multiline address text neat on the right */
     }
 
     .footer-col a:hover {
@@ -384,6 +402,13 @@
 
       .hamburger {
         display: flex;
+        transition: all 0.4s ease;
+      }
+
+      .hamburger.active {
+        position: fixed;
+        top: 28px;
+        right: calc(200px - 22px);
       }
 
       .nav-links {
@@ -421,13 +446,20 @@
       .approach-content h1 { font-size: 2.2rem; }
       .approach-content p { font-size: 1rem; }
 
-      .footer-grid {
+      .footer-body-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: left;
       }
 
-      .footer-col[style*="text-align: right;"] {
+      .footer-col-left,
+      .footer-col-center,
+      .footer-col-right {
+        text-align: left !important;
+        align-items: flex-start !important;
+      }
+
+      .practice-address {
         text-align: left !important;
       }
 
@@ -487,6 +519,7 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
+ <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
       <div class="footer-header">
@@ -494,24 +527,25 @@
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <div class="footer-grid">
-        <div class="footer-col">
+      <!-- New structured footer body -->
+      <div class="footer-body-grid">
+        <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
           <a href="tel:+27773687497">+27 77 368 7497</a>
           <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn Profile</a>
+          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
           <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
         </div>
 
-        <div class="footer-col" style="text-align: right;">
+        <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--color-subheading);">
-            1st Floor, Dunkeld Medical &amp; Dental Suites<br>
-            257 Jan Smuts Avenue, Dunkeld West<br>
+          <p class="practice-address">
+            Dunkeld Medical and Dental Centre<br>
+            257 Jan Smuts Ave, Dunkeld West<br>
             Johannesburg, 2196
           </p>
         </div>
