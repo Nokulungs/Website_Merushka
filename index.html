@@ -115,20 +115,23 @@
       letter-spacing: normal;
     }
 
-    /* ——— hamburger ——— */
+    /* =========================================================
+       HAMBURGER (matches Contact page styling)
+       ========================================================= */
     .hamburger {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 36px;
-      height: 36px;
+      gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
+      width: 40px;
+      height: 40px;
       padding: 0;
-      z-index: 1001;
       position: relative;
+      z-index: 1001;
     }
 
     .hamburger span {
@@ -138,17 +141,20 @@
       background: #ffffff;
       border-radius: 3px;
       transition: all 0.3s ease;
-      position: absolute;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      transform-origin: center;
+      margin: 0 auto;
     }
 
-    .hamburger span:nth-child(1) { transform: translateY(-8px); }
-    .hamburger span:nth-child(2) { transform: translateY(0); }
-    .hamburger span:nth-child(3) { transform: translateY(8px); }
-
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg); }
-    .hamburger.active span:nth-child(2) { opacity: 0; transform: scale(0); }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg); }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
 
     /* ——— nav-links drawer ——— */
     .nav-links {
@@ -169,6 +175,7 @@
       transition: right 0.4s ease;
       display: flex;
       opacity: 0.95;
+      z-index: 1000;
     }
 
     .nav-links.open {
@@ -222,11 +229,13 @@
     }
 
     .hero-content {
-      max-width: 650px;
+      max-width: 850px;
+      width: 100%;
       text-align: left;
       margin-left: 190px;
       transform: translateY(-110px);
       margin-top: -200px;
+      padding-right: 40px;
     }
 
     /* ===== QUOTE ===== */
@@ -234,12 +243,12 @@
       color: #f2d2bd;
       font-weight: 300;
       font-size: 1.25rem;
-      line-height: 1.6;
+      line-height: 1.8;
       font-style: italic;
-      max-width: 750px;
+      max-width: 100%;
       letter-spacing: 0.5px;
       margin: 0 0 16px 0;
-      
+      width: 100%;
     }
 
     .quote-author {
@@ -325,7 +334,7 @@
           linear-gradient(rgba(106, 50, 22, 0.25), rgba(173, 79, 32, 0.25)),
           linear-gradient(rgba(200, 120, 60, 0.15), rgba(200, 120, 60, 0.15)),
           url('images/homePortrait.jpg');
-        background-size: cotain;
+        background-size: cover;
         background-position: center;
         justify-content: center;
       }
@@ -336,10 +345,26 @@
         text-align: center;
         transform: translateY(-60px);
         margin-top: 0;
+        max-width: 100%;
+        padding-right: 0;
       }
 
       .quote-text {
         font-size: 1.25rem;
+        line-height: 2;
+        max-width: 100%;
+      }
+
+      /* FIX: Match Contact page - center X in panel */
+      .hamburger {
+        position: relative;
+        z-index: 1001;
+      }
+
+      .hamburger.active {
+        position: fixed;
+        top: 28px;
+        right: calc(200px - 22px);
       }
 
       .back-to-top {
@@ -385,7 +410,7 @@
     <div class="hero-content">
       <!-- Quote -->
       <div class="quote-text">
-        &ldquo;Not everything that is faced <br> can be changed, <br> but nothing can be changed <br> until it is faced.&rdquo;
+        &ldquo;Not everything that is faced can be changed, <br> but nothing can be changed <br> until it is faced.&rdquo;
       </div>
       <p class="quote-author"><span>James Baldwin</span></p>
     </div>

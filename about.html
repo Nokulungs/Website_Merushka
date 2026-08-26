@@ -197,13 +197,10 @@
 
     .hamburger.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
-      align-items: center;
     }
-
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
-
     .hamburger.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
@@ -248,7 +245,7 @@
 
     /* Remove the old padding-top/margin from inside .about-content h1 since it's gone */
     .about-content h1 {
-      display: none; /* or remove it entirely from CSS */
+      display: none;
     }
 
     /* Right Column - Text content */
@@ -413,7 +410,7 @@
       color: var(--color-subheading);
     }
 
-/* =========================================================
+    /* =========================================================
        NEW FOOTER GRID (Precise Centered Column Control)
        ========================================================= */
     .footer-body-grid {
@@ -463,7 +460,7 @@
     }
 
     .practice-address {
-      text-align: right; /* keeps the multiline address text neat on the right */
+      text-align: right;
     }
 
     .footer-col a:hover {
@@ -482,7 +479,7 @@
     /* =========================================================
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-@media (max-width: 868px) {
+    @media (max-width: 868px) {
       .about-grid {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -536,16 +533,17 @@
       /* Show hamburger, hide desktop nav */
       .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
+        transition: all 0.4s ease;
       }
 
-      /* FIX: Center the X button inside the sliding panel */
+      /* FIX: Match the Contact page styling - center X in panel */
       .hamburger.active {
-  position: fixed;
-  top: 30px;
-  right: calc(50% - 200px + 20px);
-  /* 200px is half of the panel width (400px/2), 20px is half of the button width (40px/2) */
-  transform: none;
-}
+        position: fixed;
+        top: 28px;
+        right: calc(200px - 22px);
+      }
 
       .nav-links {
         position: fixed;
@@ -576,13 +574,12 @@
         font-size: 1.2rem;
       }
 
-
       .about-section { 
         padding: 150px 0 60px;
       }
       .about-content h1 { font-size: 2.2rem; }
 
-    .footer-body-grid {
+      .footer-body-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: left;
@@ -644,7 +641,7 @@
     </div>
   </nav>
 
-<!-- ===== ABOUT CONTENT ===== -->
+  <!-- ===== ABOUT CONTENT ===== -->
   <section class="about-section">
     <div class="container">
       <!-- Heading now sits above everything on all screens -->
@@ -660,7 +657,6 @@
 
         <!-- Right: Content -->
         <div class="about-content">
-          <!-- (h1 removed from here) -->
           <p>I am a registered Clinical Psychologist with the Health Professions Council of South Africa (HPCSA) and the Board of Healthcare Funders (BHF).  I completed my undergraduate and honours training at the University of the Witwatersrand (WITS), followed by a master's degree at the University of Cape Town (UCT).</p>
 
           <p>Before training in psychology, I worked as an architect. My shift from external structures to internal ones was born out of my involvement in community-based projects, where built form alone could not address deep internal struggles. This fuelled my interest in the architecture of the psyche: the inner workings of human experience, identity, and the social world we are embedded in.</p>
@@ -698,7 +694,6 @@
         <p>PS 0163040 | PR 1346008</p>
       </div>
 
-      <!-- New structured footer body -->
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>

@@ -162,16 +162,25 @@
       border-radius: 2px;
     }
 
+    /* =========================================================
+       HAMBURGER (matches Contact page styling)
+       ========================================================= */
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
-      padding: 6px 0;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      position: relative;
       z-index: 1001;
     }
+
     .hamburger span {
       display: block;
       width: 28px;
@@ -180,23 +189,25 @@
       border-radius: 3px;
       transition: all 0.3s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transform-origin: center;
+      margin: 0 auto;
     }
 
     .hamburger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
 
     /* =========================================================
        APPROACH CONTENT
        ========================================================= */
     .approach-section {
-      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-top: 130px;
       padding-bottom: 80px;
       justify-content: center;
       background-color: var(--color-sand);
@@ -357,7 +368,7 @@
     }
 
     .practice-address {
-      text-align: right; /* keeps the multiline address text neat on the right */
+      text-align: right;
     }
 
     .footer-col a:hover {
@@ -402,16 +413,16 @@
 
       .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
         transition: all 0.4s ease;
       }
 
-      /* FIX: Center the X button inside the sliding panel */
+      /* FIX: Match Contact page - center X in panel */
       .hamburger.active {
         position: fixed;
         top: 28px;
-        right: calc(50% - 200px + 20px);
-        /* 200px is half the panel width, 20px is half the button width */
-        transform: none;
+        right: calc(200px - 22px);
       }
 
       .nav-links {

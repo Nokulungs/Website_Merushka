@@ -164,7 +164,9 @@
       border-radius: 2px;
     }
 
-    /* ——— hamburger (matches other pages) ——— */
+    /* =========================================================
+       HAMBURGER (matches Contact page styling)
+       ========================================================= */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -448,15 +450,16 @@
 
       .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
         transition: all 0.4s ease;
       }
 
-      /* Center the X button inside the sliding panel */
+      /* FIX: Match Contact page - center X in panel */
       .hamburger.active {
         position: fixed;
         top: 28px;
-        right: calc(50% - 200px + 20px);
-        transform: none;
+        right: calc(200px - 22px);
       }
 
       .nav-links {
