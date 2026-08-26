@@ -183,14 +183,14 @@
     }
 
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
     /* =========================================================
        APPROACH CONTENT
@@ -405,10 +405,13 @@
         transition: all 0.4s ease;
       }
 
+      /* FIX: Center the X button inside the sliding panel */
       .hamburger.active {
         position: fixed;
         top: 28px;
-        right: calc(200px - 22px);
+        right: calc(50% - 200px + 20px);
+        /* 200px is half the panel width, 20px is half the button width */
+        transform: none;
       }
 
       .nav-links {
@@ -429,6 +432,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
+        z-index: 1000;
       }
 
       .nav-links.open {
@@ -519,7 +523,6 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
- <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
       <div class="footer-header">

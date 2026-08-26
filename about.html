@@ -170,13 +170,19 @@
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
-      padding: 6px 0;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      position: relative;
       z-index: 1001;
     }
+
     .hamburger span {
       display: block;
       width: 28px;
@@ -185,16 +191,21 @@
       border-radius: 3px;
       transition: all 0.3s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transform-origin: center;
+      margin: 0 auto;
     }
 
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: translateY(8px) rotate(45deg);
+      align-items: center;
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: translateY(-8px) rotate(-45deg);
     }
 
     /* =========================================================
@@ -527,6 +538,15 @@
         display: flex;
       }
 
+      /* FIX: Center the X button inside the sliding panel */
+      .hamburger.active {
+  position: fixed;
+  top: 30px;
+  right: calc(50% - 200px + 20px);
+  /* 200px is half of the panel width (400px/2), 20px is half of the button width (40px/2) */
+  transform: none;
+}
+
       .nav-links {
         position: fixed;
         top: 0;
@@ -545,6 +565,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
+        z-index: 1000;
       }
 
       .nav-links.open {
@@ -670,7 +691,6 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
       <div class="footer-header">
@@ -720,17 +740,17 @@
 
   <script>
     // ===== HAMBURGER TOGGLE =====
-    (function() {
+    (function () {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function(e) {
+      hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
           hamburger.classList.remove('active');
@@ -739,7 +759,7 @@
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         });

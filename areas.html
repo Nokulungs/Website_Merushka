@@ -164,60 +164,50 @@
       border-radius: 2px;
     }
 
-    /* ——— hamburger (hidden on desktop) ——— */
-    /* ——— hamburger button base (fixed X alignment) ——— */
+    /* ——— hamburger (matches other pages) ——— */
     .hamburger {
       display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 44px;
-      height: 44px;
+      gap: 5px;
       background: transparent;
       border: 0;
       cursor: pointer;
+      width: 40px;
+      height: 40px;
       padding: 0;
-      z-index: 1001;
       position: relative;
+      z-index: 1001;
     }
 
     .hamburger span {
       display: block;
-      width: 26px;
-      height: 2.5px;
+      width: 28px;
+      height: 3px;
       background: #ffffff;
-      border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      position: absolute;
+      border-radius: 3px;
+      transition: all 0.3s ease;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .hamburger span:nth-child(1) {
-      transform: translateY(-8px);
-    }
-    .hamburger span:nth-child(2) {
-      transform: translateY(0);
-    }
-    .hamburger span:nth-child(3) {
-      transform: translateY(8px);
+      transform-origin: center;
+      margin: 0 auto;
     }
 
     .hamburger.active span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
+      transform: translateY(8px) rotate(45deg);
     }
     .hamburger.active span:nth-child(2) {
       opacity: 0;
-      transform: scale(0);
     }
     .hamburger.active span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
+      transform: translateY(-8px) rotate(-45deg);
     }
 
     /* =========================================================
        AREAS OF INTEREST CONTENT — flat on background
        ========================================================= */
     .areas-section {
-      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
     }
@@ -412,7 +402,7 @@
     }
 
     .practice-address {
-      text-align: right; /* keeps the multiline address text neat on the right */
+      text-align: right;
     }
 
     .footer-col a:hover {
@@ -456,15 +446,17 @@
         background-blend-mode: overlay;
       }
 
-    .hamburger {
+      .hamburger {
         display: flex;
         transition: all 0.4s ease;
       }
 
+      /* Center the X button inside the sliding panel */
       .hamburger.active {
         position: fixed;
         top: 28px;
-        right: calc(200px - 22px);
+        right: calc(50% - 200px + 20px);
+        transform: none;
       }
 
       .nav-links {
@@ -485,6 +477,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
+        z-index: 1000;
       }
 
       .nav-links.open {
@@ -496,7 +489,7 @@
       }
 
       .areas-section { 
-        padding: 170px 0 60px; /* Generous spacing below navbar on mobile */
+        padding: 170px 0 60px;
       }
       .areas-content h1 { font-size: 2.2rem; }
       .areas-content p { font-size: 1rem; }
@@ -596,7 +589,6 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
