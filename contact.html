@@ -214,9 +214,8 @@
        CONTACT CONTENT — flat on background
        ========================================================= */
     .contact-section {
-      padding-top: 130px;     /* Set a uniform top gap below the fixed nav for all pages */
+      padding-top: 130px;
       padding-bottom: 80px;
-      background: var(--color-sand);
       background: var(--color-sand);
     }
 
@@ -274,7 +273,6 @@
     }
 
     .info-group a.plain-link:hover {
-      
       text-decoration-color: #ffffff;
       opacity: 1;
     }
@@ -284,9 +282,10 @@
       background: transparent;
       padding: 0;
       font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--color-dark);
+      font-weight: 400;
+      color: var(--color-body);
       border: none;
+      font-family: var(--font-main);
     }
 
     /* ===== EMERGENCY SECTION ===== */
@@ -301,7 +300,7 @@
       margin-bottom: 22px;
       font-weight: 400;
       font-style: italic;
-      color: var(--color-dark);
+      color: var(--color-body);
       text-align: center;
     }
 
@@ -317,21 +316,23 @@
       background: transparent;
     }
 
-    /* Removed bold weight from emergency labels as requested */
+    /* Removed bold weight from emergency labels - using Inter font */
     .emergency-item .emergency-label {
       display: block;
-      color: var(--color-dark);
-      font-weight: 700;
+      color: var(--color-body);
+      font-weight: 400;
       font-size: 0.85rem;
       margin-bottom: 2px;
+      font-family: var(--font-main);
     }
 
-    /* Changed emergency numbers to match body text color instead of orange */
+    /* Emergency numbers - using body color */
     .emergency-item span {
-      color: var(--color-dark);
+      color: var(--color-body);
       font-weight: 400;
       font-size: 1.1rem;
       letter-spacing: 0.3px;
+      font-family: var(--font-main);
     }
 
     /* =========================================================
@@ -463,7 +464,7 @@
     }
 
     .practice-address {
-      text-align: right; /* keeps the multiline address text neat on the right */
+      text-align: right;
     }
 
     .footer-col a:hover {
@@ -481,7 +482,7 @@
     /* =========================================================
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-     @media (max-width: 768px) {
+    @media (max-width: 768px) {
       .container {
         padding: 0 24px;
       }
@@ -518,7 +519,7 @@
       .hamburger.active {
         position: fixed;
         top: 40px;
-        right: calc(200px - 22px); /* Centers it horizontally inside the 400px panel */
+        right: calc(200px - 22px);
       }
 
       .nav-links {
@@ -539,7 +540,7 @@
         transition: right 0.4s ease;
         display: flex;
         opacity: 0.95;
-        z-index: 1000; /* Sits right behind the close X button */
+        z-index: 1000;
       }
 
       .nav-links.open {
@@ -550,9 +551,6 @@
         font-size: 1.2rem;
       }
 
-      /* (Keep the rest of your media query styles below as they are) */
-
-      /* Added extra padding-top on mobile so content clears the fixed header nicely */
       .contact-section {
         padding: 140px 0 60px;
       }
@@ -651,7 +649,7 @@
             </div>
 
             <div class="info-group">
-              <span class="badge-notice">Please Note: Sessions are booked by appointment only.</span>
+              <span class="badge-notice">Please Note: Sessions are booked by appointment.</span>
             </div>
           </div>
 
