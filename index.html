@@ -249,6 +249,7 @@
       letter-spacing: 0.5px;
       margin: 0 0 16px 0;
       width: 100%;
+      text-align: left;
     }
 
     .quote-author {
@@ -258,7 +259,7 @@
       margin-bottom: 0;
       letter-spacing: 1px;
       font-style: normal;
-      
+      text-align: left;
     }
 
     .quote-author span {
@@ -336,23 +337,29 @@
           url('images/homePortrait.jpg');
         background-size: cover;
         background-position: center;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
       }
 
       .hero-content {
         margin-left: 0;
         padding: 0 24px;
-        text-align: center;
+        text-align: left;
         transform: translateY(-60px);
         margin-top: 0;
         max-width: 100%;
-        padding-right: 0;
+        padding-right: 24px;
       }
 
       .quote-text {
         font-size: 1.25rem;
         line-height: 2;
         max-width: 100%;
+        text-align: left;
+      }
+
+      .quote-author {
+        text-align: left;
       }
 
       /* FIX: Match Contact page - center X in panel */
@@ -378,6 +385,10 @@
 
     @media (max-width: 480px) {
       .quote-text { font-size: 1.1rem; }
+      .hero-content {
+        padding: 0 16px;
+        padding-right: 16px;
+      }
     }
   </style>
 </head>
