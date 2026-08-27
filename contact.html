@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Rates | Merushka Francis Psychology</title>
+  <title>Contact & Emergency Support | Merushka Francis Psychology</title>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +61,7 @@
       width: 100vw;
       height: 100vh;
       background-image: linear-gradient(var(--color-sand), var(--color-sand)),
-                        url('images/BackgroundImage.jpeg');
+        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -127,8 +127,8 @@
 
     .nav-brand span {
       font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
       letter-spacing: normal;
     }
 
@@ -168,7 +168,7 @@
     }
 
     /* =========================================================
-       HAMBURGER (matches Contact page styling)
+       HAMBURGER (hidden on desktop)
        ========================================================= */
     .hamburger {
       display: none;
@@ -200,100 +200,139 @@
 
     .hamburger.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
+      align-items: center;
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
-
     /* =========================================================
-       SERVICES CONTENT — flat on background with separating line
+       CONTACT CONTENT — flat on background
        ========================================================= */
-    .services-section {
+    .contact-section {
       padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
-      min-height: 100vh;
     }
 
-    .services-content {
+    .contact-content {
       max-width: 900px;
       margin: 0 auto;
-      width: 100%;
     }
 
-    .services-content h1 {
-      color: var(--color-anchor);
-      font-size: 2.8rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 30px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .services-content .intro-text {
-      font-size: 1.15rem;
-      line-height: 1.9;
-      margin-bottom: 45px;
-      color: var(--color-dark);
-    }
-
-    /* Services Columns Layout (Flat with line in between) */
-    .services-grid {
+    /* Contact Grid */
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
-      margin-bottom: 45px;
-      position: relative;
+      margin-bottom: 50px;
     }
 
-    /* Vertical separating line between columns */
-    .services-grid::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 1px;
-      background-color: rgba(0, 0, 0, 0.12);
-      transform: translateX(-50%);
+    .contact-col h2 {
+      color: var(--color-anchor);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: -0.2px;
     }
 
-    .service-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+    .info-group {
+      margin-bottom: 20px;
+    }
+
+    .info-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-group label {
+      display: block;
+      font-weight: 600;
+      color: var(--color-medium);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .info-group p,
+    .info-group a {
+      font-size: 1.05rem;
+      color: var(--color-body);
+      line-height: 1.7;
+    }
+
+    /* Regular link styling without forcing bold text */
+    .info-group a.plain-link {
+      font-weight: 400;
+      transition: color 0.25s;
+      text-underline-offset: 3px;
+    }
+
+    .info-group a.plain-link:hover {
+      text-decoration-color: #ffffff;
+      opacity: 1;
+    }
+
+    .badge-notice {
+      display: inline-block;
+      background: transparent;
+      padding: 0;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-body);
+      border: none;
+      font-family: var(--font-main);
+    }
+
+    /* ===== EMERGENCY SECTION ===== */
+    .emergency-section {
+      margin-top: 10px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .emergency-section .notice-lead {
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-body);
       text-align: center;
     }
 
-    .service-item h2 {
-      color: var(--color-anchor);
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 16px;
+    .emergency-list {
+      list-style: none;
+      text-align: center;
+      gap: 16px;
     }
 
-    .service-item p {
-      color: var(--color-dark);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 8px;
+    .emergency-item {
+      padding: 0;
+      border: none;
+      background: transparent;
     }
 
-    /* ===== RATES & MEDICAL AID ===== */
-    .rates-section {
-      margin-top: 10px;
-      padding-top: 30px;
+    /* Removed bold weight from emergency labels - using Inter font */
+    .emergency-item .emergency-label {
+      display: block;
+      color: var(--color-body);
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+      font-family: var(--font-main);
     }
 
-    .rates-section p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--color-dark);
-      font-style: italic;
-      margin-bottom: 0;
+    /* Emergency numbers - using body color */
+    .emergency-item span {
+      color: var(--color-body);
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 0.3px;
+      font-family: var(--font-main);
     }
 
     /* =========================================================
@@ -432,7 +471,6 @@
       color: #ffffff;
       opacity: 1;
     }
-
     .footer-bottom {
       background-color: var(--color-footer-bg);
       text-align: center;
@@ -449,7 +487,6 @@
         padding: 0 24px;
       }
 
-      /* Mobile: stack the brand name and subtitle vertically */
       .nav-brand {
         flex-direction: column;
         align-items: flex-start;
@@ -462,17 +499,15 @@
         margin-top: -2px;
       }
 
-      /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
         background-image: linear-gradient(var(--color-sand), var(--color-sand)),
-                          url('images/bodyPortrait.jpg');
+          url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
         background-blend-mode: overlay;
       }
 
-      /* Show hamburger */
       .hamburger {
         display: flex;
         position: relative;
@@ -480,10 +515,10 @@
         transition: all 0.4s ease;
       }
 
-      /* FIX: Match Contact page - center X in panel */
+      /* THIS SHIFTS THE "X" INTO THE CENTER OF THE SLIDING PANEL WHEN ACTIVE */
       .hamburger.active {
         position: fixed;
-        top: 28px;
+        top: 40px;
         right: calc(200px - 22px);
       }
 
@@ -516,27 +551,18 @@
         font-size: 1.2rem;
       }
 
-      /* Added explicit padding-top for mobile viewport clearance */
-      .services-section {
-        padding: 130px 0 60px;
+      .contact-section {
+        padding: 140px 0 60px;
       }
 
-      .services-content h1 {
-        font-size: 2.2rem;
-      }
-
-      .services-content .intro-text {
-        font-size: 1.05rem;
-      }
-
-      /* Stack service columns on mobile and remove vertical dividing line */
-      .services-grid {
+      .contact-grid {
         grid-template-columns: 1fr;
-        gap: 35px;
+        gap: 40px;
       }
 
-      .services-grid::after {
-        display: none;
+      .emergency-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .footer-body-grid {
@@ -573,10 +599,6 @@
       .container {
         padding: 0 20px;
       }
-
-      .services-content h1 {
-        font-size: 1.8rem;
-      }
     }
   </style>
 </head>
@@ -598,38 +620,74 @@
         <li><a href="about.html">About</a></li>
         <li><a href="approach.html">Approach</a></li>
         <li><a href="areas.html">Areas of Interest</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===== SERVICES CONTENT ===== -->
-  <section class="services-section">
+  <!-- ===== CONTACT CONTENT ===== -->
+  <section class="contact-section">
     <div class="container">
-      <div class="services-content">
-        <h1>Services</h1>
+      <div class="contact-content">
 
-        <p class="intro-text">I offer psychotherapy for adolescents (13–18 years old), adults, and couples.</p>
+        <div class="contact-grid">
+          <!-- Practice & Booking Info -->
+          <div class="contact-col">
+            <h2>Practice Details</h2>
 
-        <!-- Services Columns (Flat with separating line) -->
-        <div class="services-grid">
-          <div class="service-item">
-            <h2>Individual Therapy</h2>
-            <p>In Person | Online</p>
-            <p>50 minutes</p>
+            <div class="info-group">
+              <label>Practice Address</label>
+              <p>1st Floor, Dunkeld Medical and Dental Centre<br>
+                257 Jan Smuts Ave, Dunkeld West,<br>
+                Johannesburg, 2196</p>
+            </div>
+
+            <div class="info-group">
+              <label>Operating Hours</label>
+              <p>Monday – Friday: 08h00 – 18h00</p>
+            </div>
+
+            <div class="info-group">
+              <span class="badge-notice">Please Note: Sessions are booked by appointment.</span>
+            </div>
           </div>
 
-          <div class="service-item">
-            <h2>Couples Therapy</h2>
-            <p>In Person</p>
-            <p>50 minutes | 90 minutes</p>
+          <!-- Direct Channels -->
+          <div class="contact-col">
+            <h2>Contact</h2>
+
+            <div class="info-group">
+              <label>Email</label>
+              <a href="mailto:talk@mfrancispsychology.co.za" class="plain-link">talk@mfrancispsychology.co.za</a>
+            </div>
+
+            <div class="info-group">
+              <label>WhatsApp / Phone</label>
+              <a href="tel:+27773687497" class="plain-link">+27 77 368 7497</a>
+            </div>
           </div>
         </div>
 
-        <!-- Rates & Medical Aid -->
-        <div class="rates-section">
-          <p>Session fees are in line with standard medical aid rates for psychotherapy. Please get in touch to discuss any questions you may have around rates, medical aids or prescribed minimum benefits (PMBs).</p>
+        <!-- EMERGENCY SUPPORT SECTION -->
+        <div class="emergency-section">
+          <p class="notice-lead">If you or a loved one are in immediate distress or crisis, please go to your nearest
+            emergency room or contact one of the services below:</p>
+
+          <ul class="emergency-list">
+            <li class="emergency-item">
+              <span class="emergency-label">Suicide Crisis Line</span>
+              <span>0800 567 567</span>
+            </li>
+            <li class="emergency-item">
+              <span class="emergency-label">Lifeline South Africa</span>
+              <span>0861 322 322</span>
+            </li>
+            <li class="emergency-item">
+              <span class="emergency-label">Emergency Services</span>
+              <span>10177 / 082 911</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
