@@ -209,7 +209,6 @@
     .approach-section {
       padding-top: 130px;
       padding-bottom: 80px;
-      justify-content: center;
       background-color: var(--color-sand);
     }
 
@@ -244,7 +243,7 @@
        ========================================================= */
     .back-to-top {
       position: fixed;
-      bottom: 60px;
+      bottom: 30px;
       right: 30px;
       width: 52px;
       height: 52px;
@@ -456,7 +455,6 @@
 
       .approach-section { 
         padding: 130px 0 60px;
-        align-items: flex-start;
       }
       .approach-content h1 { font-size: 2.2rem; }
       .approach-content p { font-size: 1rem; }
@@ -481,7 +479,7 @@
       .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 40px;
+        bottom: 30px;
         right: 20px;
       }
       .back-to-top svg { width: 20px; height: 20px; }
@@ -611,13 +609,18 @@
     (function() {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollY > 200) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-      });
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
 
       backToTop.addEventListener('click', function() {
         window.scrollTo({
