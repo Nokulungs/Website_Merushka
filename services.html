@@ -219,7 +219,7 @@
     }
 
     .services-content {
-      max-width: 800px;  /* Changed from 900px to 800px to match other pages */
+      max-width: 800px;
       margin: 0 auto;
       width: 100%;
     }
@@ -559,7 +559,7 @@
       .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 40px;
+        bottom: 30px;
         right: 20px;
       }
 
@@ -715,13 +715,18 @@
     (function () {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 400) {
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollY > 200) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-      });
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
 
       backToTop.addEventListener('click', function () {
         window.scrollTo({
