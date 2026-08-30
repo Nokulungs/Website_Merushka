@@ -200,16 +200,14 @@
 
     .hamburger.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
-      align-items: center;
     }
-
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
-
     .hamburger.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
+
     /* =========================================================
        CONTACT CONTENT — flat on background
        ========================================================= */
@@ -265,7 +263,6 @@
       line-height: 1.7;
     }
 
-    /* Regular link styling without forcing bold text */
     .info-group a.plain-link {
       font-weight: 300;
       transition: color 0.25s;
@@ -285,7 +282,6 @@
       font-weight: 400;
       color: var(--color-dark);
       border: none;
-      
     }
 
     /* ===== EMERGENCY SECTION ===== */
@@ -316,7 +312,6 @@
       background: transparent;
     }
 
-    /* Removed bold weight from emergency labels - using Inter font */
     .emergency-item .emergency-label {
       display: block;
       color: var(--color-dark);
@@ -326,7 +321,6 @@
       font-family: var(--font-main);
     }
 
-    /* Emergency numbers - using body color */
     .emergency-item span {
       color: var(--color-dark);
       font-weight: 300;
@@ -414,9 +408,6 @@
       color: var(--color-subheading);
     }
 
-    /* =========================================================
-       NEW FOOTER GRID (Precise Centered Column Control)
-       ========================================================= */
     .footer-body-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -431,19 +422,16 @@
       gap: 10px;
     }
 
-    /* Left column stays left-aligned */
     .footer-col-left {
       text-align: left;
       align-items: flex-start;
     }
 
-    /* Center column text and items explicitly centered */
     .footer-col-center {
       text-align: center;
       align-items: center;
     }
 
-    /* Right column stays right-aligned */
     .footer-col-right {
       text-align: right;
       align-items: flex-end;
@@ -471,6 +459,7 @@
       color: #ffffff;
       opacity: 1;
     }
+
     .footer-bottom {
       background-color: var(--color-footer-bg);
       text-align: center;
@@ -480,7 +469,7 @@
     }
 
     /* =========================================================
-       RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
+       RESPONSIVE DESIGN
        ========================================================= */
     @media (max-width: 768px) {
       .container {
@@ -515,7 +504,6 @@
         transition: all 0.4s ease;
       }
 
-      /* THIS SHIFTS THE "X" INTO THE CENTER OF THE SLIDING PANEL WHEN ACTIVE */
       .hamburger.active {
         position: fixed;
         top: 40px;
@@ -643,7 +631,6 @@
         <p id="footerRegistrations"></p>
       </div>
 
-      <!-- New structured footer body -->
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
@@ -818,25 +805,25 @@
       document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
       document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
       document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
-      
+
       const addressLines = content.footer.practiceDetails.address;
       document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
-      
+
       document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
     });
 
     // ===== HAMBURGER TOGGLE =====
-    (function () {
+    (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function (e) {
+      hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      document.addEventListener('click', function (e) {
+      document.addEventListener('click', function(e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
           hamburger.classList.remove('active');
@@ -845,7 +832,7 @@
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function() {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         });
@@ -853,10 +840,10 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-    (function () {
+    (function() {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function () {
+      window.addEventListener('scroll', function() {
         if (window.scrollY > 400) {
           backToTop.classList.add('visible');
         } else {
@@ -864,7 +851,7 @@
         }
       });
 
-      backToTop.addEventListener('click', function () {
+      backToTop.addEventListener('click', function() {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
