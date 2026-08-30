@@ -237,7 +237,7 @@
       padding-right: 40px;
     }
 
-    /* ===== QUOTE ===== */
+    /* ===== QUOTE - Full width, no wrapping within lines ===== */
     .quote-text {
       color: #f2d2bd;
       font-weight: 300;
@@ -249,6 +249,14 @@
       margin: 0 0 16px 0;
       width: 100%;
       text-align: left;
+    }
+
+    /* Each line as a block that won't wrap internally */
+    .quote-text .line1,
+    .quote-text .line2,
+    .quote-text .line3 {
+      display: block;
+      white-space: nowrap;
     }
 
     .quote-author {
@@ -351,15 +359,25 @@
         padding-right: 24px;
       }
 
+      /* Smaller text on mobile so it fits on one line */
       .quote-text {
-        font-size: 1.25rem;
-        line-height: 2;
+        font-size: 1.1rem;
+        line-height: 1.8;
         max-width: 100%;
         text-align: left;
         padding-top: 20px;
       }
 
+      /* Keep lines as blocks, allow wrapping if needed */
+      .quote-text .line1,
+      .quote-text .line2,
+      .quote-text .line3 {
+        display: block;
+        white-space: normal;
+      }
+
       .quote-author {
+        font-size: 1.1rem;
         text-align: left;
       }
 
@@ -385,13 +403,34 @@
     }
 
     @media (max-width: 480px) {
-      .quote-text { font-size: 1.1rem; }
+      /* Even smaller text for very small screens */
+      .quote-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .quote-author {
+        font-size: 0.95rem;
+      }
+
       .hero-content {
         padding: 0 16px;
         padding-right: 16px;
       }
       .hero {
         padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      /* Extra small screens */
+      .quote-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .quote-author {
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -423,9 +462,11 @@
   <!-- ===== HERO ===== -->
   <header class="hero">
     <div class="hero-content">
-      <!-- Quote -->
+      <!-- Quote with forced line breaks using span elements -->
       <div class="quote-text">
-        &ldquo;Not everything that is faced can be changed, <br> but nothing can be changed <br> until it is faced.&rdquo;
+        <span class="line1">&ldquo;Not everything that is faced can be changed,</span>
+        <span class="line2">but nothing can be changed</span>
+        <span class="line3">until it is faced.&rdquo;</span>
       </div>
       <p class="quote-author"><span>James Baldwin</span></p>
     </div>
