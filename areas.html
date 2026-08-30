@@ -280,7 +280,7 @@
        ========================================================= */
     .back-to-top {
       position: fixed;
-      bottom: 80px;
+      bottom: 60px;
       right: 30px;
       width: 52px;
       height: 52px;
@@ -492,7 +492,7 @@
       }
 
       .areas-section { 
-        padding: 170px 0 60px;
+        padding: 130px 0 60px;
       }
       .areas-content h1 { font-size: 2.2rem; }
       .areas-content p { font-size: 1rem; }
@@ -560,34 +560,8 @@
   <!-- ===== AREAS OF INTEREST CONTENT ===== -->
   <section class="areas-section">
     <div class="container">
-      <div class="areas-content">
-        <h1>Areas of Interest</h1>
-
-        <p>I have a keen interest in working with individuals navigating life transitions, including periods of uncertainty and the exploration of one's identity and sense of self. This may look like stepping into a new phase of life, such as changing schools, starting university, leaving home, becoming a parent, changing careers, or moving into retirement. It can also include navigating one's racial identity, adjusting to living with a chronic illness, dealing with loss, divorce or feelings of meaninglessness.</p>
-        <p>as a result, I work with various emotional difficulties including, but not limited to:</p>
-        <!-- Emotional Difficulties Treated - Restructured -->
-        <div class="difficulties-section">
-          
-
-          <ul class="difficulties-list">
-            <li>Anxiety</li>
-            <li>Stress</li>
-            <li>Burnout</li>
-            <li>Depression</li>
-            <li>Grief</li>
-            <li>Loneliness</li>
-            <li>Anger</li>
-            <li>Low self-esteem</li>
-            <li>Suicidal thoughts &amp; urges</li>
-            <li>Impact of traumatic experiences</li>
-          </ul>
-        </div>
-
-        <p>Relationships often shift alongside these struggles and therapy may assist with understanding and working through relational tension, conflict, and communication difficulties as they arise.</p>
-
-        <p>In addition, I focus on a range of mental health concerns, particularly when thoughts, feelings or behaviours begin to affect how someone engages at home, at work or socially. This may include navigating neurodiversity, a decline in mental and emotional wellbeing connected to aging or a medical diagnosis, managing difficulties with addiction, eating patterns, dissociation or psychosis.</p>
-
-        <p style="margin-top: 30px;">There is no uniform approach to therapy and taking that first step may feel daunting. If any of these feelings or experiences resonate with what you are going through, or if you feel drawn to explore your inner world, I invite you to reach out for an initial session.</p>
+      <div class="areas-content" id="areasContent">
+        <!-- Populated by JavaScript -->
       </div>
     </div>
   </section>
@@ -596,38 +570,34 @@
   <footer>
     <div class="container">
       <div class="footer-header">
-        <h3>Merushka Francis Psychology</h3>
-        <p>PS 0163040 | PR 1346008</p>
+        <h3 id="footerBrand"></h3>
+        <p id="footerRegistrations"></p>
       </div>
 
       <!-- New structured footer body -->
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
-          <a href="tel:+27773687497">+27 77 368 7497</a>
-          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+          <a href="tel:+27773687497" id="footerPhone"></a>
+          <a href="mailto:talk@mfrancispsychology.co.za" id="footerEmail"></a>
         </div>
 
         <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
-          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
+          <a href="#" target="_blank" id="footerLinkedIn"></a>
+          <a href="#" target="_blank" id="footerPsychToday"></a>
         </div>
 
         <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p class="practice-address">
-            Dunkeld Medical and Dental Centre<br>
-            257 Jan Smuts Ave, Dunkeld West<br>
-            Johannesburg, 2196
-          </p>
+          <p class="practice-address" id="footerAddress"></p>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+        <p id="footerCopyright"></p>
       </div>
     </div>
   </footer>
@@ -639,7 +609,71 @@
     </svg>
   </button>
 
+  <!-- ===== CONTENT.JS ===== -->
+  <script src="content.js"></script>
+
   <script>
+    // ===== POPULATE CONTENT FROM CONTENT.JS =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // ---- AREAS PAGE ----
+      const areasContent = document.getElementById('areasContent');
+      
+      // Add title
+      const title = document.createElement('h1');
+      title.textContent = content.areas.title;
+      areasContent.appendChild(title);
+
+      // Add paragraphs
+      content.areas.paragraphs.forEach(paragraph => {
+        const p = document.createElement('p');
+        p.textContent = paragraph;
+        areasContent.appendChild(p);
+      });
+
+      // Add difficulties section
+      const diffSection = document.createElement('div');
+      diffSection.className = 'difficulties-section';
+      
+      const diffTitle = document.createElement('h2');
+      diffTitle.textContent = 'Emotional Difficulties Treated';
+      diffSection.appendChild(diffTitle);
+      
+      const diffList = document.createElement('ul');
+      diffList.className = 'difficulties-list';
+      content.areas.difficulties.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        diffList.appendChild(li);
+      });
+      diffSection.appendChild(diffList);
+      areasContent.appendChild(diffSection);
+
+      // Add closing paragraphs
+      content.areas.closingParagraphs.forEach(paragraph => {
+        const p = document.createElement('p');
+        p.textContent = paragraph;
+        if (paragraph === content.areas.closingParagraphs[content.areas.closingParagraphs.length - 1]) {
+          p.style.marginTop = '30px';
+        }
+        areasContent.appendChild(p);
+      });
+
+      // ---- FOOTER ----
+      document.getElementById('footerBrand').textContent = content.footer.brand;
+      document.getElementById('footerRegistrations').textContent = content.footer.registrations;
+      document.getElementById('footerPhone').textContent = content.footer.getInTouch.phone;
+      document.getElementById('footerEmail').textContent = content.footer.getInTouch.email;
+      document.getElementById('footerLinkedIn').textContent = content.footer.connect.linkedinLabel;
+      document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
+      document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
+      document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
+      
+      const addressLines = content.footer.practiceDetails.address;
+      document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
+      
+      document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
+    });
+
     // ===== HAMBURGER TOGGLE =====
     (function() {
       const hamburger = document.getElementById('hamburgerBtn');

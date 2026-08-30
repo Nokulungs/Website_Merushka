@@ -215,10 +215,11 @@
       padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
+      min-height: 100vh;
     }
 
     .services-content {
-      max-width: 1000px;
+      max-width: 800px;
       margin: 0 auto;
       width: 100%;
     }
@@ -454,10 +455,11 @@
         align-items: flex-start;
         gap: 0;
         line-height: 1.3;
+        font-size: 1rem;
       }
 
       .nav-brand span {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         margin-top: -2px;
       }
 
@@ -517,7 +519,7 @@
 
       /* Added explicit padding-top for mobile viewport clearance */
       .services-section {
-        padding: 140px 0 60px;
+        padding: 130px 0 60px;
       }
 
       .services-content h1 {
@@ -606,30 +608,8 @@
   <!-- ===== SERVICES CONTENT ===== -->
   <section class="services-section">
     <div class="container">
-      <div class="services-content">
-        <h1>Services</h1>
-
-        <p class="intro-text">I offer psychotherapy for adolescents (13–18 years old), adults, and couples.</p>
-
-        <!-- Services Columns (Flat with separating line) -->
-        <div class="services-grid">
-          <div class="service-item">
-            <h2>Individual Therapy</h2>
-            <p>In Person | Online</p>
-            <p>50 minutes</p>
-          </div>
-
-          <div class="service-item">
-            <h2>Couples Therapy</h2>
-            <p>In Person</p>
-            <p>50 minutes | 90 minutes</p>
-          </div>
-        </div>
-
-        <!-- Rates & Medical Aid -->
-        <div class="rates-section">
-          <p>Session fees are in line with standard medical aid rates for psychotherapy. Please get in touch to discuss any questions you may have around rates, medical aids or prescribed minimum benefits (PMBs).</p>
-        </div>
+      <div class="services-content" id="servicesContent">
+        <!-- Populated by JavaScript -->
       </div>
     </div>
   </section>
@@ -638,38 +618,34 @@
   <footer>
     <div class="container">
       <div class="footer-header">
-        <h3>Merushka Francis Psychology</h3>
-        <p>PS 0163040 | PR 1346008</p>
+        <h3 id="footerBrand"></h3>
+        <p id="footerRegistrations"></p>
       </div>
 
       <!-- New structured footer body -->
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
-          <a href="tel:+27773687497">+27 77 368 7497</a>
-          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+          <a href="tel:+27773687497" id="footerPhone"></a>
+          <a href="mailto:talk@mfrancispsychology.co.za" id="footerEmail"></a>
         </div>
 
         <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
-          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
+          <a href="#" target="_blank" id="footerLinkedIn"></a>
+          <a href="#" target="_blank" id="footerPsychToday"></a>
         </div>
 
         <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p class="practice-address">
-            Dunkeld Medical and Dental Centre<br>
-            257 Jan Smuts Ave, Dunkeld West<br>
-            Johannesburg, 2196
-          </p>
+          <p class="practice-address" id="footerAddress"></p>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+        <p id="footerCopyright"></p>
       </div>
     </div>
   </footer>
@@ -682,7 +658,83 @@
     </svg>
   </button>
 
+  <!-- ===== CONTENT.JS ===== -->
+  <script src="content.js"></script>
+
   <script>
+    // ===== POPULATE CONTENT FROM CONTENT.JS =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const servicesContent = document.getElementById('servicesContent');
+
+      // ---- SERVICES PAGE ----
+      // Title
+      const title = document.createElement('h1');
+      title.textContent = content.services.title;
+      servicesContent.appendChild(title);
+
+      // Intro text
+      const intro = document.createElement('p');
+      intro.className = 'intro-text';
+      intro.textContent = content.services.intro;
+      servicesContent.appendChild(intro);
+
+      // Services Grid
+      const servicesGrid = document.createElement('div');
+      servicesGrid.className = 'services-grid';
+
+      content.services.services.forEach(service => {
+        const serviceItem = document.createElement('div');
+        serviceItem.className = 'service-item';
+
+        const name = document.createElement('h2');
+        name.textContent = service.name;
+        serviceItem.appendChild(name);
+
+        service.details.forEach(detail => {
+          const p = document.createElement('p');
+          p.textContent = detail;
+          serviceItem.appendChild(p);
+        });
+
+        // Add description if it exists
+        if (service.description) {
+          const descP = document.createElement('p');
+          descP.textContent = service.description;
+          descP.style.marginTop = '12px';
+          descP.style.fontSize = '0.95rem';
+          descP.style.fontWeight = '300';
+          serviceItem.appendChild(descP);
+        }
+
+        servicesGrid.appendChild(serviceItem);
+      });
+
+      servicesContent.appendChild(servicesGrid);
+
+      // Rates Section
+      const ratesSection = document.createElement('div');
+      ratesSection.className = 'rates-section';
+      const ratesP = document.createElement('p');
+      ratesP.textContent = content.services.rates;
+      ratesSection.appendChild(ratesP);
+      servicesContent.appendChild(ratesSection);
+
+      // ---- FOOTER ----
+      document.getElementById('footerBrand').textContent = content.footer.brand;
+      document.getElementById('footerRegistrations').textContent = content.footer.registrations;
+      document.getElementById('footerPhone').textContent = content.footer.getInTouch.phone;
+      document.getElementById('footerEmail').textContent = content.footer.getInTouch.email;
+      document.getElementById('footerLinkedIn').textContent = content.footer.connect.linkedinLabel;
+      document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
+      document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
+      document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
+      
+      const addressLines = content.footer.practiceDetails.address;
+      document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
+      
+      document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
+    });
+
     // ===== HAMBURGER TOGGLE =====
     (function () {
       const hamburger = document.getElementById('hamburgerBtn');
@@ -714,13 +766,18 @@
     (function () {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 400) {
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollY > 200) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-      });
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
 
       backToTop.addEventListener('click', function () {
         window.scrollTo({

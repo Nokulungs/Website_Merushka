@@ -209,7 +209,6 @@
     .approach-section {
       padding-top: 130px;
       padding-bottom: 80px;
-      justify-content: center;
       background-color: var(--color-sand);
     }
 
@@ -292,7 +291,7 @@
     footer {
       background-color: var(--color-footer-bg);
       backdrop-filter: blur(6px);
-      color: var(--color-subheading);
+      color: #ffffff;
       font-size: 0.9rem;
       padding: 50px 0 0;
       margin-top: auto;
@@ -315,7 +314,7 @@
 
     .footer-header p {
       font-size: 0.85rem;
-      color: var(--color-subheading);
+      color: #ffffff;
     }
 
     /* =========================================================
@@ -418,7 +417,6 @@
         transition: all 0.4s ease;
       }
 
-      /* FIX: Match Contact page - center X in panel */
       .hamburger.active {
         position: fixed;
         top: 28px;
@@ -456,7 +454,6 @@
 
       .approach-section { 
         padding: 130px 0 60px;
-        align-items: flex-start;
       }
       .approach-content h1 { font-size: 2.2rem; }
       .approach-content p { font-size: 1rem; }
@@ -519,16 +516,8 @@
   <!-- ===== APPROACH CONTENT ===== -->
   <section class="approach-section">
     <div class="container">
-      <div class="approach-content">
-        <h1>Approach</h1>
-
-        <p>My approach is rooted in psychodynamic theory, understanding that the difficulties people face in the present are often connected to, or shaped by, earlier experiences.</p>
-
-        <p>I view therapy as a collaborative partnership between a therapist and an individual, one that offers a safe, non-judgmental space for a client to explore their emotions, thoughts, ways of relating, and any questions that arise, at their own pace.</p>
-
-        <p>Where required, I may draw on skills-based approaches such as Dialectical Behaviour Therapy (DBT) to support clients in managing intense emotions and impulsivity, coping with distress and improving communication.</p>
-
-        <p>In-depth exploration of this kind has the power to move beyond symptom relief, fostering meaningful insight and laying the foundation for deeper understanding, a shift that may continue to serve long after therapy ends.</p>
+      <div class="approach-content" id="approachContent">
+        <!-- Populated by JavaScript -->
       </div>
     </div>
   </section>
@@ -537,38 +526,33 @@
   <footer>
     <div class="container">
       <div class="footer-header">
-        <h3>Merushka Francis Psychology</h3>
-        <p>PS 0163040 | PR 1346008</p>
+        <h3 id="footerBrand"></h3>
+        <p id="footerRegistrations"></p>
       </div>
 
-      <!-- New structured footer body -->
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
           <strong>Get in Touch</strong>
-          <a href="tel:+27773687497">+27 77 368 7497</a>
-          <a href="mailto:talk@mfrancispsychology.co.za">talk@mfrancispsychology.co.za</a>
+          <a href="tel:+27773687497" id="footerPhone"></a>
+          <a href="mailto:talk@mfrancispsychology.co.za" id="footerEmail"></a>
         </div>
 
         <div class="footer-col footer-col-center">
           <strong>Connect</strong>
-          <a href="https://www.linkedin.com/in/merushka-francis-9903a924" target="_blank">LinkedIn</a>
-          <a href="https://www.psychologytoday.com/profile/1806420" target="_blank">Psychology Today</a>
+          <a href="#" target="_blank" id="footerLinkedIn"></a>
+          <a href="#" target="_blank" id="footerPsychToday"></a>
         </div>
 
         <div class="footer-col footer-col-right">
           <strong>Practice Details</strong>
-          <p class="practice-address">
-            Dunkeld Medical and Dental Centre<br>
-            257 Jan Smuts Ave, Dunkeld West<br>
-            Johannesburg, 2196
-          </p>
+          <p class="practice-address" id="footerAddress"></p>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2026 All Rights Reserved | Merushka Francis</p>
+        <p id="footerCopyright"></p>
       </div>
     </div>
   </footer>
@@ -581,7 +565,44 @@
     </svg>
   </button>
 
+  <!-- ===== CONTENT.JS ===== -->
+  <script src="content.js"></script>
+
   <script>
+    // ===== POPULATE CONTENT FROM CONTENT.JS =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // ---- APPROACH PAGE ----
+      const approachContent = document.getElementById('approachContent');
+      
+      // Add title
+      const title = document.createElement('h1');
+      title.textContent = content.approach.title;
+      approachContent.appendChild(title);
+
+      // Add paragraphs
+      content.approach.paragraphs.forEach(paragraph => {
+        const p = document.createElement('p');
+        p.textContent = paragraph;
+        approachContent.appendChild(p);
+      });
+
+      // ---- FOOTER ----
+      document.getElementById('footerBrand').textContent = content.footer.brand;
+      document.getElementById('footerRegistrations').textContent = content.footer.registrations;
+      document.getElementById('footerPhone').textContent = content.footer.getInTouch.phone;
+      document.getElementById('footerEmail').textContent = content.footer.getInTouch.email;
+      document.getElementById('footerLinkedIn').textContent = content.footer.connect.linkedinLabel;
+      document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
+      document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
+      document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
+      
+      const addressLines = content.footer.practiceDetails.address;
+      document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
+      
+      document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
+    });
+
+    // ===== HAMBURGER TOGGLE =====
     (function() {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
@@ -608,16 +629,22 @@
       });
     })();
 
+    // ===== BACK TO TOP BUTTON =====
     (function() {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollY > 200) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-      });
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
 
       backToTop.addEventListener('click', function() {
         window.scrollTo({
