@@ -9,7 +9,7 @@ const content = {
   // ==========================================================
   nav: {
     brand: "Merushka Francis",
-    brandSub: "| Clinical Psychologist",  // Changed: include the pipe here
+    brandSub: "| Clinical Psychologist",
     links: [
       { href: "about.html", label: "About" },
       { href: "approach.html", label: "Approach" },
@@ -80,8 +80,8 @@ const content = {
   areas: {
     title: "Areas of Interest",
     paragraphs: [
-      "I have a keen interest in working with individuals navigating life transitions, including periods of uncertainty and the exploration of one's identity and sense of self. This may look like stepping into a new phase of life, such as changing schools, starting university, leaving home, becoming a parent, changing careers, or moving into retirement. It can also include navigating one's racial identity, adjusting to living with a chronic illness, dealing with loss, divorce or feelings of meaninglessness.",
-      "as a result, I work with various emotional difficulties including, but not limited to:"
+      "I have a keen interest in working with individuals navigating life transitions, including periods of uncertainty and the exploration of one's identity and sense of self. This may look like stepping into a new phase of life, such as changing schools, starting university, leaving home, becoming a parent, changing careers, or moving into retirement. It can also include exploring one's racial identity, adjusting to living with a chronic illness, dealing with loss, divorce or feelings of meaninglessness.",
+      "As a result, I work with various emotional difficulties including, but not limited to:"
     ],
     difficulties: [
       "Anxiety",
@@ -92,11 +92,11 @@ const content = {
       "Loneliness",
       "Anger",
       "Low self-esteem",
-      "Suicidal thoughts &amp; urges",
+      "Suicidal thoughts & urges",
       "Impact of traumatic experiences"
     ],
     closingParagraphs: [
-      "Relationships often shift alongside these struggles and therapy may assist with understanding and working through relational tension, conflict, and communication difficulties as they arise.",
+      "Relationships often shift alongside these struggles and therapy may assist with understanding and working through relational tension, conflict and communication difficulties as they arise.",
       "In addition, I focus on a range of mental health concerns, particularly when thoughts, feelings or behaviours begin to affect how someone engages at home, at work or socially. This may include navigating neurodiversity, a decline in mental and emotional wellbeing connected to aging or a medical diagnosis, managing difficulties with addiction, eating patterns, dissociation or psychosis.",
       "There is no uniform approach to therapy and taking that first step may feel daunting. If any of these feelings or experiences resonate with what you are going through, or if you feel drawn to explore your inner world, I invite you to reach out for an initial session."
     ]
@@ -111,13 +111,11 @@ const content = {
     services: [
       {
         name: "Individual Therapy",
-        details: ["In Person | Online", "50 minutes"],
-        description: "Tailored psychodynamic and skills-based psychotherapy for adolescents and adults dealing with emotional difficulties, life transitions, or mental health concerns. A safe space to explore your inner world at your own pace."
+        details: ["In Person | Online", "50 minutes"]
       },
       {
         name: "Couples Therapy",
-        details: ["In Person", "50 minutes | 90 minutes"],
-        description: "A dedicated space to explore relational tension, rebuild communication pathways, and work through conflicts collaboratively. I help couples develop deeper understanding and connection."
+        details: ["In Person", "50 minutes | 90 minutes"]
       }
     ],
     rates: "Session fees are in line with standard medical aid rates for psychotherapy. Please get in touch to discuss any questions you may have around rates, medical aids or prescribed minimum benefits (PMBs)."
@@ -127,7 +125,6 @@ const content = {
   // CONTACT PAGE (contact.html)
   // ==========================================================
   contact: {
-   
     practiceDetails: {
       title: "Practice Details",
       address: [
