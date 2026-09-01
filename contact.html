@@ -70,7 +70,6 @@
 }
 </script>
 
-  <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -116,7 +115,7 @@
       position: relative;
     }
 
-    /* Fixed pseudo-element to prevent mobile background zooming (Desktop default) */
+  
     body::before {
       content: "";
       position: fixed;
@@ -196,7 +195,7 @@
       letter-spacing: normal;
     }
 
-    /* ——— desktop nav links ——— */
+  
     .nav-links {
       display: flex;
       gap: 32px;
@@ -288,7 +287,7 @@
       margin: 0 auto;
     }
 
-    /* Contact Grid */
+   
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -350,7 +349,7 @@
       border: none;
     }
 
-    /* ===== EMERGENCY SECTION ===== */
+   
     .emergency-section {
       margin-top: 10px;
       padding-top: 40px;
@@ -904,17 +903,40 @@
       });
     })();
 
-    // ===== BACK TO TOP BUTTON =====
     (function () {
       const backToTop = document.getElementById('backToTop');
 
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 400) {
-          backToTop.classList.add('visible');
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Check if user is near the bottom (within 200px of the footer)
+        const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
+        
+        // Check if screen is mobile (matches your CSS breakpoint)
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+          // MOBILE VIEW: Only visible near/at the footer
+          if (isNearBottom) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
         } else {
-          backToTop.classList.remove('visible');
+          // DESKTOP VIEW: Visible after scrolling 400px down
+          if (scrollY > 400) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
         }
-      });
+      }
+
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
 
       backToTop.addEventListener('click', function () {
         window.scrollTo({
