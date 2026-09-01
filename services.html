@@ -4,7 +4,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Rates | Merushka Francis Psychology</title>
+  <title>Services & Rates | Psychotherapy Johannesburg</title>
+  <meta name="description"
+    content="Individual and couples therapy services in Johannesburg. Session fees in line with medical aid rates. Book your appointment with Merushka Francis today.">
+  <meta property="og:title" content="Services & Rates | Psychotherapy Johannesburg">
+  <meta property="og:url" content="https://mfrancispsychology.co.za/services.html">
+  <link rel="canonical" href="https://mfrancispsychology.co.za/services.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Merushka Francis Psychology">
+  <meta property="og:image" content="https://mfrancispsychology.co.za/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@merushkafrancis">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Merushka Francis Psychology",
+  "description": "Clinical Psychologist in Johannesburg offering individual and couples therapy.",
+  "url": "https://mfrancispsychology.co.za",
+  "telephone": "+27773687497",
+  "email": "talk@mfrancispsychology.co.za",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1st Floor, Dunkeld Medical and Dental Centre, 257 Jan Smuts Ave",
+    "addressLocality": "Dunkeld West",
+    "addressRegion": "Johannesburg",
+    "postalCode": "2196",
+    "addressCountry": "ZA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-26.1447",
+    "longitude": "28.0100"
+  },
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "priceRange": "R",
+  "medicalSpecialty": "Psychotherapy",
+  "sameAs": [
+    "https://www.linkedin.com/in/merushka-francis-9903a924",
+    "https://www.psychologytoday.com/profile/1806420"
+  ]
+}
+</script>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +113,7 @@
       width: 100vw;
       height: 100vh;
       background-image: linear-gradient(var(--color-sand), var(--color-sand)),
-                        url('images/BackgroundImage.jpeg');
+        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -201,9 +253,11 @@
     .hamburger.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
@@ -466,7 +520,7 @@
       /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
         background-image: linear-gradient(var(--color-sand), var(--color-sand)),
-                          url('images/bodyPortrait.jpg');
+          url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
@@ -663,7 +717,7 @@
 
   <script>
     // ===== POPULATE CONTENT FROM CONTENT.JS =====
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const servicesContent = document.getElementById('servicesContent');
 
       // ---- SERVICES PAGE ----
@@ -728,10 +782,10 @@
       document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
       document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
       document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
-      
+
       const addressLines = content.footer.practiceDetails.address;
       document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
-      
+
       document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
     });
 

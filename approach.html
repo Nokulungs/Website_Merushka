@@ -1,9 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Approach | Merushka Francis Clinical Psychologist</title>
+  <title>My Therapeutic Approach | Merushka Francis Psychologist</title>
+  <meta name="description"
+    content="Merushka Francis uses a psychodynamic approach combined with skills-based therapies like DBT to help clients achieve meaningful insight and lasting change in Johannesburg.">
+  <meta property="og:title" content="My Therapeutic Approach | Merushka Francis Psychologist">
+  <meta property="og:url" content="https://mfrancispsychology.co.za/approach.html">
+  <link rel="canonical" href="https://mfrancispsychology.co.za/approach.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Merushka Francis Psychology">
+  <meta property="og:image" content="https://mfrancispsychology.co.za/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@merushkafrancis">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Merushka Francis Psychology",
+  "description": "Clinical Psychologist in Johannesburg offering individual and couples therapy.",
+  "url": "https://mfrancispsychology.co.za",
+  "telephone": "+27773687497",
+  "email": "talk@mfrancispsychology.co.za",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1st Floor, Dunkeld Medical and Dental Centre, 257 Jan Smuts Ave",
+    "addressLocality": "Dunkeld West",
+    "addressRegion": "Johannesburg",
+    "postalCode": "2196",
+    "addressCountry": "ZA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-26.1447",
+    "longitude": "28.0100"
+  },
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "priceRange": "R",
+  "medicalSpecialty": "Psychotherapy",
+  "sameAs": [
+    "https://www.linkedin.com/in/merushka-francis-9903a924",
+    "https://www.psychologytoday.com/profile/1806420"
+  ]
+}
+</script>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +88,8 @@
       scroll-behavior: smooth;
     }
 
-    html, body {
+    html,
+    body {
       min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
@@ -56,8 +110,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                        url('images/BackgroundImage.jpeg');
+      background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+        url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -196,9 +250,11 @@
     .hamburger.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
@@ -387,7 +443,9 @@
        RESPONSIVE
        ========================================================= */
     @media (max-width: 768px) {
-      .container { padding: 0 24px; }
+      .container {
+        padding: 0 24px;
+      }
 
       .nav-brand {
         flex-direction: column;
@@ -402,8 +460,8 @@
       }
 
       body::before {
-        background-image: linear-gradient(var(--color-sand), var(--color-sand)), 
-                          url('images/bodyPortrait.jpg');
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+          url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
@@ -452,11 +510,17 @@
         font-size: 1.2rem;
       }
 
-      .approach-section { 
+      .approach-section {
         padding: 130px 0 60px;
       }
-      .approach-content h1 { font-size: 2.2rem; }
-      .approach-content p { font-size: 1rem; }
+
+      .approach-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .approach-content p {
+        font-size: 1rem;
+      }
 
       .footer-body-grid {
         grid-template-columns: 1fr;
@@ -481,15 +545,25 @@
         bottom: 40px;
         right: 20px;
       }
-      .back-to-top svg { width: 20px; height: 20px; }
+
+      .back-to-top svg {
+        width: 20px;
+        height: 20px;
+      }
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 20px; }
-      .approach-content h1 { font-size: 1.8rem; }
+      .container {
+        padding: 0 20px;
+      }
+
+      .approach-content h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ===== NAVIGATION ===== -->
@@ -570,10 +644,10 @@
 
   <script>
     // ===== POPULATE CONTENT FROM CONTENT.JS =====
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // ---- APPROACH PAGE ----
       const approachContent = document.getElementById('approachContent');
-      
+
       // Add title
       const title = document.createElement('h1');
       title.textContent = content.approach.title;
@@ -595,25 +669,25 @@
       document.getElementById('footerLinkedIn').href = content.footer.connect.linkedin;
       document.getElementById('footerPsychToday').textContent = content.footer.connect.psychologyTodayLabel;
       document.getElementById('footerPsychToday').href = content.footer.connect.psychologyToday;
-      
+
       const addressLines = content.footer.practiceDetails.address;
       document.getElementById('footerAddress').innerHTML = addressLines.join('<br>');
-      
+
       document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
     });
 
     // ===== HAMBURGER TOGGLE =====
-    (function() {
+    (function () {
       const hamburger = document.getElementById('hamburgerBtn');
       const navLinks = document.getElementById('navLinks');
 
-      hamburger.addEventListener('click', function(e) {
+      hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
         this.classList.toggle('active');
         navLinks.classList.toggle('open');
       });
 
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         const nav = document.querySelector('.top-nav');
         if (nav && !nav.contains(e.target)) {
           hamburger.classList.remove('active');
@@ -622,7 +696,7 @@
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
           hamburger.classList.remove('active');
           navLinks.classList.remove('open');
         });
@@ -630,7 +704,7 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-    (function() {
+    (function () {
       const backToTop = document.getElementById('backToTop');
 
       function toggleBackToTop() {
@@ -646,7 +720,7 @@
       window.addEventListener('load', toggleBackToTop);
       window.addEventListener('resize', toggleBackToTop);
 
-      backToTop.addEventListener('click', function() {
+      backToTop.addEventListener('click', function () {
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
@@ -656,4 +730,5 @@
   </script>
 
 </body>
+
 </html>
