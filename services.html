@@ -519,12 +519,13 @@
 
       /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
-        background-image: linear-gradient(rgba(245, 209, 185, 0.5), rgba(245, 209, 185, 0.4)),
-    url('images/bodyPortrait.jpg');
+        background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+          url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
-        background-blend-mode: normal;
+        background-blend-mode: overlay;
+        opacity: 0.95;
       }
 
       /* Show hamburger */
