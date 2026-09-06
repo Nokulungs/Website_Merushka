@@ -115,7 +115,7 @@
       position: relative;
     }
 
-  
+
     body::before {
       content: "";
       position: fixed;
@@ -195,7 +195,7 @@
       letter-spacing: normal;
     }
 
-  
+
     .nav-links {
       display: flex;
       gap: 32px;
@@ -287,7 +287,7 @@
       margin: 0 auto;
     }
 
-   
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -349,7 +349,7 @@
       border: none;
     }
 
-   
+
     .emergency-section {
       margin-top: 10px;
       padding-top: 40px;
@@ -554,12 +554,12 @@
       }
 
       body::before {
-        background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+        background-image: linear-gradient(rgba(210, 180, 140, 0.2), rgba(210, 180, 140, 0.2)),
           url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
-        background-blend-mode: multiply;
+        background-blend-mode: normal;
       }
 
       .hamburger {
@@ -698,6 +698,7 @@
 
       <div class="footer-body-grid">
         <div class="footer-col footer-col-left">
+          <strong>Get in Touch</strong>
           <a href="tel:+27773687497" id="footerPhone"></a>
           <a href="mailto:talk@mfrancispsychology.co.za" id="footerEmail"></a>
         </div>
@@ -910,10 +911,10 @@
         const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        
+
         // Check if user is near the bottom (within 200px of the footer)
         const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
-        
+
         // Check if screen is mobile (matches your CSS breakpoint)
         const isMobile = window.innerWidth <= 768;
 

@@ -26,7 +26,7 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
 
-    <script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
@@ -519,13 +519,12 @@
 
       /* Swap global body background to mobile portrait with 120% zoom */
       body::before {
-        background-image: linear-gradient(var(--color-sand), var(--color-sand)),
+        background-image: linear-gradient(rgba(210, 180, 140, 0.2), rgba(210, 180, 140, 0.2)),
           url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
-        background-blend-mode: multiply;
-      
+        background-blend-mode: normal;
       }
 
       /* Show hamburger */
@@ -824,10 +823,10 @@
         const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        
+
         // Check if user is near the bottom (within 200px of the footer)
         const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
-        
+
         // Check if screen is mobile (matches your CSS breakpoint)
         const isMobile = window.innerWidth <= 768;
 
