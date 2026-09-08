@@ -133,7 +133,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(210, 180, 140, 0.5);
+      background-color: rgba(210, 180, 140, 0.2);
       /* Your sand color with opacity */
       z-index: -1;
       /* iOS Safari rendering fixes */
@@ -392,7 +392,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -662,19 +662,31 @@
         width: 20px;
         height: 20px;
       }
-        
-  .services-section{
-    position: relative;
-    z-index: 1;
-  }
 
-  /* Footer above overlay */
-  footer,
-  .footer-bottom {
-    position: relative;
-    z-index: 2;
-  }
+      .services-section {
+        position: relative;
+        z-index: 1;
+      }
 
+      /* Footer above overlay */
+      footer,
+      .footer-bottom {
+        position: relative;
+        z-index: 2;
+      }
+
+    }
+
+    /* FIX: Ensure content and footer appear above overlay on ALL screens */
+    .services-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    footer,
+    .footer-bottom {
+      position: relative;
+      z-index: 2;
     }
 
     @media (max-width: 480px) {
@@ -869,48 +881,49 @@
       });
     })();
 
-    (function () {
-      const backToTop = document.getElementById('backToTop');
+    // ===== BACK TO TOP BUTTON =====
+(function () {
+  const backToTop = document.getElementById('backToTop');
 
-      function toggleBackToTop() {
-        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
+  function toggleBackToTop() {
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
 
-        // Check if user is near the bottom (within 200px of the footer)
-        const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
+    // Check if user is near the bottom (within 500px of the footer)
+    const isNearBottom = (scrollY + windowHeight) > (documentHeight - 500);
 
-        // Check if screen is mobile (matches your CSS breakpoint)
-        const isMobile = window.innerWidth <= 768;
+    // Check if screen is mobile (matches your CSS breakpoint)
+    const isMobile = window.innerWidth <= 768;
 
-        if (isMobile) {
-          // MOBILE VIEW: Only visible near/at the footer
-          if (isNearBottom) {
-            backToTop.classList.add('visible');
-          } else {
-            backToTop.classList.remove('visible');
-          }
-        } else {
-          // DESKTOP VIEW: Visible after scrolling 400px down
-          if (scrollY > 400) {
-            backToTop.classList.add('visible');
-          } else {
-            backToTop.classList.remove('visible');
-          }
-        }
+    if (isMobile) {
+      // MOBILE VIEW: Only visible near/at the footer
+      if (isNearBottom) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
       }
+    } else {
+      // DESKTOP VIEW: Visible immediately on any scroll
+      if (scrollY > 0) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
 
-      window.addEventListener('scroll', toggleBackToTop);
-      window.addEventListener('resize', toggleBackToTop);
-      window.addEventListener('load', toggleBackToTop);
+  window.addEventListener('scroll', toggleBackToTop);
+  window.addEventListener('resize', toggleBackToTop);
+  window.addEventListener('load', toggleBackToTop);
 
-      backToTop.addEventListener('click', function () {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    })();
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
   </script>
 
 </body>

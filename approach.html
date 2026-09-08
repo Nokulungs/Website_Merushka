@@ -132,7 +132,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(210, 180, 140, 0.5);
+      background-color: rgba(210, 180, 140, 0.2);
       /* Your sand color with opacity */
       z-index: -1;
       /* iOS Safari rendering fixes */
@@ -337,7 +337,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -497,7 +497,7 @@
         backface-visibility: hidden;
       }
 
-     
+
       body::after {
         background-color: rgba(210, 180, 140, 0.2);
         /* Your sand color with opacity */
@@ -592,19 +592,18 @@
         width: 20px;
         height: 20px;
       }
-       
-  .approach-section{
-    position: relative;
-    z-index: 1;
-  }
+    }
 
-  
-  footer,
-  .footer-bottom {
-    position: relative;
-    z-index: 2;
-  
-}
+    /* FIX: Ensure content and footer appear above overlay on ALL screens */
+    .approach-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    footer,
+    .footer-bottom {
+      position: relative;
+      z-index: 2;
     }
 
     @media (max-width: 480px) {
@@ -766,10 +765,10 @@
         const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        
+
         // Check if user is near the bottom (within 200px of the footer)
         const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
-        
+
         // Check if screen is mobile (matches your CSS breakpoint)
         const isMobile = window.innerWidth <= 768;
 
@@ -781,8 +780,8 @@
             backToTop.classList.remove('visible');
           }
         } else {
-          // DESKTOP VIEW: Visible after scrolling 400px down
-          if (scrollY > 400) {
+          // DESKTOP VIEW: Visible immediately on any scroll
+          if (scrollY > 0) {
             backToTop.classList.add('visible');
           } else {
             backToTop.classList.remove('visible');
