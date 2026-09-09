@@ -541,31 +541,18 @@
       }
 
       /* FIXED: iOS-compatible mobile background */
-      body::before {
-        background-image: url('images/bodyPortrait.jpg');
-        background-size: 120%;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: -2;
-        /* iOS Safari rendering fixes */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-      }
+    #bgOverlay {
+    background-image: url('images/bodyPortrait.jpg');
+    background-size: 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 
-      /* Mobile overlay with transparency */
-      body::after {
-        background-color: rgba(210, 180, 140, 0.2);
-        /* Your sand color with opacity */
-        z-index: -1;
-        /* iOS Safari rendering fixes */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        pointer-events: none;
-      }
+    
 
       /* Show hamburger */
       .hamburger {
@@ -702,6 +689,7 @@
 </head>
 
 <body>
+  <div id="bgOverlay"></div>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="top-nav">

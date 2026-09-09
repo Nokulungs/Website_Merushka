@@ -105,43 +105,17 @@
 
     /* FIXED: iOS-compatible background with transparent overlay */
     /* Background image layer - desktop */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('images/BackgroundImage.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: -2;
-      /* iOS Safari rendering fixes */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
-
-    /* Overlay with transparency - separate layer for iOS compatibility */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(210, 180, 140, 0.2);
-      /* Your sand color with opacity */
-      z-index: -1;
-      /* iOS Safari rendering fixes */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      pointer-events: none;
-    }
+    #bgOverlay {
+    background-image: url('images/bodyPortrait.jpg');
+    background-size: 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* iOS Safari rendering fixes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 
     a {
       color: inherit;
@@ -484,31 +458,17 @@
       }
 
       /* FIXED: iOS-compatible mobile background */
-      body::before {
-        background-image: url('images/bodyPortrait.jpg');
-        background-size: 120%;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: -2;
-        /* iOS Safari rendering fixes */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-      }
-
-
-      body::after {
-        background-color: rgba(210, 180, 140, 0.2);
-        /* Your sand color with opacity */
-        z-index: -1;
-        /* iOS Safari rendering fixes */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        pointer-events: none;
-      }
+      #bgOverlay {
+    background-image: url('images/bodyPortrait.jpg');
+    background-size: 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* iOS Safari rendering fixes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 
       .hamburger {
         display: flex;
