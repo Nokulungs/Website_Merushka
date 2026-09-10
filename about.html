@@ -11,7 +11,6 @@
   <meta property="og:url" content="https://mfrancispsychology.co.za/about.html">
   <link rel="canonical" href="https://mfrancispsychology.co.za/about.html">
 
-
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Merushka Francis Psychology">
@@ -26,7 +25,6 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
-
 
   <script type="application/ld+json">
 {
@@ -59,6 +57,7 @@
   ]
 }
 </script>
+
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,11 +86,14 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: #f5d1b9;
+      overscroll-behavior: none;
     }
 
+    /* FIXED: use JS-driven viewport height variable --vh for iOS compatibility */
     html,
     body {
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
@@ -102,6 +104,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
     }
 
     /* FIXED: iOS-compatible background with transparent overlay */
@@ -112,7 +116,7 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-image: url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
@@ -123,6 +127,7 @@
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      pointer-events: none;
     }
 
     /* Overlay with transparency - separate layer for iOS compatibility */
@@ -132,9 +137,8 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-color: rgba(210, 180, 140, 0.2);
-      /* Your sand color with opacity */
       z-index: -1;
       /* iOS Safari rendering fixes */
       -webkit-transform: translateZ(0);
@@ -288,10 +292,12 @@
        ========================================================= */
     .about-section {
       padding: 140px 0 80px;
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
       display: flex;
       align-items: center;
       background: var(--color-sand);
+      position: relative;
+      z-index: 1;
     }
 
     .about-grid {
@@ -417,7 +423,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -456,6 +462,8 @@
       padding: 50px 0 0;
       margin-top: auto;
       opacity: 0.95;
+      position: relative;
+      z-index: 2;
     }
 
     .footer-header {
@@ -463,7 +471,6 @@
       padding-bottom: 30px;
       border-bottom: 1px solid rgba(233, 230, 230, 0.2);
       margin-bottom: 35px;
-
     }
 
     .footer-header h3 {
@@ -542,6 +549,8 @@
       padding: 20px 0;
       font-size: 0.85rem;
       backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 2;
     }
 
     /* =========================================================
@@ -583,17 +592,18 @@
         margin-top: -2px;
       }
 
-      #bgOverlay {
-    background-image: url('images/bodyPortrait.jpg');
-    background-size: 120%;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* iOS Safari rendering fixes */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+      /* FIXED: iOS-compatible mobile background */
+      body::before {
+        background-image: url('images/bodyPortrait.jpg');
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* iOS Safari rendering fixes */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
 
       /* Show hamburger, hide desktop nav */
       .hamburger {
@@ -671,18 +681,6 @@
         width: 20px;
         height: 20px;
       }
-        
-  .about-section {
-    position: relative;
-    z-index: 1;
-  }
-
-  footer,
-  .footer-bottom {
-    position: relative;
-    z-index: 2;
-  
-}
     }
 
     /* Small Mobile Screen */
@@ -786,6 +784,21 @@
     </svg>
   </button>
 
+  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
+  <script>
+    // Fix iOS 100vh issue — sets real viewport height as --vh CSS variable
+    (function () {
+      function setVH() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH);
+      window.addEventListener('orientationchange', setVH);
+      window.addEventListener('load', setVH);
+      setTimeout(setVH, 100);
+    })();
+  </script>
+
   <!-- ===== CONTENT.JS ===== -->
   <script src="content.js"></script>
 
@@ -880,17 +893,17 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-(function () {
+    (function () {
       const backToTop = document.getElementById('backToTop');
 
       function toggleBackToTop() {
         const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        
-        // Check if user is near the bottom (within 200px of the footer)
-        const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
-        
+
+        // Check if user is near the bottom (within 300px of the footer)
+        const isNearBottom = (scrollY + windowHeight) > (documentHeight - 300);
+
         // Check if screen is mobile (matches your CSS breakpoint)
         const isMobile = window.innerWidth <= 768;
 

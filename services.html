@@ -87,11 +87,13 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: #f5d1b9;
+      overscroll-behavior: none;
     }
 
     html,
     body {
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
@@ -102,6 +104,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
     }
 
     /* FIXED: iOS-compatible background with transparent overlay */
@@ -112,17 +116,17 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-image: url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       z-index: -2;
-      /* iOS Safari rendering fixes */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      pointer-events: none;
     }
 
     /* Overlay with transparency - separate layer for iOS compatibility */
@@ -132,11 +136,9 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-color: rgba(210, 180, 140, 0.2);
-      /* Your sand color with opacity */
       z-index: -1;
-      /* iOS Safari rendering fixes */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
@@ -292,7 +294,9 @@
       padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
+      position: relative;
+      z-index: 1;
     }
 
     .services-content {
@@ -431,6 +435,8 @@
       padding: 50px 0 0;
       margin-top: auto;
       opacity: 0.95;
+      position: relative;
+      z-index: 2;
     }
 
     .footer-header {
@@ -516,6 +522,8 @@
       padding: 20px 0;
       font-size: 0.85rem;
       backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 2;
     }
 
     /* =========================================================
@@ -541,18 +549,16 @@
       }
 
       /* FIXED: iOS-compatible mobile background */
-    #bgOverlay {
-    background-image: url('images/bodyPortrait.jpg');
-    background-size: 120%;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-    
+      body::before {
+        background-image: url('images/bodyPortrait.jpg');
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
 
       /* Show hamburger */
       .hamburger {
@@ -649,31 +655,6 @@
         width: 20px;
         height: 20px;
       }
-
-      .services-section {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Footer above overlay */
-      footer,
-      .footer-bottom {
-        position: relative;
-        z-index: 2;
-      }
-
-    }
-
-    /* FIX: Ensure content and footer appear above overlay on ALL screens */
-    .services-section {
-      position: relative;
-      z-index: 1;
-    }
-
-    footer,
-    .footer-bottom {
-      position: relative;
-      z-index: 2;
     }
 
     @media (max-width: 480px) {
@@ -689,7 +670,6 @@
 </head>
 
 <body>
-  <div id="bgOverlay"></div>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="top-nav">
@@ -764,6 +744,20 @@
       <path d="M5 12l7-7 7 7" />
     </svg>
   </button>
+
+  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
+  <script>
+    (function () {
+      function setVH() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH);
+      window.addEventListener('orientationchange', setVH);
+      window.addEventListener('load', setVH);
+      setTimeout(setVH, 100);
+    })();
+  </script>
 
   <!-- ===== CONTENT.JS ===== -->
   <script src="content.js"></script>
@@ -870,48 +864,48 @@
     })();
 
     // ===== BACK TO TOP BUTTON =====
-(function () {
-  const backToTop = document.getElementById('backToTop');
+    (function () {
+      const backToTop = document.getElementById('backToTop');
 
-  function toggleBackToTop() {
-    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
+      function toggleBackToTop() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
 
-    // Check if user is near the bottom (within 500px of the footer)
-    const isNearBottom = (scrollY + windowHeight) > (documentHeight - 500);
+        // Check if user is near the bottom (within 500px of the footer)
+        const isNearBottom = (scrollY + windowHeight) > (documentHeight - 500);
 
-    // Check if screen is mobile (matches your CSS breakpoint)
-    const isMobile = window.innerWidth <= 768;
+        // Check if screen is mobile (matches your CSS breakpoint)
+        const isMobile = window.innerWidth <= 768;
 
-    if (isMobile) {
-      // MOBILE VIEW: Only visible near/at the footer
-      if (isNearBottom) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
+        if (isMobile) {
+          // MOBILE VIEW: Only visible near/at the footer
+          if (isNearBottom) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
+        } else {
+          // DESKTOP VIEW: Visible immediately on any scroll
+          if (scrollY > 0) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
+        }
       }
-    } else {
-      // DESKTOP VIEW: Visible immediately on any scroll
-      if (scrollY > 0) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    }
-  }
 
-  window.addEventListener('scroll', toggleBackToTop);
-  window.addEventListener('resize', toggleBackToTop);
-  window.addEventListener('load', toggleBackToTop);
+      window.addEventListener('scroll', toggleBackToTop);
+      window.addEventListener('resize', toggleBackToTop);
+      window.addEventListener('load', toggleBackToTop);
 
-  backToTop.addEventListener('click', function () {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-})();
+      backToTop.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    })();
   </script>
 
 </body>

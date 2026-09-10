@@ -86,11 +86,13 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: #f5d1b9;
+      overscroll-behavior: none;
     }
 
     html,
     body {
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
@@ -101,21 +103,47 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
     }
 
     /* FIXED: iOS-compatible background with transparent overlay */
     /* Background image layer - desktop */
-    #bgOverlay {
-    background-image: url('images/bodyPortrait.jpg');
-    background-size: 120%;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* iOS Safari rendering fixes */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: calc(var(--vh, 1vh) * 100);
+      background-image: url('images/BackgroundImage.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Overlay with transparency - separate layer for iOS compatibility */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: calc(var(--vh, 1vh) * 100);
+      background-color: rgba(210, 180, 140, 0.2);
+      z-index: -1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      pointer-events: none;
+    }
 
     a {
       color: inherit;
@@ -264,6 +292,8 @@
       padding-top: 130px;
       padding-bottom: 80px;
       background-color: var(--color-sand);
+      position: relative;
+      z-index: 1;
     }
 
     .approach-content {
@@ -350,6 +380,8 @@
       padding: 50px 0 0;
       margin-top: auto;
       opacity: 0.95;
+      position: relative;
+      z-index: 2;
     }
 
     .footer-header {
@@ -388,19 +420,16 @@
       gap: 10px;
     }
 
-    /* Left column stays left-aligned */
     .footer-col-left {
       text-align: left;
       align-items: flex-start;
     }
 
-    /* Center column text and items explicitly centered */
     .footer-col-center {
       text-align: center;
       align-items: center;
     }
 
-    /* Right column stays right-aligned */
     .footer-col-right {
       text-align: right;
       align-items: flex-end;
@@ -435,6 +464,8 @@
       padding: 20px 0;
       font-size: 0.85rem;
       backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 2;
     }
 
     /* =========================================================
@@ -458,17 +489,16 @@
       }
 
       /* FIXED: iOS-compatible mobile background */
-      #bgOverlay {
-    background-image: url('images/bodyPortrait.jpg');
-    background-size: 120%;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* iOS Safari rendering fixes */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+      body::before {
+        background-image: url('images/bodyPortrait.jpg');
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
 
       .hamburger {
         display: flex;
@@ -552,18 +582,6 @@
         width: 20px;
         height: 20px;
       }
-    }
-
-    /* FIX: Ensure content and footer appear above overlay on ALL screens */
-    .approach-section {
-      position: relative;
-      z-index: 1;
-    }
-
-    footer,
-    .footer-bottom {
-      position: relative;
-      z-index: 2;
     }
 
     @media (max-width: 480px) {
@@ -653,6 +671,20 @@
     </svg>
   </button>
 
+  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
+  <script>
+    (function () {
+      function setVH() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH);
+      window.addEventListener('orientationchange', setVH);
+      window.addEventListener('load', setVH);
+      setTimeout(setVH, 100);
+    })();
+  </script>
+
   <!-- ===== CONTENT.JS ===== -->
   <script src="content.js"></script>
 
@@ -726,21 +758,16 @@
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
 
-        // Check if user is near the bottom (within 200px of the footer)
         const isNearBottom = (scrollY + windowHeight) > (documentHeight - 200);
-
-        // Check if screen is mobile (matches your CSS breakpoint)
         const isMobile = window.innerWidth <= 768;
 
         if (isMobile) {
-          // MOBILE VIEW: Only visible near/at the footer
           if (isNearBottom) {
             backToTop.classList.add('visible');
           } else {
             backToTop.classList.remove('visible');
           }
         } else {
-          // DESKTOP VIEW: Visible immediately on any scroll
           if (scrollY > 0) {
             backToTop.classList.add('visible');
           } else {

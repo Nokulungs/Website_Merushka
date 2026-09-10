@@ -98,11 +98,13 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: #f5d1b9;
+      overscroll-behavior: none;
     }
 
     html,
     body {
-      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
@@ -113,6 +115,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
     }
 
     /* FIXED: iOS-compatible background with transparent overlay */
@@ -123,17 +127,17 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-image: url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       z-index: -2;
-      /* iOS Safari rendering fixes */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      pointer-events: none;
     }
 
     /* Overlay with transparency - separate layer for iOS compatibility */
@@ -143,11 +147,9 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       background-color: rgba(210, 180, 140, 0.2);
-      /* Your sand color with opacity */
       z-index: -1;
-      /* iOS Safari rendering fixes */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
@@ -303,6 +305,8 @@
       padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
+      position: relative;
+      z-index: 1;
     }
 
     .contact-content {
@@ -450,7 +454,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px);
-      z-index: 999;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -489,6 +493,8 @@
       padding: 50px 0 0;
       margin-top: auto;
       opacity: 0.95;
+      position: relative;
+      z-index: 2;
     }
 
     .footer-header {
@@ -568,6 +574,8 @@
       padding: 20px 0;
       font-size: 0.85rem;
       backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 2;
     }
 
     /* =========================================================
@@ -591,12 +599,11 @@
       }
 
       /* FIXED: iOS-compatible mobile background */
-      #bgOverlay {
+      body::before {
         background-image: url('images/bodyPortrait.jpg');
         background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
-        /* iOS Safari rendering fixes */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
         -webkit-backface-visibility: hidden;
@@ -691,20 +698,6 @@
         width: 20px;
         height: 20px;
       }
-
-      .contact-section {
-        position: relative;
-        z-index: 1;
-      }
-
-
-      footer,
-      .footer-bottom {
-        position: relative;
-        z-index: 2;
-      }
-
-
     }
 
 
@@ -721,7 +714,7 @@
 </head>
 
 <body>
-  <div id="bgOverlay"></div>
+
   <!-- ===== NAVIGATION ===== -->
   <nav class="top-nav">
     <div class="nav-inner">
@@ -794,6 +787,20 @@
       <path d="M5 12l7-7 7 7" />
     </svg>
   </button>
+
+  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
+  <script>
+    (function () {
+      function setVH() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH);
+      window.addEventListener('orientationchange', setVH);
+      window.addEventListener('load', setVH);
+      setTimeout(setVH, 100);
+    })();
+  </script>
 
   <!-- ===== CONTENT.JS ===== -->
   <script src="content.js"></script>
@@ -968,6 +975,7 @@
       });
     })();
 
+    // ===== BACK TO TOP BUTTON =====
     (function () {
       const backToTop = document.getElementById('backToTop');
 
