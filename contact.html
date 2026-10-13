@@ -522,7 +522,7 @@
     }
 
     .btn-submit:hover {
-      background: var(--color-footer-bg);
+      background: #9c3030;
       transform: translateY(-2px);
     }
 
@@ -882,7 +882,7 @@
       }
 
       .contact-section {
-        padding: 140px 0 60px;
+        padding: 100px 0 60px;
       }
 
       .contact-content h1 {
@@ -892,11 +892,6 @@
       .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
       }
 
       .form-row {
@@ -941,10 +936,6 @@
       .modal-box {
         padding: 32px 24px;
       }
-
-      .modal-box {
-        padding: 32px 24px;
-      }
     }
 
 
@@ -957,9 +948,8 @@
         font-size: 1.8rem;
       }
 
-      .btn-submit {
-        width: 100%;
-        justify-content: center;
+      .contact-section {
+        padding: 95px 0 60px;
       }
 
       .btn-submit {
@@ -1049,16 +1039,7 @@
   <div class="modal-overlay" id="successModal">
     <div class="modal-box">
       <h3>Message Sent</h3>
-      <p>Thank you for reaching out.</p>
-      <button class="modal-close-btn" id="modalCloseBtn">Close</button>
-    </div>
-  </div>
-
-  <!-- ===== SUCCESS MODAL ===== -->
-  <div class="modal-overlay" id="successModal">
-    <div class="modal-box">
-      <h3>Message Sent</h3>
-      <p>Thank you for reaching out.</p>
+      <p>Message sent. Thank you for reaching out.</p>
       <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
@@ -1096,11 +1077,9 @@
       contactContent.appendChild(subtitle);
 
       // Contact Grid — left: practice details, right: form
-      // Contact Grid — left: practice details, right: form
       const contactGrid = document.createElement('div');
       contactGrid.className = 'contact-grid';
 
-      // ---- LEFT COLUMN: Practice Details ----
       // ---- LEFT COLUMN: Practice Details ----
       const practiceCol = document.createElement('div');
       practiceCol.className = 'contact-col';
@@ -1151,7 +1130,6 @@
       emailLink.className = 'plain-link';
       emailLink.textContent = content.contact.contactInfo.email;
       emailGroup.appendChild(emailLink);
-      practiceCol.appendChild(emailGroup);
       practiceCol.appendChild(emailGroup);
 
       // Phone
@@ -1310,11 +1288,13 @@
       const submitBtn = document.createElement('button');
       submitBtn.type = 'submit';
       submitBtn.className = 'btn-submit';
+      submitBtn.id = 'submitBtn';
       submitBtn.textContent = 'Send Message';
       submitRow.appendChild(submitBtn);
 
       const formNote = document.createElement('span');
       formNote.className = 'form-note';
+
       submitRow.appendChild(formNote);
 
       form.appendChild(submitRow);
@@ -1353,214 +1333,7 @@
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              // Reset form
               form.reset();
-              // Show success modal
-              document.getElementById('successModal').classList.add('visible');
-            } else {
-              alert('There was an issue sending your message. Please try again or contact me directly.');
-              console.error('Web3Forms error:', data);
-            }
-          })
-          .catch(error => {
-            alert('There was a connection issue. Please try again or contact me directly.');
-            console.error('Error:', error);
-          });
-      });
-
-      formCol.appendChild(form);
-      contactGrid.appendChild(formCol);
-      practiceCol.appendChild(phoneGroup);
-
-      contactGrid.appendChild(practiceCol);
-
-      // ---- RIGHT COLUMN: Form ----
-      const formCol = document.createElement('div');
-      formCol.className = 'contact-col';
-
-      const formTitle = document.createElement('h2');
-      formTitle.textContent = 'Send a Message';
-      formCol.appendChild(formTitle);
-
-      const form = document.createElement('form');
-      form.className = 'contact-form';
-      form.id = 'contactForm';
-      form.setAttribute('novalidate', '');
-      form.action = 'https://api.web3forms.com/submit';
-      form.method = 'POST';
-
-      // Web3Forms hidden fields
-      const accessKeyInput = document.createElement('input');
-      accessKeyInput.type = 'hidden';
-      accessKeyInput.name = 'access_key';
-      accessKeyInput.value = '175b3ad8-2bbd-4a46-bd9a-d9aedb49a324';
-      form.appendChild(accessKeyInput);
-
-      const subjectInput = document.createElement('input');
-      subjectInput.type = 'hidden';
-      subjectInput.name = 'subject';
-      subjectInput.value = 'New Contact Form Submission — Merushka Francis Psychology';
-      form.appendChild(subjectInput);
-
-      const fromNameInput = document.createElement('input');
-      fromNameInput.type = 'hidden';
-      fromNameInput.name = 'from_name';
-      fromNameInput.value = 'Merushka Francis Website';
-      form.appendChild(fromNameInput);
-
-      const botcheckInput = document.createElement('input');
-      botcheckInput.type = 'checkbox';
-      botcheckInput.name = 'botcheck';
-      botcheckInput.style.display = 'none';
-      form.appendChild(botcheckInput);
-
-      // Row 1: Name + Email
-      const row1 = document.createElement('div');
-      row1.className = 'form-row';
-
-      const nameGroup = document.createElement('div');
-      nameGroup.className = 'form-group';
-      const nameLabel = document.createElement('label');
-      nameLabel.setAttribute('for', 'formName');
-      nameLabel.textContent = 'Full Name *';
-      nameGroup.appendChild(nameLabel);
-      const nameInput = document.createElement('input');
-      nameInput.type = 'text';
-      nameInput.id = 'formName';
-      nameInput.name = 'name';
-      nameInput.placeholder = 'Your full name';
-      nameInput.required = true;
-      nameGroup.appendChild(nameInput);
-      row1.appendChild(nameGroup);
-
-      const emailGroup2 = document.createElement('div');
-      emailGroup2.className = 'form-group';
-      const emailLabel2 = document.createElement('label');
-      emailLabel2.setAttribute('for', 'formEmail');
-      emailLabel2.textContent = 'Email Address *';
-      emailGroup2.appendChild(emailLabel2);
-      const emailInput = document.createElement('input');
-      emailInput.type = 'email';
-      emailInput.id = 'formEmail';
-      emailInput.name = 'email';
-      emailInput.placeholder = 'you@example.com';
-      emailInput.required = true;
-      emailGroup2.appendChild(emailInput);
-      row1.appendChild(emailGroup2);
-
-      form.appendChild(row1);
-
-      // Row 2: Phone only
-      const row2 = document.createElement('div');
-      row2.className = 'form-row';
-
-      const phoneGroup2 = document.createElement('div');
-      phoneGroup2.className = 'form-group';
-      const phoneLabel2 = document.createElement('label');
-      phoneLabel2.setAttribute('for', 'formPhone');
-      phoneLabel2.textContent = 'Phone Number';
-      phoneGroup2.appendChild(phoneLabel2);
-      const phoneInput = document.createElement('input');
-      phoneInput.type = 'tel';
-      phoneInput.id = 'formPhone';
-      phoneInput.name = 'phone';
-      phoneInput.placeholder = '+27 77 368 7497';
-      phoneGroup2.appendChild(phoneInput);
-      row2.appendChild(phoneGroup2);
-
-      // Empty spacer to maintain grid
-      const emptySpacer = document.createElement('div');
-      emptySpacer.className = 'form-group';
-      row2.appendChild(emptySpacer);
-
-      form.appendChild(row2);
-
-      // Message
-      const messageGroup = document.createElement('div');
-      messageGroup.className = 'form-group';
-      const messageLabel = document.createElement('label');
-      messageLabel.setAttribute('for', 'formMessage');
-      messageLabel.textContent = 'Your Message *';
-      messageGroup.appendChild(messageLabel);
-      const messageTextarea = document.createElement('textarea');
-      messageTextarea.id = 'formMessage';
-      messageTextarea.name = 'message';
-      messageTextarea.placeholder = 'Write your message here';
-      messageTextarea.required = true;
-      messageGroup.appendChild(messageTextarea);
-      form.appendChild(messageGroup);
-
-      // Checkbox confirmation
-      const checkboxGroup = document.createElement('div');
-      checkboxGroup.className = 'form-checkbox';
-
-      const checkboxInput = document.createElement('input');
-      checkboxInput.type = 'checkbox';
-      checkboxInput.id = 'formConsent';
-      checkboxInput.name = 'consent';
-      checkboxInput.required = true;
-      checkboxGroup.appendChild(checkboxInput);
-
-      const checkboxLabel = document.createElement('label');
-      checkboxLabel.setAttribute('for', 'formConsent');
-      checkboxLabel.textContent = 'I understand that this form is used to request an appointment and that I may be contacted to arrange scheduling using the information that I have provided above.';
-      checkboxGroup.appendChild(checkboxLabel);
-
-      form.appendChild(checkboxGroup);
-
-      // Submit row
-      const submitRow = document.createElement('div');
-      submitRow.className = 'form-submit';
-
-      const submitBtn = document.createElement('button');
-      submitBtn.type = 'submit';
-      submitBtn.className = 'btn-submit';
-      submitBtn.textContent = 'Send Message';
-      submitRow.appendChild(submitBtn);
-
-      const formNote = document.createElement('span');
-      formNote.className = 'form-note';
-      submitRow.appendChild(formNote);
-
-      form.appendChild(submitRow);
-
-      // Form submission handler
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById('formName').value.trim();
-        const email = document.getElementById('formEmail').value.trim();
-        const message = document.getElementById('formMessage').value.trim();
-        const consent = document.getElementById('formConsent').checked;
-
-        if (!name || !email || !message) {
-          alert('Please fill in all required fields (Name, Email, and Message).');
-          return;
-        }
-
-        if (!consent) {
-          alert('Please confirm that you understand the purpose of this form.');
-          return;
-        }
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-          alert('Please enter a valid email address.');
-          return;
-        }
-
-        const formData = new FormData(form);
-
-        fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              // Reset form
-              form.reset();
-              // Show success modal
               document.getElementById('successModal').classList.add('visible');
             } else {
               alert('There was an issue sending your message. Please try again or contact me directly.');
@@ -1620,32 +1393,6 @@
 
       document.getElementById('footerCopyright').innerHTML = content.footer.copyright;
     });
-
-    // ===== MODAL CLOSE =====
-    (function () {
-      const modal = document.getElementById('successModal');
-      const closeBtn = document.getElementById('modalCloseBtn');
-
-      function closeModal() {
-        modal.classList.remove('visible');
-      }
-
-      closeBtn.addEventListener('click', closeModal);
-
-      // Close on overlay click
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Close on Escape key
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('visible')) {
-          closeModal();
-        }
-      });
-    })();
 
     // ===== MODAL CLOSE =====
     (function () {
