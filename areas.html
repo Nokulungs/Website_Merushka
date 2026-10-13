@@ -78,6 +78,7 @@
       --font-main: 'Inter', sans-serif;
     }
 
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -85,64 +86,73 @@
     }
 
     html {
-      scroll-behavior: smooth;
-      overscroll-behavior: none;
-    }
+  scroll-behavior: smooth;
+  background-color: #f5d1b9;
+  background-image: url('images/BackgroundImage.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overscroll-behavior: none;
+  height: 100%;
+}
 
-    html,
-    body {
-      min-height: calc(var(--vh, 1vh) * 100);
-      font-family: var(--font-main);
-      font-weight: 300;
-      color: var(--color-body);
-      line-height: 1.75;
-    }
+html,
+body {
+  min-height: 100%;
+  font-family: var(--font-main);
+  font-weight: 300;
+  color: var(--color-body);
+  line-height: 1.75;
+}
 
-    body {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow-x: hidden;
-      overscroll-behavior-y: none;
-    }
+body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  background-color: #f5d1b9;
+}
 
-    /* FIXED: iOS-compatible background with transparent overlay */
-    /* Background image layer - desktop */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: calc(var(--vh, 1vh) * 100);
-      background-image: url('images/BackgroundImage.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: -2;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      pointer-events: none;
-    }
+/* Background image layer — now absolute, contained inside body */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-image: url('images/BackgroundImage.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
 
-    /* Overlay with transparency - separate layer for iOS compatibility */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: calc(var(--vh, 1vh) * 100);
-      background-color: rgba(210, 180, 140, 0.2);
-      z-index: -1;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      pointer-events: none;
-    }
+/* Overlay with transparency */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: rgba(210, 180, 140, 0.2);
+  z-index: -1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
 
     a {
       color: inherit;
