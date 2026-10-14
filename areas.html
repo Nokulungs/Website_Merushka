@@ -77,7 +77,6 @@
       --color-dark: #2d2d2d;
       --font-main: 'Inter', sans-serif;
     }
-    
 
     * {
       box-sizing: border-box;
@@ -510,13 +509,11 @@
     /* =========================================================
        RESPONSIVE DESIGN (MOBILE PORTRAIT IMAGE SWAPS & ZOOM)
        ========================================================= */
-    /* =========================================================
-       RESPONSIVE DESIGN (MOBILE PORTRAIT BACKGROUND & LAYOUT FIX)
-       ========================================================= */
     @media (max-width: 768px) {
       .container {
         padding: 0 24px;
       }
+
 
       .nav-brand {
         flex-direction: column;
@@ -530,29 +527,16 @@
         margin-top: -2px;
       }
 
-      /* FIXED: iOS-compatible background covering full screen without cutting off */
+      /* FIXED: iOS-compatible mobile background */
       body::before {
         background-image: url('images/bodyPortrait.jpg');
-        background-size: cover;
+        background-size: 120%;
         background-position: center;
         background-repeat: no-repeat;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-      }
-
-      body::after {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
       }
 
       .hamburger {
@@ -561,6 +545,7 @@
         z-index: 1001;
         transition: all 0.4s ease;
       }
+
 
       .hamburger.active {
         position: fixed;
@@ -641,7 +626,6 @@
       .back-to-top svg {
         width: 20px;
         height: 20px;
-        stroke-width: 2.5;
       }
     }
 
