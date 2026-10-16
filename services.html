@@ -22,11 +22,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@merushkafrancis">
 
-  <!-- Favicon -->
-<!-- Favicon (Google-compliant) -->
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/favicon.png">
+  <!-- Favicon (Google-compliant) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
 
   <script type="application/ld+json">
 {
@@ -94,7 +93,7 @@
 
     html,
     body {
-      min-height: calc(var(--vh, 1vh) * 100);
+      min-height: 100vh;
       font-family: var(--font-main);
       font-weight: 300;
       color: var(--color-body);
@@ -109,15 +108,16 @@
       overscroll-behavior-y: none;
     }
 
-    /* FIXED: iOS-compatible background with transparent overlay */
-    /* Background image layer - desktop */
+    /* Background image layer - desktop
+       Uses native 100vh so it does not resize when the mobile
+       address bar shows/hides during scroll. */
     body::before {
       content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: calc(var(--vh, 1vh) * 100);
+      height: 100vh;
       background-image: url('images/BackgroundImage.jpeg');
       background-size: cover;
       background-position: center;
@@ -130,14 +130,14 @@
       pointer-events: none;
     }
 
-    /* Overlay with transparency - separate layer for iOS compatibility */
+    /* Overlay with transparency - separate layer */
     body::after {
       content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: calc(var(--vh, 1vh) * 100);
+      height: 100vh;
       background-color: rgba(210, 180, 140, 0.2);
       z-index: -1;
       -webkit-transform: translateZ(0);
@@ -295,7 +295,7 @@
       padding-top: 130px;
       padding-bottom: 80px;
       background: var(--color-sand);
-      min-height: calc(var(--vh, 1vh) * 100);
+      min-height: 100vh;
       position: relative;
       z-index: 1;
     }
@@ -549,7 +549,9 @@
         margin-top: -2px;
       }
 
-      /* FIXED: iOS-compatible mobile background */
+      /* Mobile portrait background swap.
+         Uses the same native 100vh as the base layer so it does not
+         resize when the mobile address bar moves during scroll. */
       body::before {
         background-image: url('images/bodyPortrait.jpg');
         background-size: 120%;
@@ -745,20 +747,6 @@
       <path d="M5 12l7-7 7 7" />
     </svg>
   </button>
-
-  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
-  <script>
-    (function () {
-      function setVH() {
-        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
-      }
-      setVH();
-      window.addEventListener('resize', setVH);
-      window.addEventListener('orientationchange', setVH);
-      window.addEventListener('load', setVH);
-      setTimeout(setVH, 100);
-    })();
-  </script>
 
   <!-- ===== CONTENT.JS ===== -->
   <script src="content.js"></script>
