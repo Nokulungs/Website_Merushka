@@ -22,11 +22,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@merushkafrancis">
 
-  <!-- Favicon -->
-<!-- Favicon (Google-compliant) -->
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/favicon.png">
+  <!-- Favicon (Google-compliant) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
 
   <script type="application/ld+json">
 {
@@ -785,15 +784,21 @@
     </svg>
   </button>
 
-  <!-- ===== iOS VIEWPORT HEIGHT FIX ===== -->
+  <!-- ===== iOS VIEWPORT HEIGHT FIX (DEBOUNCED) ===== -->
   <script>
-    // Fix iOS 100vh issue — sets real viewport height as --vh CSS variable
+    // Fix iOS 100vh issue — sets real viewport height as --vh CSS variable.
+    // DEBOUNCED: only updates after resize events settle, so the background
+    // doesn't jitter while the user scrolls and iOS hides/shows the address bar.
     (function () {
+      let resizeTimer;
       function setVH() {
         document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
       }
       setVH();
-      window.addEventListener('resize', setVH);
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setVH, 150);
+      });
       window.addEventListener('orientationchange', setVH);
       window.addEventListener('load', setVH);
       setTimeout(setVH, 100);
